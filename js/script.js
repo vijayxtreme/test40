@@ -54,9 +54,27 @@ $(".submit-form").click(function(e){
 	animateLeft(step1, step2);
 });
 
+//datepicker
+
+$("#datepicker").datepicker();
+
 //ziphelp
 
+$("body").click(function(e){
+	var target = $(e.target);
+	//if the target element is inside the zipcode helper
+	//return true or false
+	var childOfZip = !!(target.closest('.zipcode-helper').length);
+	//if zipcode-helper is visible and clicking 
+	//is not inside the zipcode helper, hide zipcode-helper
+	if($(".zipcode-helper").is(":visible") && !childOfZip)
+	 	$(".zipcode-helper").hide();
+});
+
+
 $(".ziphelp").click(function(e){
+	//stops body from also registering click
+	e.stopPropagation();
 	console.log(e.pageX, e.pageY);
 	
 	//can prob fix this to get end pos of link

@@ -182,6 +182,10 @@ section {
 .step {
   display: none; }
 
+#step1 {
+  display: block;
+  margin-left: 0px; }
+
 button.submit-form {
   background-color: #7ad014;
   color: white;
@@ -306,10 +310,6 @@ button.submit-form:hover {
   padding-left: 38px;
   padding-right: 38px;
   padding-bottom: 30px; }
-
-#step1 {
-  display: block;
-  margin-left: 0px; }
 
 .price-text {
   font-family: 'Montserrat Light', arial;
@@ -502,7 +502,6 @@ button.submit-form:hover {
       -webkit-transform: skew(20deg); }
 
 #step4 {
-  margin-left: 1500px;
   padding-top: 29px; }
   #step4 .thank-you-area {
     padding-bottom: 43px; }
