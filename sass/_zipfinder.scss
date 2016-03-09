@@ -1,0 +1,91 @@
+$zipShadow:#3999c9;
+$zipHeader:#1374c6;
+$zipHelperInput:#454545;
+$zipHelperInputBg:#e6e6e6;
+
+.zip-entry {
+	width: 188px;
+}
+
+input.zip {
+	padding-top:13px;
+	padding-left:12px;
+	padding-bottom:13px;
+	border-radius:5px;
+	border:0px;
+	font-family: 'Source Sans Pro';
+	font-size:18px;
+	font-weight:400;
+	border:2px solid transparent;
+}
+
+.zipfinder {
+	clear:both;
+	padding-top:20px;
+	padding-bottom:26px;
+	position:relative;
+	
+}
+
+.ziphelp-area {
+	font-size:14px;
+	font-family: "Source Sans Pro";
+	a{
+		text-decoration: none;
+		color:white;
+	}
+	span {
+		position:relative;
+		top:-4px;
+		left:5px;
+		font-weight: 500;
+	}
+}
+
+.zipcode-helper {
+	display:none;
+	position:absolute;
+	background:white;
+	top:16px;
+	left:300px;
+	padding-top:14px;
+	padding-left:16px;
+	padding-right:16px;
+	border-radius:5px;
+	z-index:1000;
+	// border-top-right-radius:5px;
+	// border-bottom-right-radius:5px;
+	// border-bottom-left-radius:5px;
+	box-shadow:0px 5px 0px $zipShadow;
+
+	input {
+		background-color:$zipHelperInputBg;
+		border:0px;
+		padding-left:12px;
+		font-family: "Source Sans Pro";
+		font-size:19.36px;
+		color:$zipHelperInput;
+		border-radius:3px;
+		margin-bottom:14px;
+		font-weight: 500;
+		width: 253px;
+
+	}
+
+	.zip-arrow {
+		position:absolute;
+		left:-15px;
+		top:0px;
+		border-top:18px solid transparent;
+		border-bottom:18px solid transparent;
+		border-right:18px solid white;
+
+	}
+
+	h3 {
+		color:$zipHeader;
+		font-size:15.94px;
+		font-family:"Source Sans Pro";
+		padding-bottom:9px;
+	}
+}

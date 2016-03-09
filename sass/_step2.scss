@@ -1,0 +1,37 @@
+#step2 {
+	//display:block;
+	//margin-left:0px;
+	//margin-left:1500px;
+	padding-top:34px;
+
+	.movers {
+		left:34px;
+	}
+	.bvl-logos {
+		padding-top:20px;
+	}
+
+	#calculate {
+		width:210px;
+		height:55px;
+		margin-bottom: 23px;
+		font-weight: 700;
+	}
+
+	.form-area {
+		select {
+			border:2px solid transparent;
+			padding-top: 9px;
+			padding-bottom:7px;
+			padding-left:16px;
+			-webkit-appearance:none;
+			margin-bottom: 12px;
+			width:211px;
+			font-family: "Source Sans Pro";
+			font-size:13px;
+			color:$inputPlaceholder;
+			font-weight: 600;
+		}
+	}
+}
+

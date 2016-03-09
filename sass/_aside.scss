@@ -1,0 +1,100 @@
+$asideTitle: #599bd0;
+
+aside#sidebar {
+	display:none;
+
+	padding-top:35px;
+	.how-it-works-title {
+		padding-bottom:35px;
+		h2 {
+			font-family: "Source Sans Pro";
+			font-size:30px;
+			line-height:27.13px;
+			color: $asideTitle;
+			text-align: center;
+			opacity: 0.8;
+		}
+	}
+	.sub-step {
+		display: none;
+		height:230px;
+		font-family: "Source Sans Pro";
+		
+	}
+	.sub-step.active {
+		display: block;
+	}
+
+	.substep-arrow {
+		float:left;
+		position: relative;
+		top:-96px;
+	}
+	.substep-arrow.right {
+		float:right;
+		left:-120px;
+	}
+
+	.sub-step1 {
+		.col {
+			text-align:center;
+			display:inline-block;
+			p {
+				padding-top:24px;
+				font-size:14px;
+				line-height: 21.2px;
+				opacity: 0.7;
+			}
+		}
+		.col.list {
+			margin-left: 168px;
+		}
+		.col.coins {
+			margin-left: 108px;
+		}
+		.col.cash {
+			margin-left: 92px;
+		}
+
+	}
+
+	.sub-step2 {
+		.col2 {
+			display: inline-block; 
+			p {
+				font-size:11px;
+
+			}
+			span img {
+				position:relative;
+			}
+		}
+		.col2.weight {
+			margin-left: 54px;
+			width:130px;
+			left:-5px;
+			span img {
+				left:-5px;
+			}
+		}
+		.col2.distance {
+			margin-left:51px;
+			width:123px;
+		}
+		.col2.timing {
+			margin-left:51px;
+			width:130px;
+		}
+		.col2.extra {
+			margin-left: 46px;
+			width:134px;
+		}
+		.col2.origin {
+			margin-left: 48px;
+			width:114px;
+		}
+	}
+
+
+
+}

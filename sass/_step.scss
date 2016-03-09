@@ -1,0 +1,173 @@
+$section:#4bb8e8;
+$greenBtn: #7ad014;
+$greenBtnA: #50880D;
+$greenBtnH: #99FF20;
+$formArea:#1374c6;
+$lightCol:#cfebfa;
+$inputPlaceholder:#949494;
+
+.background {
+	background-color:$section;
+	min-height:462px;
+}
+
+section {
+	clear:both;
+	width:100%;
+	margin-left:1500px;
+}
+
+.step {
+	display:none;
+}
+
+
+button.submit-form {
+	background-color:$greenBtn;
+	color:white;
+	font-family: "Montserrat Regular";
+	font-weight: 700;
+	font-size:20px;
+	border:0px;
+	border-radius:5px;
+	cursor: pointer;
+	outline:none;
+}
+button.submit-form:active {
+	background-color:$greenBtnA;
+}
+button.submit-form:hover {
+	background-color:$greenBtnH;
+}
+
+.form-area {
+	float:left;
+	font-family: "Source Sans Pro";
+	background-color:$formArea;
+	font-weight: 700;
+	font-size:20px;
+	color:white;
+	border-radius:4px;
+	padding-left:38px;
+	padding-right:38px;
+	padding-top:23px;
+	box-shadow:0px 4px 0px rgba(0, 43, 79, 0.2);
+
+	input {
+		padding-top:9px;
+		padding-bottom:7px;
+		padding-left:16px;
+		border-radius:4px;
+		font-family: "Source Sans Pro";
+		font-size:13px;
+		color:$inputPlaceholder;
+		font-weight: 600;
+		margin-bottom: 12px;
+		border:2px solid transparent;
+	}
+
+
+	.col-q {
+		width:267px;
+		display:inline-block;
+	}
+	.col-i {
+		width:220px;
+		display: inline-block;
+		input {
+			width:190px;
+		}
+
+	}
+	.col-i2 {
+		width:119px;
+		display: inline-block;
+		input {
+			width:87px;
+		}
+	}
+	.col-z {
+		width:90px;
+		display: inline-block;
+	}
+}
+
+.steps-completed {
+	max-width:940px;
+	height:24px;
+	font-size:12px;
+	line-height:24px;
+	font-family:'Source Sans Pro';
+	border-radius:5px;
+	margin-bottom:33px;
+
+	.blue-col {
+		background-color:$formArea;
+		width:33%;
+		display: inline-block;
+		border-top-left-radius:5px;
+		border-bottom-left-radius:5px;
+		text-align: center;
+		font-weight: 600;
+	}
+	.blue-col.middle {
+		border-top-left-radius:0px;
+		border-bottom-left-radius:0px;
+		margin-left: 1px;
+	}
+
+	.blue-col.last {
+		border-top-left-radius:0px;
+		border-bottom-left-radius:0px;
+		border-top-right-radius:5px;
+		border-bottom-right-radius:5px;
+	}
+	.light-col {
+		background-color:$lightCol;
+		width:33%;
+		display: inline-block;
+		text-align:center;
+		color:$formArea;
+		font-weight: 600;
+	}
+	.light-col.last {
+		border-top-right-radius:5px;
+		border-bottom-right-radius:5px;
+	}
+
+}
+
+
+.bvl-logos {
+	clear:both;
+	padding-top:292px;
+	padding-left:8px;
+
+	.verisign {
+		margin-right:24px;
+	}
+	.bbb {
+		margin-right: 22px;
+	}
+	.lock {
+		.priv-and-terms {
+			font-size: 14px;
+			font-family: "Source Sans Pro";
+			font-weight: 500;
+			position:relative;
+			top: -9px;
+			padding-left:12px;
+			opacity: 0.8;
+			a {
+				color:white;
+				text-decoration: none;
+			}
+		}
+		margin-right: 24px;
+	}
+	.info {
+		position:relative;
+		top:-4px;
+		cursor: pointer;
+	}
+}

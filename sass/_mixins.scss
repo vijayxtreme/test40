@@ -1,0 +1,22 @@
+$loaderGreen:#95d72e;
+
+@mixin loader(){
+	width:692px;
+	height:33px;
+	background-color: $loaderGreen;
+	margin:0 auto;
+	transform: skew(160deg);
+	-webkit-transform: skew(160deg);
+    -moz-transform: skew(160deg);
+    -o-transform: skew(160deg);
+    text-align:center;
+    font-family: "Source Sans Pro";
+    font-weight: 200;
+    font-size:29.29px;
+    margin-bottom: 26px;
+    margin-top:20px;
+    #current-percent{
+    	transform: skew(20deg);
+    	-webkit-transform:skew(20deg);
+    }
+}

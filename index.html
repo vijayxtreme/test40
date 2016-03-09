@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BudgetVanLines 40</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="logo">
+				<div class="logo-main"><img src="img/header.png" height="34" width="239"></div>		
+				<div class="matching-service"><p>Your mover matching service</p></div>
+			</div>
+			<div id="parallelogram"></div>
+			<div class="phone">
+				<div class="any-questions"><p>Any Questions?</div>
+				<div class="call-us"><span class="phone-icon"><img src="img/phone-call.png"></span><span>Call US: <a href="">1.800.611.6001</a></span></div>
+			</div>
+		</div>
+	</header>
+	<div class='background'>
+		<section id="step1" class="step">
+			<div class="container">
+				<div class="price-text">
+					<h1>MOVING PRICE CALCULATOR</h1>
+					<h4>Rates as low as $999</h4>
+				
+					<div class="price-calculator">
+						<form action="" method="POST" id="f-step1">
+							<div class="price-title">
+								<h3>Enter ZIP to Search Rates and Availability</h3>
+							</div>
+							<div class="price-body">
+								<div class="price-col moving-from">Moving From?</div>
+								<div class="price-col zip-entry">
+									<input name="from-zip" class="zip" id="from-zip" type="text" placeholder="Enter From Zip">
+								</div>
+								<div class="price-col">
+									<button id="go" class="submit-form" type="submit">GO</button>
+								</div>
+							</div>
+							<div class="zipfinder">
+								<div class="price-col moving-from">&nbsp;</div>
+								<div class="ziphelp-area">
+									<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a> 
+								</div>
+								
+							</div>
+						</form>
+					</div>
+
+					<div class="bvl-logos">
+						<span class='verisign'><img src="img/verisign.png"></span>
+						<span class="bbb"><img src="img/bbb.png"></span>
+						<span class="lock"><img src="img/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
+						<span class="info"><img src="img/info.png"></span>
+					</div>
+				</div>
+				<div class="movers">
+					<img src="img/movers.png">
+				</div>
+			</div>
+		</section>
+		<section id="step2" class="step">
+			<div class="container">
+				<div class="steps-completed">
+					<div class="blue-col">
+						Step 1: Completed
+					</div><div class="light-col">
+						Step 2: Search Movers
+					</div><div class="blue-col last">
+						Step 3: Get Quotes
+					</div>
+				</div>
+				<div class="form-area">
+					<div>
+						<div class="col-q">
+							Where are you moving from?
+						</div>
+						<div class="col-i2">
+							<input type="text" name="move-from" value="" placeholder="Enter From Zip">
+						</div>
+						<div class="col-z ziphelp-area">
+							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+						</div>
+					</div>
+					<div>
+						<div class="col-q">
+							Where are you moving to?
+						</div>
+						<div class="col-i2">
+							<input type="text" name="move-to" value="" placeholder="Enter To Zip">
+						</div>
+						<div class="col-z ziphelp-area">
+							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+						</div>
+					</div>
+					<div>
+						<div class="col-q">
+							When is your move?
+						</div>
+						<div class="col-i">
+							<input type="text" name="" value="" placeholder="Choose A Date" readonly>
+						</div>
+					</div>
+					<div>
+						<div class="col-q">
+							How large is your move?
+						</div>
+						<div class="col-i">
+							<select>
+								<option>Enter Move Size</option>
+								<option>Box Only</option>
+								<option>1 Bedroom</option>
+								<option>2 Bedrooms</option>
+								<option>3 Bedrooms</option>
+								<option>4 Bedrooms</option>
+								<option>5 Bedrooms</option>
+								<option>6 Bedrooms</option>
+								<option>Commercial Move</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<div class="col-q">
+							&nbsp;
+						</div>
+						<div class="col-i">
+							<button id="calculate" class="submit-form">CALCULATE</button>
+						</div>
+					</div>
+
+					
+
+				</div>
+				<div class="movers">
+					<img src="img/usa-map.png">
+				</div>				
+				<div class="bvl-logos">
+					<span class='verisign'><img src="img/verisign.png"></span>
+					<span class="bbb"><img src="img/bbb.png"></span>
+					<span class="lock"><img src="img/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
+				</div>
+
+				
+			</div>
+		</section>
+		<section id="step3" class="step">
+			<div class="container">
+				<div class="steps-completed">
+					<div class="blue-col">
+						Step 1: Completed
+					</div><div class="blue-col middle">
+						Step 2: Completed
+					</div><div class="light-col last">
+						Step 3: Get Quotes
+					</div>
+				</div>
+				<div class="loader-area">
+					<h2>Calculating...</h2>
+					<div id="loader3"><div id="current-percent">0%</div></div>
+				</div>
+				<div class="form-area">
+					<div>
+						<div class='col-n'>Full Name</div>
+						<div class="col-i4 first"><input type="text" name="first-name" value="" placeholder="First"></div>
+						<div class="col-i4"><input type="text" name="last-name" placeholder="Last"></div>
+					</div>
+					<div>
+						<div class='col-n'>Valid Email</div>
+						<div class="col-i3"><input type="text" value="" placeholder="Email Address"></div>
+					</div>
+					<div>
+						<div class='col-n'>Valid Phone</div>
+						<div class="col-i3"><input type="text" value="" placeholder="Phone Number"></div>
+					</div>
+					<div>
+						<div class='col-n'>
+							<p id="legal">By clicking on "Get My Quotes" you agree to the terms below.</p>
+						</div>
+						<button class="submit-form" id="get-my-quotes">GET MY QUOTES</button>
+					</div>
+				</div>
+				<div class="right-col">
+					<div class="moving-info">
+						<div class="trip-info">
+							<div class="field-trip1">
+								<span id="field-trip-date"><img src="img/tiny-cal.png">Feb. 25th</span>
+								<span id="field-trip-size"><img src="img/tiny-bed.png">3 BR</span>
+								<span id="field-trip-length">
+								<img src="img/tiny-car.png">Trip length 921 miles</span>
+							</div>
+							<div class="field-trip2">
+								<p><span id="field-trip-from-zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip">Los Angeles, CA 90036</span> <a id="field-trip-edit" href="#">Edit</a></p>
+							</div>
+						</div>
+						<div class="google-map">
+							
+						</div>
+					</div>
+					<div>
+						<div></div>
+					</div>
+					<div class="bvl-logos">
+						<span class='verisign'><img src="img/verisign.png"></span>
+						<span class="bbb"><img src="img/bbb.png"></span>
+						<span class="lock"><img src="img/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
+					</div>
+				</div>
+		
+			</div>
+		</section>
+		<section id="step4" class="step">
+			<div class="container">
+				<div class="thank-you-area">
+					<h4>Thank you John Smith</h4>
+					<h1>Movers With Your Actual Quote Will Now Contact You.</h1>
+					<div class="loader">
+						<div id="current-percent">Estimated Quote is $4,004 - $8,008</div>
+					</div>
+					<p>This price range is not an actual quote and is based on industry averages.  3 bedroom house shipments can vary in size.  You may need additional services like packing.  Tariff pricing is different for each moving industry.</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="zipcode-helper">
+		<div class="zip-arrow"></div>
+		<h3>ZipCode Helper</h3>
+		<form>
+			<input placeholder="City, State" value="">
+		</form>
+	</div>
+	<aside id="sidebar">
+		<div class="container">
+			<div class="sub-step sub-step1 active">
+				<div class="how-it-works-title">
+					<h2>How It Works?</h2>
+				</div>
+				<div class="col list">
+					<img src="img/list.png">
+					<p>1. Enter move details</p>
+				</div>	
+				<div class="col coins">
+					<img src="img/coins.png">
+					<p>2. View estimated cost</p>
+				</div>
+				<div class="col cash">
+					<img src="img/cash.png">
+					<p>3. Get quote from movers</p>
+				</div>
+			</div>
+			<div class="sub-step sub-step2">
+				<div class="how-it-works-title">
+					<h2>What is it based on?</h2>
+				</div>
+				<div class="col2 weight">
+					<span><img src="img/view2-box.png"></span>
+					<span>Weight</span>
+					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+				</div>
+				<div class="col2 distance">
+					<span><img src="img/view2-map.png"></span>
+					<span>Weight</span>
+					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+				</div>
+				<div class="col2 timing">
+					<span><img src="img/view2-cal.png"></span>
+					<span>Weight</span>
+					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+				</div>
+				<div class="col2 extra">
+					<span><img src="img/view2-hands.png"></span>
+					<span>Weight</span>
+					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+				</div>
+				<div class="col2 origin">
+					<span><img src="img/view2-gps.png"></span>
+					<span>Weight</span>
+					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+				</div>
+			</div>
+			<div class="sub-step sub-step3">
+				<div class="questions">
+					<h4>Question:</h4>
+					<div>
+						<ul>
+							<li>How do you calculate my moving quote?</li>
+							<li>Who can I expect to contact me?</li>
+							<li>What is Budget Van Lines?</li>
+						</ul>
+					</div>
+					
+				</div>
+				<div class="answers">
+					<h4>Answer:</h4>
+					<p>We use several details of your move to create each individual moving quote.  The price range is based on the size of your inventory, the date you're moving, the distance of your move and that particular route's popularity.  Any extra services you'll need will also affect your moving quote. All these factors play a major role in shaping the price of your move.</p>
+				</div>
+			</div>
+			<div class="substep-arrow left"><a href=""><</a></div>
+			<div class="substep-arrow right"><a href="">></a></div>
+		</div>
+
+		</div>
+	</aside>
+	<div class="disclaimer">
+		<div class="container">
+		<p id="quotes-disc">By clicking on the "Get My Quotes" button I am verifying that I am over 18 years of age and agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.  My "click" is my expressed written consent to be contacted via email, text, SMS or phone (including the use of autodialed calls or prerecorded calls) by Budget Van Lines, inc. and its moving partners that can quote or service my move, as well as companies offering other useful products or services.  My consent supercedes any registration on any do-not-call list.  Consent is required to proceed, but is not a condition of any purchase.</p>
+		<p>*Disclaimer: Once submitting a quote request on BudgetVanLines.com, based on your search criteria, our system will match you with licensed third party companies that can service your route.  Budget Van Lines Inc, a federally licensed moving broker, could also be one of the companies competing for your business.  Budget Van Lines is not a motor carrier and does not own moving trucks.  Budget Van Lines will generate a quote for you based on the details of your intended move, as well as the availability of licensed motor carriers in Budget Van Lines' network.</p>
+		</div>
+	</div>
+	<footer class="steps">
+		<div class="container">
+			<p>Copyright 2015 &copy; <a href="http://www.budgetvanlines.com">www.BudgetVanLines.com</a></p>
+		</div>
+	</footer>
+	<footer class="thanks">
+		<div class="container">
+			<div class="thanks-main">
+				<div class="thanks-subsection">
+					<h3>Taking the stress out of moving</h3>
+					<p>The search for your movers is done.  You don't need to fill out any other forms, just sit back, relax, and multiple movers will be in touch with you to give you competing quotes for your specific move.</p>
+				</div>
+				<div class="thanks-subsection">
+					<h3>Your quotes are on the way</h3>
+					<p>Your estimated quote will be sent to your email and our movers will soon contact you by phone.  Be ready to speak with your movers regarding your inventory to receive a more accurate quote.</p>
+				</div>
+			</div>
+			<div class="thanks-disclaimer">
+				<p>*Disclaimer: Once submitting a quote request on <a href="#">BudgetVanLines.com</a>, based on your search criteria, our system will match you with licensed third party companies that can service your route.  Budget Van Lines Inc, a federally licensed moving broker, could also be one of the companies competing for your business.  Budget Van Lines is not a motor carrier and does not own moving trucks.  Budget Van Lines will generate a quote for you based on the details of your intended move, as well as the availability of licensed motor carriers in Budget Van Lines' network.</p> 
+			</div>
+			<div class="thanks-copyright">
+				<p>Copyright 2015 &copy; <a href="#">www.BudgetVanLines.com</a>
+			</div>
+		</div>
+	</footer>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

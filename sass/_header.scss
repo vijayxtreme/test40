@@ -1,0 +1,77 @@
+$phone: #79cef2;
+
+header {
+	height:87px;
+}
+header .container {
+	position:relative;
+	height:87px;
+	.logo {
+		float:left;
+		width:278px;
+		padding-top: 26px;
+		.logo-main {
+			img {
+				height:33px;
+				width:239px;
+			}
+		}
+
+		.matching-service {
+			position: relative;
+			left:111px;
+			top:-5px;
+			p {
+				font-family:"Roboto";
+				font-style: italic;
+				font-size:12px;
+				color:$matchingService;
+			}
+		}
+		padding-bottom:13px;
+	}
+
+	#parallelogram {
+	    width: 333px;
+	    height:87px;
+	    -webkit-transform: skew(20deg);
+	    -moz-transform: skew(20deg);
+	    -o-transform: skew(20deg);
+	    background: rgba(75, 184, 232, 0.1);
+	    transform: skew(157.45deg);
+	    position: absolute;
+	    right: 41px;
+	}
+	.phone {
+		float:right;
+		position:relative;
+		right:107px;
+		.any-questions {
+			padding-top:28px;
+			p {
+				font-family: 'Source Sans Pro';
+				font-weight: 400;
+				font-size:14px;
+				color:white;
+				text-align:right;
+			}
+		
+		}
+		.call-us {
+			font-family: 'Source Sans Pro';
+			padding-top:4px;
+			span {
+				font-size: 18px;
+				font-weight: 300;
+			}
+			.phone-icon {
+				margin-right: 8px;
+			}
+			a {
+				text-decoration: none;
+				font-weight: 700;
+				color:$phone;
+			}
+		}
+	}
+}

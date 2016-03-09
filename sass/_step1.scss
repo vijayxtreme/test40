@@ -1,0 +1,84 @@
+$priceTitle:#004d8e;
+$priceCalculator:#1374c6;
+
+
+.price-body, .zipfinder {
+	padding-top:30px;
+	padding-left:38px;
+	padding-right:38px;
+	padding-bottom:30px;
+}
+
+#step1 {
+	display:block;
+	margin-left:0px;
+}
+
+.price-text {
+    font-family: 'Montserrat Light', arial;
+    padding-top:45px;
+	h1 {
+		font-size:40px;
+		text-align:left;
+		margin-bottom: 7px;
+		position:relative;
+		left:-2px;
+	}
+	h4 {
+
+		font-size:24px;
+	}
+	.price-calculator {
+		position:absolute;
+		margin-top:44px;
+		width:628px;
+		z-index: 1000;
+		border-bottom-right-radius:4px;
+		border-bottom-left-radius:4px;
+		border-top-left-radius: 4px;
+	    border-top-right-radius: 4px;
+		background-color:$priceCalculator;
+		box-shadow:0px 4px 0px rgba(0, 43, 79, 0.2);
+
+		.price-title {
+			padding-top:17px;
+			padding-bottom:18px;
+			padding-left:40px;
+			font-family: 'Montserrat Regular';
+			font-size:18px;
+			background-color: $priceTitle;
+			border-radius: 4px;
+			border-bottom-right-radius:0px;
+			border-bottom-left-radius:0px;
+		}
+		.price-col {
+			float:left;
+		}
+		.moving-from {
+			font-family: "Source Sans Pro";
+			font-size:20px;
+			font-weight: 700;
+			width:153px;
+			padding-top: 17px;
+		}
+
+		#from-zip {
+			width:151px;
+		}
+		#go {
+			height:53px;
+			width:211px;
+		}
+	}
+	float:left;
+	width:60%;
+}
+
+.movers {
+	float:left;
+	width:40%;
+	position:relative;
+	left:-166px;
+}
+
+

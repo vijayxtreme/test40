@@ -1,0 +1,149 @@
+
+$legal: #89bae3;
+$tripInfo:#3da6df;
+
+#step3 {
+	padding-top:34px;
+	//display:block;
+	//margin-left:0;
+	//margin-left:1500px;
+	height:521px;
+	.steps-completed {
+		margin-bottom: 0px;
+	}
+	.form-area {
+		padding-left:48px;
+		padding-right:48px;
+		padding-top:49px;
+
+		.col-n {
+			float:left;
+			width:165px;
+
+			#legal {
+				margin-top:22px;
+				font-family: "Source Sans Pro";
+				color:$legal;
+				font-size:14px;
+				line-height: 17.2px;
+				font-weight: 400;
+				opacity:0.6;
+			}
+		}
+		input {
+			padding-top:6px;
+			padding-bottom:5px;
+		}
+
+		.col-i3 {
+			width:231px;
+			float: left;
+			input {
+				font-size:18px;
+				width:221px;
+			}
+		}
+
+		.col-i4 {
+			width:112px;
+			float:left; 
+			input {
+				font-size:18px;
+				width:92px;
+			}
+		}
+		.col-i4.first {
+			margin-right: 16px;
+		}
+	
+		#get-my-quotes {
+			margin-top:22px;
+			margin-bottom: 49px;
+			width:241px;
+			height:54px;
+		}
+	}
+
+	.right-col {
+		float:left;
+		margin-left: 30px;
+	}
+
+	.moving-info {
+		font-family: "Source Sans Pro";
+		font-size:13px;
+		height:275px;
+		width:410px;
+		margin-bottom: 14px;
+		.trip-info {
+			padding-left:27px;
+			padding-right:22px;
+			background-color:$tripInfo;
+			text-align: center;
+
+			width:100%;
+			box-sizing:border-box;
+
+			.field-trip1 {
+				padding-top:11px;
+				padding-bottom:5px;
+				font-family:"Montserrat Regular";
+				font-size:13.45px;
+				font-weight: 200;
+
+				#field-trip-date {
+					padding-right:19px;
+					img {
+						padding-right:11px;
+
+					}
+				}
+				#field-trip-size {
+					padding-right:20px;
+					img {
+						position:relative;
+						top:5px;
+						padding-right:7px;
+					}
+				}
+				#field-trip-length {
+					img {
+						padding-right:6px;
+					}
+				}
+			}
+			.field-trip2 {
+				padding-top:7px;
+				padding-bottom:12px;
+
+				a {
+					color:white;
+				}
+			}
+		}
+		.google-map {
+			height:205px;
+			background-color:red;
+		}
+	}
+
+	.bvl-logos {
+		padding-top:0px;
+		padding-left:0px;
+	}
+
+	.loader-area {
+		h2 {
+			font-family: "Montserrat Regular";
+			font-size:32px;
+			padding-top:24px;
+			text-align: center;
+			font-weight:500;
+		}
+		#loader3 {
+			@include loader();
+		   // background: rgba(75, 184, 232, 0.1);
+		}
+	}
+
+}

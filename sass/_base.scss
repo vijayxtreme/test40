@@ -1,0 +1,29 @@
+$body:#002f54;
+$aside:#78add8;
+$matchingService:#8daebd;
+
+
+body {
+	background-color:$body; 
+	color:white;
+	min-width:1050px;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+}
+
+.container {
+	width:1050px;
+	margin:0px auto;
+
+}
+
+aside {
+	background-color:white;
+	min-height:232px;
+	color:$aside;
+	a {
+		text-decoration:none;
+	}
+}
+
+

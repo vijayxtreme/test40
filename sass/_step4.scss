@@ -1,0 +1,50 @@
+#step4 {
+//	display:block;
+//	margin-left:0px;
+	margin-left:1500px;
+	padding-top:29px;
+	.thank-you-area {
+		padding-bottom: 43px;
+		h4 {
+			font-family: "Source Sans Pro"; //black
+			font-size:24px;
+			text-align: center;
+			margin-bottom: 13px;
+		}
+		h1 {
+			margin-top:13px;
+			font-family:"Montserrat Regular";
+			font-size:36px;
+			line-height:37.6px;
+			width:600px;
+			margin:0 auto;
+			text-align: center;
+			font-weight:200;
+			margin-bottom: 24px;
+		}
+		p {
+			font-family: "Source Sans Pro";
+			font-size:12px;
+			width:965px;
+			margin:0 auto;
+		}
+		.loader {
+			@include loader();
+			width: 940px;
+			padding-top:15px;
+			padding-bottom:10px;
+			font-weight: 300;
+			margin-bottom: 17px;
+		}
+	}
+}
+
+.disclaimer {
+	display:block;
+}
+
+
+
+.background {
+	// min-height:initial;
+}
