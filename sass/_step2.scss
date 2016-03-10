@@ -1,34 +1,108 @@
-#step2 {
-	padding-top:34px;
+$selectArrow:#3e8dd0;
+$step2Par:#53a4d7;
 
+#step2 {
+	// padding-top:34px;
+
+	.container {
+		position:relative;
+	}
+	.steps-completed {
+		position:absolute;
+		top:34px;
+		width:940px;
+		z-index: 10;
+	}
 	.movers {
-		left:34px;
+		float: right;
+		left:-48px;
+		padding-top:109px;
 	}
 	.bvl-logos {
-		padding-top:20px;
+		padding-top:85px;
 	}
-
-	#calculate {
-		width:210px;
-		height:55px;
-		margin-bottom: 23px;
-		font-weight: 700;
-	}
-
 	.form-area {
-		select {
-			border:2px solid transparent;
-			padding-top: 9px;
-			padding-bottom:7px;
-			padding-left:16px;
-			-webkit-appearance:none;
-			margin-bottom: 12px;
-			width:211px;
-			font-family: "Source Sans Pro";
-			font-size:13px;
-			color:$inputPlaceholder;
-			font-weight: 600;
+		position:absolute;
+		z-index: 10;
+		padding-left:32px;
+		padding-right:30px;
+		top:90px;
+		.moving-size {
+			position:relative;
+			select {
+				border:2px solid transparent;
+				padding-top: 9px;
+				padding-bottom:7px;
+				padding-left:16px;
+				-webkit-appearance:none;
+				margin-bottom: 12px;
+				width:211px;
+				font-family: "Source Sans Pro";
+				font-size:13px;
+				color:$inputPlaceholder;
+				font-weight: 600;
+			}
+			#select-arrow {
+				position:absolute;
+				top:16px;
+				right:16px;
+				border-top:10px solid $selectArrow;
+				border-left:10px solid transparent;
+				border-right:10px solid transparent;
+				cursor:pointer;
+			}
+
 		}
+		#calculate {
+			width:210px;
+			height:55px;
+			margin-bottom: 23px;
+			font-weight: 700;
+		}
+		.moving-from, .moving-to{
+			display:none;
+		}
+		.moving-from.edit, .moving-to.edit {
+			padding-bottom:9px;
+			border-bottom:1px solid $lightBorder;
+			margin-bottom: 8px;
+			width:480px;
+			h6 {
+				font-family: "Montserrat Regular";
+				font-size:11px;
+				opacity:0.5;
+			}
+
+			#moving-from-text {
+				font-family: "Montserrat Regular";
+				font-size:18px;
+				font-weight: 300;
+				padding-right:10px;
+			}
+			a {
+				font-family: "Source Sans Pro";
+				font-size:13px;
+				font-weight: 500;
+				color:white;
+			}
+		}
+		.moving-date {
+			padding-top:2px;
+			#datepicker {
+				background-image:url(../img/cal.png);
+				background-repeat:no-repeat;
+				background-position-x:calc(100% - 2px);
+			}
+		}
+	}
+
+	.parallelogram {
+		@include parallelogram();
+		background:$step2Par;
+		opacity:0.32;
+		top:0;
+		right:155px;
+		height:462px;
 	}
 }
 

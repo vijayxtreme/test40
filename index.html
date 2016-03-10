@@ -3,6 +3,8 @@
 <head>
 	<title>BudgetVanLines 40</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,500,500italic,700,700italic,900,900italic,100italic,100|Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic">
+	<link rel="stylesheet" type="text/css" href="http://allfont.net/allfont.css?fonts=montserrat-light">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -73,7 +75,7 @@
 					</div>
 				</div>
 				<div class="form-area">
-					<div>
+					<div class="moving-from">
 						<div class="col-q">
 							Where are you moving from?
 						</div>
@@ -84,7 +86,11 @@
 							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
 						</div>
 					</div>
-					<div>
+					<div class="moving-from edit">
+						<h6>MOVING FROM:</h6>
+						<div><span id="moving-from-text">Chestnut Mountain, GA 36001</span><a id="moving-from-text-edit" href="#">Edit</a></div>
+					</div>
+					<div class="moving-to">
 						<div class="col-q">
 							Where are you moving to?
 						</div>
@@ -95,7 +101,11 @@
 							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
 						</div>
 					</div>
-					<div>
+					<div class="moving-to edit">
+						<h6>MOVING TO:</h6>
+						<div><span id="moving-from-text">Los Angeles, CA 90036</span><a id="moving-to-text-edit" href="#">Edit</a></div>
+					</div>
+					<div class="moving-date">
 						<div class="col-q">
 							When is your move?
 						</div>
@@ -103,11 +113,12 @@
 							<input id="datepicker" type="text" name="move-date" value="" placeholder="Choose A Date" readonly>
 						</div>
 					</div>
-					<div>
+					<div class="moving-size">
 						<div class="col-q">
 							How large is your move?
 						</div>
 						<div class="col-i">
+							<div id="select-arrow"></div>
 							<select>
 								<option>Enter Move Size</option>
 								<option>Box Only</option>
@@ -129,10 +140,8 @@
 							<button id="calculate" class="submit-form">CALCULATE</button>
 						</div>
 					</div>
-
-					
-
 				</div>
+				<div class="parallelogram"></div>
 				<div class="movers">
 					<img src="img/usa-map.png">
 				</div>				
@@ -227,7 +236,7 @@
 		<div class="zip-arrow"></div>
 		<h3>ZipCode Helper</h3>
 		<form>
-			<input placeholder="City, State" value="">
+			<input id="zipfinder" placeholder="City, State" autofocus>
 		</form>
 	</div>
 	<aside id="sidebar">

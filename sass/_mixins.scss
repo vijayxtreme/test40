@@ -21,6 +21,7 @@ $loaderGreen:#95d72e;
     }
 }
 
+//thin arrows
 [class^=arr-]{  /* Arrows @RCB */
     border: solid currentColor;
     border-width: 0 2px 2px 0px;
@@ -32,3 +33,15 @@ $loaderGreen:#95d72e;
 .arr-left  {transform:rotate(135deg);}
 .arr-up    {transform:rotate(-135deg);}
 .arr-down  {transform:rotate(45deg);} 
+
+@mixin parallelogram(){
+        width: 333px;
+        height:87px;
+        -webkit-transform: skew(20deg);
+        -moz-transform: skew(20deg);
+        -o-transform: skew(20deg);
+        background: rgba(75, 184, 232, 0.1);
+        transform: skew(157.45deg);
+        position: absolute;
+        right: 41px;
+}

@@ -2,9 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url(http://allfont.net/allfont.css?fonts=montserrat-light);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,500,500italic,700,700italic,900,900italic,100italic,100);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -385,29 +382,99 @@ button.submit-form:hover {
   position: relative;
   left: -166px; }
 
-#step2 {
-  padding-top: 34px; }
-  #step2 .movers {
-    left: 34px; }
-  #step2 .bvl-logos {
-    padding-top: 20px; }
-  #step2 #calculate {
+#step2 .container {
+  position: relative; }
+
+#step2 .steps-completed {
+  position: absolute;
+  top: 34px;
+  width: 940px;
+  z-index: 10; }
+
+#step2 .movers {
+  float: right;
+  left: -48px;
+  padding-top: 109px; }
+
+#step2 .bvl-logos {
+  padding-top: 85px; }
+
+#step2 .form-area {
+  position: absolute;
+  z-index: 10;
+  padding-left: 32px;
+  padding-right: 30px;
+  top: 90px; }
+  #step2 .form-area .moving-size {
+    position: relative; }
+    #step2 .form-area .moving-size select {
+      border: 2px solid transparent;
+      padding-top: 9px;
+      padding-bottom: 7px;
+      padding-left: 16px;
+      -webkit-appearance: none;
+      margin-bottom: 12px;
+      width: 211px;
+      font-family: "Source Sans Pro";
+      font-size: 13px;
+      color: #949494;
+      font-weight: 600; }
+    #step2 .form-area .moving-size #select-arrow {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      border-top: 10px solid #3e8dd0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      cursor: pointer; }
+  #step2 .form-area #calculate {
     width: 210px;
     height: 55px;
     margin-bottom: 23px;
     font-weight: 700; }
-  #step2 .form-area select {
-    border: 2px solid transparent;
-    padding-top: 9px;
-    padding-bottom: 7px;
-    padding-left: 16px;
-    -webkit-appearance: none;
-    margin-bottom: 12px;
-    width: 211px;
-    font-family: "Source Sans Pro";
-    font-size: 13px;
-    color: #949494;
-    font-weight: 600; }
+  #step2 .form-area .moving-from, #step2 .form-area .moving-to {
+    display: none; }
+  #step2 .form-area .moving-from.edit, #step2 .form-area .moving-to.edit {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #4290d1;
+    margin-bottom: 8px;
+    width: 480px; }
+    #step2 .form-area .moving-from.edit h6, #step2 .form-area .moving-to.edit h6 {
+      font-family: "Montserrat Regular";
+      font-size: 11px;
+      opacity: 0.5; }
+    #step2 .form-area .moving-from.edit #moving-from-text, #step2 .form-area .moving-to.edit #moving-from-text {
+      font-family: "Montserrat Regular";
+      font-size: 18px;
+      font-weight: 300;
+      padding-right: 10px; }
+    #step2 .form-area .moving-from.edit a, #step2 .form-area .moving-to.edit a {
+      font-family: "Source Sans Pro";
+      font-size: 13px;
+      font-weight: 500;
+      color: white; }
+  #step2 .form-area .moving-date {
+    padding-top: 2px; }
+    #step2 .form-area .moving-date #datepicker {
+      background-image: url(../img/cal.png);
+      background-repeat: no-repeat;
+      background-position-x: calc(100% - 2px); }
+
+#step2 .parallelogram {
+  width: 333px;
+  height: 87px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: rgba(75, 184, 232, 0.1);
+  transform: skew(157.45deg);
+  position: absolute;
+  right: 41px;
+  background: #53a4d7;
+  opacity: 0.32;
+  top: 0;
+  right: 155px;
+  height: 462px; }
 
 #step3 {
   padding-top: 34px;
@@ -626,7 +693,8 @@ input.zip {
     border-radius: 3px;
     margin-bottom: 14px;
     font-weight: 500;
-    width: 253px; }
+    width: 253px;
+    outline: none; }
   .zipcode-helper .zip-arrow {
     position: absolute;
     left: -15px;
