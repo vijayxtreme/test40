@@ -1,9 +1,14 @@
 $asideTitle: #599bd0;
+$asideColTitle:#5c5c5c;
+$borderP: #e8e8e8;
 
 aside#sidebar {
 	display:none;
+	.container {
+		position:relative;
+	}
 
-	padding-top:35px;
+
 	.how-it-works-title {
 		padding-bottom:35px;
 		h2 {
@@ -17,22 +22,19 @@ aside#sidebar {
 	}
 	.sub-step {
 		display: none;
-		height:230px;
 		font-family: "Source Sans Pro";
-		
+		padding-top:27px;
 	}
 	.sub-step.active {
 		display: block;
 	}
 
 	.substep-arrow {
-		float:left;
-		position: relative;
-		top:-96px;
+		position: absolute;
+		top:95px;
 	}
 	.substep-arrow.right {
-		float:right;
-		left:-120px;
+		right:86px;
 	}
 
 	.sub-step1 {
@@ -55,14 +57,26 @@ aside#sidebar {
 		.col.cash {
 			margin-left: 92px;
 		}
-
 	}
 
 	.sub-step2 {
 		.col2 {
 			display: inline-block; 
+			vertical-align: top;
+			position:relative;
+			.title {
+				font-weight:700;
+				font-family: "Source Sans Pro";
+				font-size:14px;
+				line-height: 21.2px;
+				color:$asideColTitle;
+				position:relative;
+				top:-15px;
+			}
 			p {
 				font-size:11px;
+				color:$asideColTitle;
+				font-weight: 500;
 
 			}
 			span img {
@@ -72,29 +86,118 @@ aside#sidebar {
 		.col2.weight {
 			margin-left: 54px;
 			width:130px;
-			left:-5px;
+			.title {
+				// top:-12px;
+				 left:-10px;
+			}
 			span img {
-				left:-5px;
+				left:-12px;
 			}
 		}
 		.col2.distance {
+			top:-3px;
 			margin-left:51px;
 			width:123px;
+			.title {
+				// top:-12px;
+				// left:-10px;
+			}
+			span img {
+				left:-3px;
+			}
 		}
 		.col2.timing {
+			top:-3px;
 			margin-left:51px;
 			width:130px;
+			.title {
+				// top:-12px;
+				 left:-8px;
+			}
+			span img {
+				left:-8px;
+			}
 		}
 		.col2.extra {
-			margin-left: 46px;
-			width:134px;
+			top:-15px;
+			margin-left: 26px;
+			width:139px;
+			.title {
+				// top:-12px;
+				 left:-10px;
+			}
+			span img {
+				left:-13px;
+			}
 		}
 		.col2.origin {
 			margin-left: 48px;
-			width:114px;
+			width:117px;
+			top:-11px;
+			.title {
+				 top:-25px;
+				 left:-14px;
+
+				 .dest {
+				 	position:relative;
+				 	top:-5px;
+				 	left:55px;
+				 }
+			}
+			p {
+				position:relative;
+				top:-25px;
+			}
+
+			span img {
+				left:-15px;
+			}
 		}
 	}
 
+	.sub-step3 {
+		padding-left:73px;
+		padding-right:140px;
+		padding-top:42px;
+		font-family: "Source Sans Pro";
+		font-size:14px;
+		color:$asideColTitle;
+		
+		h4 {
+			font-weight: 700;
+
+		}
+		.questions {
+			width:303px;
+			margin-right:63px;
+			float:left;
+			h4 {
+				margin-bottom: 22px;
+			}
+			ul li {
+				border-bottom:1px solid $borderP;
+				padding-top:10px;
+				padding-bottom:10px;
+				font-size:12px;
+				cursor: pointer;
+			}
+		}
+		.answers {
+			h4 {
+				margin-bottom:28px;
+			}
+
+			p {
+				font-size:12px;
+				display: none;
+			}
+			p#a2 {
+				display: block;
+			}
+			width:436px;
+			float:left;
+		}
+	}
 
 
 }

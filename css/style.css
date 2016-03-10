@@ -70,6 +70,26 @@ aside {
   font-family: 'Montserrat Regular';
   src: url(../fonts/Montserrat-Regular.otf); }
 
+[class^=arr-] {
+  /* Arrows @RCB */
+  border: solid currentColor;
+  border-width: 0 2px 2px 0px;
+  display: inline-block;
+  padding: 0px 14px 14px 0px;
+  color: #c1c1c2; }
+
+.arr-right {
+  transform: rotate(-45deg); }
+
+.arr-left {
+  transform: rotate(135deg); }
+
+.arr-up {
+  transform: rotate(-135deg); }
+
+.arr-down {
+  transform: rotate(45deg); }
+
 header {
   height: 87px; }
 
@@ -621,8 +641,9 @@ input.zip {
     padding-bottom: 9px; }
 
 aside#sidebar {
-  display: none;
-  padding-top: 35px; }
+  display: none; }
+  aside#sidebar .container {
+    position: relative; }
   aside#sidebar .how-it-works-title {
     padding-bottom: 35px; }
     aside#sidebar .how-it-works-title h2 {
@@ -634,17 +655,15 @@ aside#sidebar {
       opacity: 0.8; }
   aside#sidebar .sub-step {
     display: none;
-    height: 230px;
-    font-family: "Source Sans Pro"; }
+    font-family: "Source Sans Pro";
+    padding-top: 27px; }
   aside#sidebar .sub-step.active {
     display: block; }
   aside#sidebar .substep-arrow {
-    float: left;
-    position: relative;
-    top: -96px; }
+    position: absolute;
+    top: 95px; }
   aside#sidebar .substep-arrow.right {
-    float: right;
-    left: -120px; }
+    right: 86px; }
   aside#sidebar .sub-step1 .col {
     text-align: center;
     display: inline-block; }
@@ -660,29 +679,99 @@ aside#sidebar {
   aside#sidebar .sub-step1 .col.cash {
     margin-left: 92px; }
   aside#sidebar .sub-step2 .col2 {
-    display: inline-block; }
+    display: inline-block;
+    vertical-align: top;
+    position: relative; }
+    aside#sidebar .sub-step2 .col2 .title {
+      font-weight: 700;
+      font-family: "Source Sans Pro";
+      font-size: 14px;
+      line-height: 21.2px;
+      color: #5c5c5c;
+      position: relative;
+      top: -15px; }
     aside#sidebar .sub-step2 .col2 p {
-      font-size: 11px; }
+      font-size: 11px;
+      color: #5c5c5c;
+      font-weight: 500; }
     aside#sidebar .sub-step2 .col2 span img {
       position: relative; }
   aside#sidebar .sub-step2 .col2.weight {
     margin-left: 54px;
-    width: 130px;
-    left: -5px; }
+    width: 130px; }
+    aside#sidebar .sub-step2 .col2.weight .title {
+      left: -10px; }
     aside#sidebar .sub-step2 .col2.weight span img {
-      left: -5px; }
+      left: -12px; }
   aside#sidebar .sub-step2 .col2.distance {
+    top: -3px;
     margin-left: 51px;
     width: 123px; }
+    aside#sidebar .sub-step2 .col2.distance span img {
+      left: -3px; }
   aside#sidebar .sub-step2 .col2.timing {
+    top: -3px;
     margin-left: 51px;
     width: 130px; }
+    aside#sidebar .sub-step2 .col2.timing .title {
+      left: -8px; }
+    aside#sidebar .sub-step2 .col2.timing span img {
+      left: -8px; }
   aside#sidebar .sub-step2 .col2.extra {
-    margin-left: 46px;
-    width: 134px; }
+    top: -15px;
+    margin-left: 26px;
+    width: 139px; }
+    aside#sidebar .sub-step2 .col2.extra .title {
+      left: -10px; }
+    aside#sidebar .sub-step2 .col2.extra span img {
+      left: -13px; }
   aside#sidebar .sub-step2 .col2.origin {
     margin-left: 48px;
-    width: 114px; }
+    width: 117px;
+    top: -11px; }
+    aside#sidebar .sub-step2 .col2.origin .title {
+      top: -25px;
+      left: -14px; }
+      aside#sidebar .sub-step2 .col2.origin .title .dest {
+        position: relative;
+        top: -5px;
+        left: 55px; }
+    aside#sidebar .sub-step2 .col2.origin p {
+      position: relative;
+      top: -25px; }
+    aside#sidebar .sub-step2 .col2.origin span img {
+      left: -15px; }
+  aside#sidebar .sub-step3 {
+    padding-left: 73px;
+    padding-right: 140px;
+    padding-top: 42px;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    color: #5c5c5c; }
+    aside#sidebar .sub-step3 h4 {
+      font-weight: 700; }
+    aside#sidebar .sub-step3 .questions {
+      width: 303px;
+      margin-right: 63px;
+      float: left; }
+      aside#sidebar .sub-step3 .questions h4 {
+        margin-bottom: 22px; }
+      aside#sidebar .sub-step3 .questions ul li {
+        border-bottom: 1px solid #e8e8e8;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 12px;
+        cursor: pointer; }
+    aside#sidebar .sub-step3 .answers {
+      width: 436px;
+      float: left; }
+      aside#sidebar .sub-step3 .answers h4 {
+        margin-bottom: 28px; }
+      aside#sidebar .sub-step3 .answers p {
+        font-size: 12px;
+        display: none; }
+      aside#sidebar .sub-step3 .answers p#a2 {
+        display: block; }
 
 .disclaimer {
   background-color: #0596d1;

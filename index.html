@@ -25,7 +25,6 @@
 				<div class="price-text">
 					<h1>MOVING PRICE CALCULATOR</h1>
 					<h4>Rates as low as $999</h4>
-				
 					<div class="price-calculator">
 						<form action="" method="POST" id="f-step1">
 							<div class="price-title">
@@ -34,7 +33,7 @@
 							<div class="price-body">
 								<div class="price-col moving-from">Moving From?</div>
 								<div class="price-col zip-entry">
-									<input name="from-zip" class="zip" id="from-zip" type="text" placeholder="Enter From Zip">
+									<input name="from-zip" class="zip" id="from-zip" type="tel" placeholder="Enter From Zip">
 								</div>
 								<div class="price-col">
 									<button id="go" class="submit-form" type="submit">GO</button>
@@ -79,7 +78,7 @@
 							Where are you moving from?
 						</div>
 						<div class="col-i2">
-							<input type="text" name="move-from" value="" placeholder="Enter From Zip">
+							<input type="tel" name="move-from" value="" placeholder="Enter From Zip">
 						</div>
 						<div class="col-z ziphelp-area">
 							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
@@ -90,7 +89,7 @@
 							Where are you moving to?
 						</div>
 						<div class="col-i2">
-							<input type="text" name="move-to" value="" placeholder="Enter To Zip">
+							<input type="tel" name="move-to" value="" placeholder="Enter To Zip">
 						</div>
 						<div class="col-z ziphelp-area">
 							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
@@ -173,7 +172,7 @@
 					</div>
 					<div>
 						<div class='col-n'>Valid Phone</div>
-						<div class="col-i3"><input type="text" value="" placeholder="Phone Number"></div>
+						<div class="col-i3"><input type="tel" id="phone_number" value="" placeholder="Phone Number"></div>
 					</div>
 					<div>
 						<div class='col-n'>
@@ -256,28 +255,28 @@
 				</div>
 				<div class="col2 weight">
 					<span><img src="img/view2-box.png"></span>
-					<span>Weight</span>
+					<span class="title">Weight</span>
 					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
 				</div>
 				<div class="col2 distance">
 					<span><img src="img/view2-map.png"></span>
-					<span>Weight</span>
-					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+					<span class="title">Distance</span>
+					<p>Fuel charges and toll fees will increase as your distance becomes greater.</p>
 				</div>
 				<div class="col2 timing">
 					<span><img src="img/view2-cal.png"></span>
-					<span>Weight</span>
-					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+					<span class="title">Timing</span>
+					<p>Off-peak season moves are relatively cheaper than peak season.</p>
 				</div>
 				<div class="col2 extra">
 					<span><img src="img/view2-hands.png"></span>
-					<span>Weight</span>
-					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+					<span class="title">Extra Services</span>
+					<p>Adding on extra services like specialty packing will increase your quote.</p>
 				</div>
 				<div class="col2 origin">
 					<span><img src="img/view2-gps.png"></span>
-					<span>Weight</span>
-					<p>The weight of your inventory is one of the major factors your quote is based on.</p>
+					<span class="title">Origin & <br><span class="dest">Destination</span></span>
+					<p>The start and end of your move can affect the price depending on the route's popularity.</p>
 				</div>
 			</div>
 			<div class="sub-step sub-step3">
@@ -285,20 +284,22 @@
 					<h4>Question:</h4>
 					<div>
 						<ul>
-							<li>How do you calculate my moving quote?</li>
-							<li>Who can I expect to contact me?</li>
-							<li>What is Budget Van Lines?</li>
+							<li id="q1">How do you calculate my moving quote?</li>
+							<li id="q2">Who can I expect to contact me?</li>
+							<li id="q3">What is Budget Van Lines?</li>
 						</ul>
 					</div>
 					
 				</div>
 				<div class="answers">
 					<h4>Answer:</h4>
-					<p>We use several details of your move to create each individual moving quote.  The price range is based on the size of your inventory, the date you're moving, the distance of your move and that particular route's popularity.  Any extra services you'll need will also affect your moving quote. All these factors play a major role in shaping the price of your move.</p>
+					<p id="a1">We use several details of your move to create each individual moving quote.  The price range is based on the size of your inventory, the date you're moving, the distance of your move and that particular route's popularity.  Any extra services you'll need will also affect your moving quote. All these factors play a major role in shaping the price of your move.</p>
+					<p id="a2"> When submitting your information to BudgetVanLines.com, you'll receive multiple moving quotes from companies that can service your specific route so you don't waste time talking to companies that can't. These companies compete for your business, assuring you the best possible price. All companies in the network are licensed by the FMCSA and will contact you with individual moving quotes. </p>
+					<p id="a3">Budget Van Lines is the nation's largest household goods moving broker. We carry a wide range of licensed and reputable carriers in our network that service long distance moves across the country. BudgetVanLines.com allows you to receive competing quotes from licensed movers available for your move as well as an individual quote from Budget Van Lines. </p>
 				</div>
 			</div>
-			<div class="substep-arrow left"><a href=""><</a></div>
-			<div class="substep-arrow right"><a href="">></a></div>
+			<div class="substep-arrow left"><a href=""><i class="arr-left"></i></a></div>
+			<div class="substep-arrow right"><a href="">					<i class="arr-right"></i></a></div>
 		</div>
 
 		</div>
