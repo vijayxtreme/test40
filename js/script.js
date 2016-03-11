@@ -121,7 +121,7 @@ $(".submit-form").click(function(e){
 	e.preventDefault();
 	if($(this).attr('id') == "update")
 		return;
-	
+
 	var step1 = $(this).closest('section').attr('id');
 	
 	var step = step1.substr(0, 4);
@@ -145,12 +145,21 @@ $(".submit-form").click(function(e){
 });
 
 //datepicker
-$("#datepicker").datepicker({
+
+
+$("#cal").datepicker({
 		minDate: 0,
 		maxDate: '+90D',
 		onSelect:function(text){
+			console.log(text);
 			$("#move-date").val(text);
+			$("#cal").hide();
 		}
+});
+
+
+$("#move-date").click(function(e){
+	$("#cal").toggle();
 });
 
 //ziphelp

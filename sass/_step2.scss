@@ -39,8 +39,9 @@ $step2Par:#53a4d7;
 				width:211px;
 				font-family: "Source Sans Pro";
 				font-size:13px;
-				color:$inputPlaceholder;
+				color:$formArea;
 				font-weight: 600;
+				cursor: pointer;
 			}
 			#select-arrow {
 				position:absolute;
@@ -92,6 +93,7 @@ $step2Par:#53a4d7;
 				background-image:url(../img/cal.png);
 				background-repeat:no-repeat;
 				background-position-x:calc(100% - 2px);
+				cursor: pointer;
 			}
 		}
 	}

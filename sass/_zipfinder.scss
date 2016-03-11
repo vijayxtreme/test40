@@ -2,6 +2,7 @@ $zipShadow:#3999c9;
 $zipHeader:#1374c6;
 $zipHelperInput:#454545;
 $zipHelperInputBg:#e6e6e6;
+$inputF:#1374c6;
 
 .zip-entry {
 	width: 188px;
@@ -16,6 +17,7 @@ input.zip {
 	font-family: 'Source Sans Pro';
 	font-size:18px;
 	font-weight:400;
+	color:$inputF;
 	border:2px solid transparent;
 }
 
