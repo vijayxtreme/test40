@@ -245,7 +245,8 @@ button.submit-form:hover {
     color: #1374c6;
     font-weight: 600;
     margin-bottom: 12px;
-    border: 2px solid transparent; }
+    border: 2px solid transparent;
+    outline: none; }
   .form-area .col-q {
     width: 267px;
     display: inline-block; }
@@ -1123,3 +1124,6 @@ aside#sidebar {
     text-decoration: none; }
   .disclaimer #quotes-disc {
     display: none; }
+
+.validation-error {
+  border: 2px solid red !important; }

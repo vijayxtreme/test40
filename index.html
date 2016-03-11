@@ -28,14 +28,14 @@
 					<h1>MOVING PRICE CALCULATOR</h1>
 					<h4>Rates as low as $999</h4>
 					<div class="price-calculator">
-						<form action="" method="POST" id="f-step1">
+						<form id="f-step1">
 							<div class="price-title">
 								<h3>Enter ZIP to Search Rates and Availability</h3>
 							</div>
 							<div class="price-body">
 								<div class="price-col moving-from">Moving From?</div>
 								<div class="price-col zip-entry">
-									<input name="from-zip" class="zip" id="from-zip" type="tel" placeholder="Enter From Zip">
+									<input name="from_zip" class="zip" id="from-zip" type="tel" placeholder="Enter From Zip">
 								</div>
 								<div class="price-col">
 									<button id="go" class="submit-form" type="submit">GO</button>
@@ -75,12 +75,13 @@
 					</div>
 				</div>
 				<div class="form-area">
+				<form id="f-step2">
 					<div class="moving-from">
 						<div class="col-q">
 							Where are you moving from?
 						</div>
 						<div class="col-i2">
-							<input type="tel" name="move-from" value="" placeholder="Enter From Zip">
+							<input type="tel" name="move_from" value="" placeholder="Enter From Zip">
 						</div>
 						<div class="col-z ziphelp-area">
 							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
@@ -95,7 +96,7 @@
 							Where are you moving to?
 						</div>
 						<div class="col-i2">
-							<input type="tel" name="move-to" value="" placeholder="Enter To Zip">
+							<input type="tel" name="move_to" value="" placeholder="Enter To Zip">
 						</div>
 						<div class="col-z ziphelp-area">
 							<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
@@ -110,7 +111,7 @@
 							When is your move?
 						</div>
 						<div class="col-i">
-							<input id="move-date" type="text" name="move-date" value="" placeholder="Choose A Date" readonly>
+							<input id="move-date" type="text" name="move_date" value="" placeholder="Choose A Date" readonly>
 							<div class="cal-area">
 								<div class="cal-arrow"></div>
 								<div id="cal"></div>
@@ -123,16 +124,17 @@
 						</div>
 						<div class="col-i">
 							<div id="select-arrow"></div>
-							<select>
-								<option>Enter Move Size</option>
-								<option>Box Only</option>
-								<option>1 Bedroom</option>
-								<option>2 Bedrooms</option>
-								<option>3 Bedrooms</option>
-								<option>4 Bedrooms</option>
-								<option>5 Bedrooms</option>
-								<option>6 Bedrooms</option>
-								<option>Commercial Move</option>
+							<select name="move_size">
+								<option class="select-inactive" value="" selected>Enter Move Size</option>
+								<option class="select-active" value="Moving Boxes Only">Box Only</option>
+								<option class="select-active" value="Studio">Studio</option>
+								<option class="select-active" value="1 Bedroom">1 Bedroom</option>
+								<option class="select-active" value="2 Bedrooms">2 Bedrooms</option>
+								<option class="select-active" value="3 Bedrooms">3 Bedrooms</option>
+								<option class="select-active" value="4 Bedrooms">4 Bedrooms</option>
+								<option class="select-active" value="5 Bedrooms">5 Bedrooms</option>
+								<option class="select-active" value="6 Bedrooms">6 Bedrooms</option>
+								<option class="select-active" value="Commercial Move">Commercial Move</option>
 							</select>
 						</div>
 					</div>
@@ -144,6 +146,7 @@
 							<button id="calculate" class="submit-form">CALCULATE</button>
 						</div>
 					</div>
+					</form>
 				</div>
 				<div class="parallelogram"></div>
 				<div class="movers">
@@ -154,8 +157,6 @@
 					<span class="bbb"><img src="img/bbb.png"></span>
 					<span class="lock"><img src="img/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
 				</div>
-
-				
 			</div>
 		</section>
 		<section id="step3" class="step">
@@ -183,63 +184,67 @@
 					</div>
 				</div>
 				<div class="form-area">
-					<div>
-						<div class='col-n'>Full Name</div>
-						<div class="col-i4 first"><input type="text" name="first-name" value="" placeholder="First"></div>
-						<div class="col-i4"><input type="text" name="last-name" placeholder="Last"></div>
-					</div>
-					<div>
-						<div class='col-n'>Valid Email</div>
-						<div class="col-i3"><input type="text" value="" placeholder="Email Address"></div>
-					</div>
-					<div>
-						<div class='col-n'>Valid Phone</div>
-						<div class="col-i3"><input type="tel" id="phone_number" value="" placeholder="Phone Number"></div>
-					</div>
-					<div>
-						<div class='col-n'>
-							<p id="legal">By clicking on "Get My Quotes" you agree to the terms below.</p>
+					<form id="f-step3">
+						<div>
+							<div class='col-n'>Full Name</div>
+							<div class="col-i4 first"><input type="text" name="first_name" value="" placeholder="First"></div>
+							<div class="col-i4"><input type="text" name="last_name" placeholder="Last"></div>
 						</div>
-						<button class="submit-form" id="get-my-quotes">GET MY QUOTES</button>
-					</div>
+						<div>
+							<div class='col-n'>Valid Email</div>
+							<div class="col-i3"><input name="email" type="text" value="" placeholder="Email Address"></div>
+						</div>
+						<div>
+							<div class='col-n'>Valid Phone</div>
+							<div class="col-i3"><input type="tel" id="phone_number" name="phone_number" value="" placeholder="Phone Number"></div>
+						</div>
+						<div>
+							<div class='col-n'>
+								<p id="legal">By clicking on "Get My Quotes" you agree to the terms below.</p>
+							</div>
+							<button class="submit-form" id="get-my-quotes">GET MY QUOTES</button>
+						</div>
+					</form>
 				</div>
 				<div class="right-col">
 					<div class="moving-info">
 						<div id="update-my-info">
-							<div class="moving-info-edit">
-							</div>
-							<div class="edit-area">
-								<div class="row u-moving-from">
-									<div class="col-i">
-										<h4>Where are you moving from?</h4>
+							<form id="f-step3-u">
+								<div class="moving-info-edit">
+								</div>
+								<div class="edit-area">
+									<div class="row u-moving-from">
+										<div class="col-i">
+											<h4>Where are you moving from?</h4>
+										</div>
+										<div class="col-t">
+											<input name="move_from" type="tel" placeholder="From Zip">
+										</div>
+										<div class="col-z">
+											<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+										</div>
 									</div>
-									<div class="col-t">
-										<input type="tel" placeholder="From Zip">
+									<div class="row u-moving-to">
+										<div class="col-i">
+											<h4>Where are you moving to?</h4>
+										</div>
+										<div class="col-t">
+											<input name="move_to" type="tel" placeholder="To Zip">
+										</div>
+										<div class="col-z">
+											<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+										</div>
 									</div>
-									<div class="col-z">
-										<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+									<div id="update-zip">
+										<div class="col-i">
+											&nbsp;
+										</div>
+										<div class="col-t">
+											<button id="update" class="submit-form">UPDATE</button>
+										</div>
 									</div>
 								</div>
-								<div class="row u-moving-to">
-									<div class="col-i">
-										<h4>Where are you moving to?</h4>
-									</div>
-									<div class="col-t">
-										<input type="tel" placeholder="To Zip">
-									</div>
-									<div class="col-z">
-										<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
-									</div>
-								</div>
-								<div id="update-zip">
-									<div class="col-i">
-										&nbsp;
-									</div>
-									<div class="col-t">
-										<button id="update" class="submit-form">UPDATE</button>
-									</div>
-								</div>
-							</div>
+							</form>
 						</div>
 						<div id="show-my-info">
 							<div class="trip-info">
