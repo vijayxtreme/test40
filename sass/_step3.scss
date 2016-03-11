@@ -1,13 +1,15 @@
-
 $legal: #89bae3;
 $tripInfo:#3da6df;
+$inputF:#1374c6;
 
 #step3 {
 	padding-top:34px;
 	height:521px;
+	box-sizing:border-box;
 	.steps-completed {
 		margin-bottom: 0px;
 	}
+
 	.form-area {
 		padding-left:48px;
 		padding-right:48px;
@@ -55,7 +57,7 @@ $tripInfo:#3da6df;
 	
 		#get-my-quotes {
 			margin-top:22px;
-			margin-bottom: 49px;
+			margin-bottom: 39px;
 			width:241px;
 			height:54px;
 		}
@@ -66,62 +68,177 @@ $tripInfo:#3da6df;
 		margin-left: 30px;
 	}
 
+	.movers-found {
+		padding-top:17px;
+
+		span {
+			font-family: "Montserrat Regular";
+			font-size: 36px;
+			font-weight: 400;
+			img {
+				margin-right: 6px;
+			}
+		}
+		.text {
+			position:relative;
+			top:-9px;
+		}
+		.text.next {
+			opacity:0.5;
+		}
+		.movers-found-body {
+			padding-top:12px;
+			font-family: "Source Sans Pro";
+			font-size:16px;
+			font-weight: 600;
+			line-height: 19px;
+			padding-bottom: 27px;
+		}
+	}
+
+
 	.moving-info {
 		font-family: "Source Sans Pro";
 		font-size:13px;
 		height:275px;
 		width:410px;
 		margin-bottom: 14px;
-		.trip-info {
-			padding-left:27px;
-			padding-right:22px;
-			background-color:$tripInfo;
-			text-align: center;
+		position:relative;
+		#show-my-info {
+			.trip-info {
+				padding-left:27px;
+				padding-right:22px;
+				background-color:$tripInfo;
+				text-align: center;
 
-			width:100%;
-			box-sizing:border-box;
+				width:100%;
+				box-sizing:border-box;
 
-			.field-trip1 {
-				padding-top:11px;
-				padding-bottom:5px;
-				font-family:"Montserrat Regular";
-				font-size:13.45px;
-				font-weight: 200;
+				.field-trip1 {
+					padding-top:11px;
+					padding-bottom:5px;
+					font-family:"Montserrat Regular";
+					font-size:13.45px;
+					font-weight: 200;
 
-				#field-trip-date {
-					padding-right:19px;
-					img {
-						padding-right:11px;
+					#field-trip-date {
+						padding-right:19px;
+						img {
+							padding-right:11px;
 
+						}
+					}
+					#field-trip-size {
+						padding-right:20px;
+						img {
+							position:relative;
+							top:5px;
+							padding-right:7px;
+						}
+					}
+					#field-trip-length {
+						img {
+							padding-right:6px;
+						}
 					}
 				}
-				#field-trip-size {
-					padding-right:20px;
-					img {
-						position:relative;
-						top:5px;
-						padding-right:7px;
-					}
-				}
-				#field-trip-length {
-					img {
-						padding-right:6px;
+				.field-trip2 {
+					padding-top:7px;
+					padding-bottom:12px;
+
+					a {
+						color:white;
 					}
 				}
 			}
-			.field-trip2 {
-				padding-top:7px;
-				padding-bottom:12px;
+			.google-map {
+				height:205px;
+				background-color:$tripInfo;
+			}
+		}
+		#update-my-info {
+			display:none;
+			.moving-info-edit {
+				position:relative;
+				box-sizing:border-box;
+				background-color:$tripInfo;
+				opacity:0.26;
+				height:271px;
+				padding-left:32px;
+				padding-top:51px;
+			}
+			.edit-area {
+				box-sizing:content-box;
+				position:absolute;
+				opacity:1;
+				z-index: 10;
+				left:30px;
+				top:51px;
 
 				a {
 					color:white;
+					text-decoration: none;
+				}
+				.row {
+					clear:both;
+				}
+				.col-t, .col-z, .col-i {
+					float:left;
+				}
+				.col-i {
+					width:155px;
+					h4 {
+						font-size:20px;
+						font-family: "Source Sans Pro";
+						font-weight:700;
+						line-height: 22.62px;
+						margin-right: 28px;
+					}
+				}
+				.col-t {
+					input {
+						width:75px;
+						border:0px;
+						border:2px solid transparent;
+						padding-top:6px;
+						padding-left:28px;
+						padding-bottom:6px;
+						font-family: "Source Sans Pro";
+						font-size:18px;
+						color:$inputF;
+						border-radius:5px;
+					}
+					margin-right: 13px;
+				}
+				.col-z {
+					.ziphelp {
+						position:relative;
+						top:9px;
+						img {
+							margin-right: 10px;
+						}
+						span {
+							position:relative;
+							top:-4px;
+						}
+					}
+				}
+				.row.moving-to {
+					padding-top:20px;
+				}
+
+				#update-zip {
+					clear:both;
+					padding-top:30px;
+					#update {
+						height:52px;
+						width:150px;
+					}
 				}
 			}
 		}
-		.google-map {
-			height:205px;
-			background-color:red;
-		}
+
+
 	}
 
 	.bvl-logos {
@@ -130,15 +247,17 @@ $tripInfo:#3da6df;
 	}
 
 	.loader-area {
+		display: none;
 		h2 {
 			font-family: "Montserrat Regular";
 			font-size:32px;
-			padding-top:24px;
+			padding-top:15px;
 			text-align: center;
 			font-weight:500;
 		}
 		#loader3 {
 			@include loader();
+			margin-bottom: 20px;
 		   // background: rgba(75, 184, 232, 0.1);
 		}
 	}

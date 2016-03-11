@@ -35,16 +35,36 @@
 //Step4
 
 
+function changeDiv(toggle){
+	if(toggle){
+		$(".movers-found").hide();
+		$(".loader-area").show();
+	}else{
+		$(".movers-found").show();
+		$(".loader-area").hide();
+	}
 
+}
 
+//Step 1: Subslides
+$(".sub-step3").mouseover(function(e){
+	var target = $(e.target);
+	var id = target.attr('id');
+	if(id != undefined){
+		var num = id.substr(1);
+		var a = '#a'+num;
+		$(".answers p").hide();
+		$(a).show();
+	}
+});
 
-//Select Arrow Step 2
+//Step 2: Select Arrow 
 $("#select-arrow").click(function(){
 	$(this).next('select').openSelect();
 });
 
 
-//Moving From & Moving To Edit Buttons
+//Step 2: Moving From & Moving To Edit Buttons
 $(".moving-from.edit, .moving-to.edit").show();
 
 $("#moving-from-text-edit").click(function(){
@@ -57,19 +77,15 @@ $("#moving-to-text-edit").click(function(){
 	$(".moving-to.edit").hide();
 });
 
-//Subslides
-$(".sub-step3").mouseover(function(e){
-	var target = $(e.target);
-	var id = target.attr('id');
-	if(id != undefined){
-		var num = id.substr(1);
-		var a = '#a'+num;
-		$(".answers p").hide();
-		$(a).show();
-	}
-});
+//Step 3: Update Field Trip Info
+$("#field-trip-edit").click(function(e){
+	e.preventDefault();
+	$("#show-my-info").hide();
+	$("#update-my-info").show();
+})
 
-//Animates each div left
+
+//Global: Animates each div left
 function animateLeft(step1, step2){
 	var lf = 0; 
 	$(".zipcode-helper").hide();
@@ -103,6 +119,9 @@ function animateLeft(step1, step2){
 
 $(".submit-form").click(function(e){
 	e.preventDefault();
+	if($(this).attr('id') == "update")
+		return;
+	
 	var step1 = $(this).closest('section').attr('id');
 	
 	var step = step1.substr(0, 4);
@@ -184,11 +203,6 @@ $(".info").click(function(){
 	$("#sidebar").toggle();
 });
 
-
-//Slide 3
-$("#field-trip-edit").click(function(){
-	console.log('clicked');
-});
 
 //Masks
 $("input[type=tel]").mask('99999', {

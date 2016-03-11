@@ -169,6 +169,15 @@
 					<h2>Calculating...</h2>
 					<div id="loader3"><div id="current-percent">0%</div></div>
 				</div>
+				<div class="movers-found">
+					<div class="movers-found-title">
+						<span><img src="img/check-green.png"></span><span class="text">Movers Found</span>
+						<span><img src="img/check-gray.png"></span><span class="text next">Next Step: View Your Estimate</span>
+					</div>
+					<div class="movers-found-body">
+						<p>Movers will contact by phone or email with their quotes and our system will also display your estimated quote.</p>
+					</div>
+				</div>
 				<div class="form-area">
 					<div>
 						<div class='col-n'>Full Name</div>
@@ -192,23 +201,57 @@
 				</div>
 				<div class="right-col">
 					<div class="moving-info">
-						<div class="trip-info">
-							<div class="field-trip1">
-								<span id="field-trip-date"><img src="img/tiny-cal.png">Feb. 25th</span>
-								<span id="field-trip-size"><img src="img/tiny-bed.png">3 BR</span>
-								<span id="field-trip-length">
-								<img src="img/tiny-car.png">Trip length 921 miles</span>
+						<div id="update-my-info">
+							<div class="moving-info-edit">
 							</div>
-							<div class="field-trip2">
-								<p><span id="field-trip-from-zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip">Los Angeles, CA 90036</span> <a id="field-trip-edit" href="#">Edit</a></p>
+							<div class="edit-area">
+								<div class="row moving-from">
+									<div class="col-i">
+										<h4>Where are you moving from?</h4>
+									</div>
+									<div class="col-t">
+										<input type="tel" placeholder="From Zip">
+									</div>
+									<div class="col-z">
+										<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+									</div>
+								</div>
+								<div class="row moving-to">
+									<div class="col-i">
+										<h4>Where are you moving to?</h4>
+									</div>
+									<div class="col-t">
+										<input type="tel" placeholder="To Zip">
+									</div>
+									<div class="col-z">
+										<a class="ziphelp" href="#"><img src="img/zipfinder.png"><span>ZIP Help?</span></a>
+									</div>
+								</div>
+								<div id="update-zip">
+									<div class="col-i">
+										&nbsp;
+									</div>
+									<div class="col-t">
+										<button id="update" class="submit-form">UPDATE</button>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="google-map">
-							
+						<div id="show-my-info">
+							<div class="trip-info">
+								<div class="field-trip1">
+									<span id="field-trip-date"><img src="img/tiny-cal.png">Feb. 25th</span>
+									<span id="field-trip-size"><img src="img/tiny-bed.png">3 BR</span>
+									<span id="field-trip-length">
+									<img src="img/tiny-car.png">Trip length 921 miles</span>
+								</div>
+								<div class="field-trip2">
+									<p><span id="field-trip-from-zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip">Los Angeles, CA 90036</span> <a id="field-trip-edit" href="#">Edit</a></p>
+								</div>
+							</div>
+							<div class="google-map">
+							</div>
 						</div>
-					</div>
-					<div>
-						<div></div>
 					</div>
 					<div class="bvl-logos">
 						<span class='verisign'><img src="img/verisign.png"></span>
@@ -216,7 +259,6 @@
 						<span class="lock"><img src="img/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
 					</div>
 				</div>
-		
 			</div>
 		</section>
 		<section id="step4" class="step">

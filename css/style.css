@@ -199,9 +199,9 @@ section {
 .step {
   display: none; }
 
-#step1 {
+#step3 {
   display: block;
-  margin-left: 0px; }
+  margin-left: 0; }
 
 button.submit-form {
   background-color: #7ad014;
@@ -478,7 +478,8 @@ button.submit-form:hover {
 
 #step3 {
   padding-top: 34px;
-  height: 521px; }
+  height: 521px;
+  box-sizing: border-box; }
   #step3 .steps-completed {
     margin-bottom: 0px; }
   #step3 .form-area {
@@ -515,78 +516,163 @@ button.submit-form:hover {
       margin-right: 16px; }
     #step3 .form-area #get-my-quotes {
       margin-top: 22px;
-      margin-bottom: 49px;
+      margin-bottom: 39px;
       width: 241px;
       height: 54px; }
   #step3 .right-col {
     float: left;
     margin-left: 30px; }
+  #step3 .movers-found {
+    padding-top: 17px; }
+    #step3 .movers-found span {
+      font-family: "Montserrat Regular";
+      font-size: 36px;
+      font-weight: 400; }
+      #step3 .movers-found span img {
+        margin-right: 6px; }
+    #step3 .movers-found .text {
+      position: relative;
+      top: -9px; }
+    #step3 .movers-found .text.next {
+      opacity: 0.5; }
+    #step3 .movers-found .movers-found-body {
+      padding-top: 12px;
+      font-family: "Source Sans Pro";
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 19px;
+      padding-bottom: 27px; }
   #step3 .moving-info {
     font-family: "Source Sans Pro";
     font-size: 13px;
     height: 275px;
     width: 410px;
-    margin-bottom: 14px; }
-    #step3 .moving-info .trip-info {
+    margin-bottom: 14px;
+    position: relative; }
+    #step3 .moving-info #show-my-info .trip-info {
       padding-left: 27px;
       padding-right: 22px;
       background-color: #3da6df;
       text-align: center;
       width: 100%;
       box-sizing: border-box; }
-      #step3 .moving-info .trip-info .field-trip1 {
+      #step3 .moving-info #show-my-info .trip-info .field-trip1 {
         padding-top: 11px;
         padding-bottom: 5px;
         font-family: "Montserrat Regular";
         font-size: 13.45px;
         font-weight: 200; }
-        #step3 .moving-info .trip-info .field-trip1 #field-trip-date {
+        #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-date {
           padding-right: 19px; }
-          #step3 .moving-info .trip-info .field-trip1 #field-trip-date img {
+          #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-date img {
             padding-right: 11px; }
-        #step3 .moving-info .trip-info .field-trip1 #field-trip-size {
+        #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-size {
           padding-right: 20px; }
-          #step3 .moving-info .trip-info .field-trip1 #field-trip-size img {
+          #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-size img {
             position: relative;
             top: 5px;
             padding-right: 7px; }
-        #step3 .moving-info .trip-info .field-trip1 #field-trip-length img {
+        #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-length img {
           padding-right: 6px; }
-      #step3 .moving-info .trip-info .field-trip2 {
+      #step3 .moving-info #show-my-info .trip-info .field-trip2 {
         padding-top: 7px;
         padding-bottom: 12px; }
-        #step3 .moving-info .trip-info .field-trip2 a {
+        #step3 .moving-info #show-my-info .trip-info .field-trip2 a {
           color: white; }
-    #step3 .moving-info .google-map {
+    #step3 .moving-info #show-my-info .google-map {
       height: 205px;
-      background-color: red; }
+      background-color: #3da6df; }
+    #step3 .moving-info #update-my-info {
+      display: none; }
+      #step3 .moving-info #update-my-info .moving-info-edit {
+        position: relative;
+        box-sizing: border-box;
+        background-color: #3da6df;
+        opacity: 0.26;
+        height: 271px;
+        padding-left: 32px;
+        padding-top: 51px; }
+      #step3 .moving-info #update-my-info .edit-area {
+        box-sizing: content-box;
+        position: absolute;
+        opacity: 1;
+        z-index: 10;
+        left: 30px;
+        top: 51px; }
+        #step3 .moving-info #update-my-info .edit-area a {
+          color: white;
+          text-decoration: none; }
+        #step3 .moving-info #update-my-info .edit-area .row {
+          clear: both; }
+        #step3 .moving-info #update-my-info .edit-area .col-t, #step3 .moving-info #update-my-info .edit-area .col-z, #step3 .moving-info #update-my-info .edit-area .col-i {
+          float: left; }
+        #step3 .moving-info #update-my-info .edit-area .col-i {
+          width: 155px; }
+          #step3 .moving-info #update-my-info .edit-area .col-i h4 {
+            font-size: 20px;
+            font-family: "Source Sans Pro";
+            font-weight: 700;
+            line-height: 22.62px;
+            margin-right: 28px; }
+        #step3 .moving-info #update-my-info .edit-area .col-t {
+          margin-right: 13px; }
+          #step3 .moving-info #update-my-info .edit-area .col-t input {
+            width: 75px;
+            border: 0px;
+            border: 2px solid transparent;
+            padding-top: 6px;
+            padding-left: 28px;
+            padding-bottom: 6px;
+            font-family: "Source Sans Pro";
+            font-size: 18px;
+            color: #1374c6;
+            border-radius: 5px; }
+        #step3 .moving-info #update-my-info .edit-area .col-z .ziphelp {
+          position: relative;
+          top: 9px; }
+          #step3 .moving-info #update-my-info .edit-area .col-z .ziphelp img {
+            margin-right: 10px; }
+          #step3 .moving-info #update-my-info .edit-area .col-z .ziphelp span {
+            position: relative;
+            top: -4px; }
+        #step3 .moving-info #update-my-info .edit-area .row.moving-to {
+          padding-top: 20px; }
+        #step3 .moving-info #update-my-info .edit-area #update-zip {
+          clear: both;
+          padding-top: 30px; }
+          #step3 .moving-info #update-my-info .edit-area #update-zip #update {
+            height: 52px;
+            width: 150px; }
   #step3 .bvl-logos {
     padding-top: 0px;
     padding-left: 0px; }
-  #step3 .loader-area h2 {
-    font-family: "Montserrat Regular";
-    font-size: 32px;
-    padding-top: 24px;
-    text-align: center;
-    font-weight: 500; }
-  #step3 .loader-area #loader3 {
-    width: 692px;
-    height: 33px;
-    background-color: #95d72e;
-    margin: 0 auto;
-    transform: skew(160deg);
-    -webkit-transform: skew(160deg);
-    -moz-transform: skew(160deg);
-    -o-transform: skew(160deg);
-    text-align: center;
-    font-family: "Source Sans Pro";
-    font-weight: 200;
-    font-size: 29.29px;
-    margin-bottom: 26px;
-    margin-top: 20px; }
-    #step3 .loader-area #loader3 #current-percent {
-      transform: skew(20deg);
-      -webkit-transform: skew(20deg); }
+  #step3 .loader-area {
+    display: none; }
+    #step3 .loader-area h2 {
+      font-family: "Montserrat Regular";
+      font-size: 32px;
+      padding-top: 15px;
+      text-align: center;
+      font-weight: 500; }
+    #step3 .loader-area #loader3 {
+      width: 692px;
+      height: 33px;
+      background-color: #95d72e;
+      margin: 0 auto;
+      transform: skew(160deg);
+      -webkit-transform: skew(160deg);
+      -moz-transform: skew(160deg);
+      -o-transform: skew(160deg);
+      text-align: center;
+      font-family: "Source Sans Pro";
+      font-weight: 200;
+      font-size: 29.29px;
+      margin-bottom: 26px;
+      margin-top: 20px;
+      margin-bottom: 20px; }
+      #step3 .loader-area #loader3 #current-percent {
+        transform: skew(20deg);
+        -webkit-transform: skew(20deg); }
 
 #step4 {
   padding-top: 29px; }
