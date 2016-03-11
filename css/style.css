@@ -199,7 +199,7 @@ section {
 .step {
   display: none; }
 
-#step1 {
+#step2 {
   display: block;
   margin-left: 0px; }
 
@@ -730,88 +730,110 @@ button.submit-form:hover {
 .disclaimer {
   display: block; }
 
-#cal {
-  position: absolute;
-  display: none;
-  top: 0px;
-  right: -275px; }
-  #cal .ui-datepicker {
-    width: 100%;
-    padding-left: 3.75%;
-    padding-right: 3.75%;
-    border: 0;
-    padding-bottom: 10px;
-    border-radius: 5px; }
-  #cal .ui-widget-header {
-    background-color: white;
-    border: 0px;
-    color: #1374c6;
-    font-weight: 400; }
-  #cal .ui-state-disabled {
-    opacity: 1; }
-  #cal .ui-datepicker th {
-    color: #76aede; }
-  #cal .ui-datepicker-prev, #cal .ui-datepicker-next {
-    top: 8px; }
-  #cal .ui-datepicker-prev {
-    left: -3px; }
-    #cal .ui-datepicker-prev span {
-      border-left: 8px solid #3e8dd0;
-      border-bottom: 8px solid transparent;
-      border-top: 8px solid transparent;
-      background-image: none;
-      height: 0px;
-      width: 0px;
-      cursor: pointer;
-      border-left: 0px;
-      border-right: 10px solid #3e8dd0; }
-  #cal .ui-datepicker-next {
-    right: -11px; }
-    #cal .ui-datepicker-next span {
-      border-left: 8px solid #3e8dd0;
-      border-bottom: 8px solid transparent;
-      border-top: 8px solid transparent;
-      background-image: none;
-      height: 0px;
-      width: 0px;
+.cal-area {
+  display: none; }
+  .cal-area .cal-arrow {
+    position: absolute;
+    left: -15px;
+    top: 0px;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-right: 18px solid white;
+    left: inherit;
+    right: 0px;
+    top: 122px;
+    width: 20px; }
+  .cal-area #cal {
+    position: absolute;
+    top: 122px;
+    right: -275px; }
+    .cal-area #cal .ui-datepicker {
+      width: 277px;
+      border: 0;
+      padding-bottom: 8px;
+      border-radius: 5px;
+      background: white;
+      padding-right: 19px;
+      padding-left: 19px;
+      box-sizing: border-box; }
+    .cal-area #cal .ui-widget-header {
+      background: white;
+      border: 0px;
+      color: #1374c6;
+      font-family: "Source Sans Pro";
+      padding: 0px; }
+    .cal-area #cal .ui-datepicker-title {
+      padding-top: 8px;
+      line-height: inherit;
+      margin: 0px;
+      font-weight: 600; }
+    .cal-area #cal .ui-state-disabled {
+      opacity: 1; }
+    .cal-area #cal .ui-datepicker th {
+      padding: 5px;
+      padding-bottom: 1px;
+      color: #76aede; }
+    .cal-area #cal .ui-datepicker-prev, .cal-area #cal .ui-datepicker-next {
+      top: -2px; }
+    .cal-area #cal .ui-datepicker-prev {
+      left: -10px; }
+      .cal-area #cal .ui-datepicker-prev span {
+        border-left: 8px solid #3e8dd0;
+        border-bottom: 8px solid transparent;
+        border-top: 8px solid transparent;
+        background-image: none;
+        height: 0px;
+        width: 0px;
+        cursor: pointer;
+        border-left: 0px;
+        border-right: 10px solid #3e8dd0; }
+    .cal-area #cal .ui-datepicker-next {
+      right: -20px; }
+      .cal-area #cal .ui-datepicker-next span {
+        border-left: 8px solid #3e8dd0;
+        border-bottom: 8px solid transparent;
+        border-top: 8px solid transparent;
+        background-image: none;
+        height: 0px;
+        width: 0px;
+        cursor: pointer; }
+    .cal-area #cal .ui-datepicker-prev.ui-state-disabled span {
+      opacity: 0.35;
+      border-right: 8px solid #ECE9E9 !important; }
+    .cal-area #cal .ui-datepicker-next.ui-state-disabled span {
+      opacity: 0.35;
+      border-left: 8px solid #ECE9E9 !important; }
+    .cal-area #cal .ui-datepicker-calendar th {
+      font-size: 10px; }
+    .cal-area #cal .ui-datepicker td {
+      font-family: "Source Sans Pro";
+      border: 1px solid #dfdfdf;
       cursor: pointer; }
-  #cal .ui-datepicker-prev.ui-state-disabled span {
-    opacity: 0.35;
-    border-right: 8px solid #ECE9E9 !important; }
-  #cal .ui-datepicker-next.ui-state-disabled span {
-    opacity: 0.35;
-    border-left: 8px solid #ECE9E9 !important; }
-  #cal .ui-datepicker-calendar {
-    font-weight: 300; }
-  #cal .ui-datepicker-calendar th {
-    font-weight: 400; }
-  #cal .ui-datepicker td {
-    border: 1px solid #dfdfdf;
-    cursor: pointer;
-    height: 37px;
-    width: 37px;
-    padding: 0px; }
-  #cal td.ui-state-disabled span.ui-state-default {
-    color: #ECE9E9; }
-  #cal .ui-datepicker td span, #cal .ui-datepicker td a {
-    text-align: center;
-    height: 100%;
-    line-height: 37px; }
-  #cal .ui-state-default, #cal .ui-widget-content .ui-state-default, #cal .ui-widget-header .ui-state-default {
-    background-color: white;
-    border: 0px;
-    color: #1374c6; }
-  #cal .ui-state-hover, #cal .ui-widget-content .ui-state-hover, #cal .ui-widget-header .ui-state-hover, #cal .ui-state-focus, #cal .ui-widget-content .ui-state-focus, #cal .ui-widget-header .ui-state-focus {
-    border: 0px;
-    background-color: transparent;
-    color: inherit; }
-  #cal a:active, #cal a:focus, #cal a:hover {
-    background-color: #0663a2 !important;
-    color: white !important;
-    touch-action: manipulation; }
-  #cal .ui-datepicker-current-day a, #cal .ui-state-active a {
-    background-color: #0663a2 !important;
-    color: white !important; }
+    .cal-area #cal .ui-state-default, .cal-area #cal .ui-widget-content .ui-state-default, .cal-area #cal .ui-widget-header .ui-state-default {
+      font-weight: 500; }
+    .cal-area #cal .ui-state-hover, .cal-area #cal .ui-widget-content .ui-state-hover, .cal-area #cal .ui-widget-header .ui-state-hover, .cal-area #cal .ui-state-focus, .cal-area #cal .ui-widget-content .ui-state-focus, .cal-area #cal .ui-widget-header .ui-state-focus {
+      background: white; }
+    .cal-area #cal td.ui-state-disabled span.ui-state-default {
+      color: #ECE9E9; }
+    .cal-area #cal .ui-datepicker td span, .cal-area #cal .ui-datepicker td a {
+      text-align: center; }
+    .cal-area #cal .ui-state-default, .cal-area #cal .ui-widget-content .ui-state-default, .cal-area #cal .ui-widget-header .ui-state-default {
+      background-color: white;
+      border: 0px;
+      color: #1374c6; }
+    .cal-area #cal .ui-state-hover, .cal-area #cal .ui-widget-content .ui-state-hover, .cal-area #cal .ui-state-focus, .cal-area #cal .ui-widget-content .ui-state-focus {
+      border: 0px;
+      background: #0663a2 !important;
+      color: white !important; }
+    .cal-area #cal .ui-state-highlight, .cal-area #cal .ui-widget-content .ui-state-highlight, .cal-area #cal .ui-widget-header .ui-state-highlight {
+      background: transparent;
+      color: #1374c6; }
+    .cal-area #cal .ui-state-active, .cal-area #cal .ui-widget-content .ui-state-active, .cal-area #cal .ui-widget-header .ui-state-active {
+      background: #0663a2 !important;
+      color: white !important; }
+    .cal-area #cal .ui-datepicker-prev.ui-state-hover, .cal-area #cal .ui-datepicker-next.ui-state-hover {
+      background: transparent !important;
+      color: #1374c6 !important; }
 
 .zip-entry {
   width: 188px; }

@@ -121,14 +121,16 @@ $("#moving-to-text-edit").click(function(){
 $("#cal").datepicker({
 		minDate: 0,
 		maxDate: '+90D',
+		dayNamesMin: ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'],
 		onSelect:function(text){
 			console.log(text);
 			$("#move-date").val(text);
-			$("#cal").hide();
+			$(".cal-area").hide();
 		}
 });
 $("#move-date").click(function(e){
-	$("#cal").toggle();
+	console.log('clicked')
+	$(".cal-area").toggle();
 });
 
 

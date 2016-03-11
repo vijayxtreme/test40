@@ -75,13 +75,7 @@ input.zip {
 	}
 
 	.zip-arrow {
-		position:absolute;
-		left:-15px;
-		top:0px;
-		border-top:18px solid transparent;
-		border-bottom:18px solid transparent;
-		border-right:18px solid white;
-
+		@include whiteArrow();
 	}
 
 	h3 {

@@ -34,6 +34,18 @@ $loaderGreen:#95d72e;
 .arr-up    {transform:rotate(-135deg);}
 .arr-down  {transform:rotate(45deg);} 
 
+//fat arrows
+
+@mixin whiteArrow(){
+    position:absolute;
+    left:-15px;
+    top:0px;
+    border-top:18px solid transparent;
+    border-bottom:18px solid transparent;
+    border-right:18px solid white;
+}
+
+
 @mixin parallelogram(){
         width: 333px;
         height:87px;
