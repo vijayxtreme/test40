@@ -97,9 +97,9 @@ $(".ziphelp").click(function(e){
 	$(".zipcode-helper").toggle();
 });
 //Global: Mask Inputs (Prevent Bad Numbers)
-// $("input[type=tel]").mask('99999', {
-// 	placeholder:""
-// });
+$("input[type=tel]").mask('99999', {
+	placeholder:""
+});
 $("#phone_number").mask('(999) 999-9999', {
 	placeholder: ""
 });
@@ -224,8 +224,6 @@ $("#f-step3-u").validate({
 		//do some google redraw on the map
 	}
 })
-
-
 //Individual Steps Only
 //Step 1: Info Btn
 $(".info").click(function(){

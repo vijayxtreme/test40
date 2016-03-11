@@ -65,7 +65,7 @@ aside {
 
 @font-face {
   font-family: 'Montserrat Regular';
-  src: url(../fonts/Montserrat-Regular.otf); }
+  src: url(../../fonts/Montserrat-Regular.otf); }
 
 [class^=arr-] {
   /* Arrows @RCB */
@@ -464,7 +464,7 @@ button.submit-form:hover {
   #step2 .form-area .moving-date {
     padding-top: 2px; }
     #step2 .form-area .moving-date #move-date {
-      background-image: url(../img/cal.png);
+      background-image: url(../../img/test40/cal.png);
       background-repeat: no-repeat;
       background-position-x: calc(100% - 2px);
       cursor: pointer; }
