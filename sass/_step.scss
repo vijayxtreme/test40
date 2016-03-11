@@ -10,6 +10,7 @@ $lightBorder:#4290d1;
 .background {
 	background-color:$section;
 	min-height:462px;
+	// display:none;
 }
 
 section {
@@ -23,20 +24,20 @@ section {
 }
 
 #step1 {
-	//display:block;
-	// margin-left:0px;
-}
-#step2 {
 	display:block;
 	margin-left:0px;
+}
+#step2 {
+	//display:block;
+	//margin-left:0px;
 }
 #step3 {
 	// display:block;
 	// margin-left:0;
 }
 #step4 {
-	//	display:block;
-	//	margin-left:0px;
+	//display:block;
+	//margin-left:0px;
 }
 
 button.submit-form {

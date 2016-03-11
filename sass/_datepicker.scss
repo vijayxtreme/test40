@@ -1,3 +1,4 @@
+$calShadow:#3999c9;
 .cal-area {
     display: none;
     .cal-arrow {
@@ -25,6 +26,7 @@
             padding-right:19px;
             padding-left:19px;
             box-sizing:border-box;
+            box-shadow: 0px 4px 0px $calShadow;
         }
         .ui-widget-header {
             background:white;

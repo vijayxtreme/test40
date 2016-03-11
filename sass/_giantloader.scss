@@ -1,0 +1,56 @@
+$greenLoader:rgba(146, 200, 62, .85);
+$loaderCircle:#214373;
+.giant-loader {
+	display:none;
+	.container{
+		position:relative;
+		.moving-people {
+			position:absolute;
+			left:39px;
+		}
+
+		.parallelogram {
+			@include parallelogram();
+			transform: skew(157.857deg);
+			left:131px;
+			right:inherit;
+			width:766px;
+			height:461px;
+			background:$greenLoader;
+
+			.loader-text {
+				transform:skew(-156deg);
+				font-family: "Montserrat Regular";
+				font-size:40px;
+				color: white;
+				position:absolute;
+				top:392px;
+				left:251px;
+				h1.found {
+					position:relative;
+					text-align:center;
+					top:-39px;
+					left:-53px;
+				}
+			}
+
+			.loader-circle {
+				position:absolute;
+				top: 36px;
+				left: 50%;
+				margin-left: -146px;
+				height:292px;
+				width:292px;
+				background:$loaderCircle;
+				border-radius:100%;
+				transform: skew(-158deg);
+				text-align: center;
+				img {
+					position:relative;
+					top: 68px;
+				}
+			}
+		}
+	}
+
+}

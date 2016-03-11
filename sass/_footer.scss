@@ -10,12 +10,18 @@ footer {
 		text-decoration: none;
 	}
 }
+footer.giant-loader-active {
+	padding-top: 477px;
+}
+
 
 footer.steps {
 	display:block;
+	//display:none;
 }
 
 footer.thanks {
+	//display:block;
 	display:none;
 	opacity:1;
 	font-family: "Source Sans Pro";

@@ -267,7 +267,13 @@
 		</section>
 		<section id="step4" class="step">
 			<div class="container">
-				<div class="thank-you-area">
+				<div class="thank-you-area loading">
+					<h4>Now Calculating Your Estimated Quote</h4>
+					<div class="loader">
+						<div id="current-percent">0%</div>
+					</div>
+				</div>
+				<div class="thank-you-area finished">
 					<h4>Thank you John Smith</h4>
 					<h1>Movers With Your Actual Quote Will Now Contact You.</h1>
 					<div class="loader">
@@ -277,6 +283,22 @@
 				</div>
 			</div>
 		</section>
+	</div>
+	<div class="giant-loader">
+		<div class="container">
+			<div class="moving-people">
+				<img src="img/stock-img-1.png">
+			</div>
+			<div class="parallelogram">
+			<!-- 	<div class="loader-circle">
+					<img src="img/large-check.png">
+				</div> -->
+				<div class="loader-text">
+					<h1>CALCULATING...</h1>
+					<!-- 					<h1 class="found">MATCHING MOVERS WERE FOUND</h1> -->
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="zipcode-helper">
 		<div class="zip-arrow"></div>
@@ -392,6 +414,7 @@
 	</footer>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
