@@ -34,7 +34,7 @@
 
 //Step4
 
-
+//Testing Only - Can Delete or Comment Out When Code Finished
 function changeDiv(toggle){
 	if(toggle){
 		$(".movers-found").hide();
@@ -43,10 +43,39 @@ function changeDiv(toggle){
 		$(".movers-found").show();
 		$(".loader-area").hide();
 	}
-
 }
 
-//Step 1: Subslides
+//Slide 1: Subslides Carousel
+$(".substep-arrow.left a").click(function(e){
+	e.preventDefault();
+	var subSteps = $(".sub-step");
+	var activeSlide = $(".sub-step.active");
+	
+	if(activeSlide.is('.sub-step1')){
+		activeSlide.removeClass('active');
+		$(".sub-step3").addClass('active');
+
+	}else {
+		activeSlide.removeClass('active');
+		activeSlide.prev().addClass('active');
+	}
+});
+$(".substep-arrow.right a").click(function(e){
+	e.preventDefault();
+	var subSteps = $(".sub-step");
+	var activeSlide = $(".sub-step.active");
+	
+	if(activeSlide.is('.sub-step3')){
+		activeSlide.removeClass('active');
+		$(".sub-step1").addClass('active');
+
+	}else {
+		activeSlide.removeClass('active');
+		activeSlide.next().addClass('active');
+	}
+});
+
+//Step 1: Subslides Mouseover Third Step
 $(".sub-step3").mouseover(function(e){
 	var target = $(e.target);
 	var id = target.attr('id');
@@ -58,14 +87,25 @@ $(".sub-step3").mouseover(function(e){
 	}
 });
 
+//Step 2: Blur Edit Inputs
+$(".moving-from input").blur(function(){
+	$(".moving-from").hide();
+	$(".moving-from.edit").show();
+
+	//do some other stuff like update dom with ajax'd zip info
+
+});
+$(".moving-to input").blur(function(){
+	$(".moving-to").hide();
+	$(".moving-to.edit").show();
+
+	//do some other stuff like update dom with ajax'd zip info
+});
+
 //Step 2: Select Arrow 
 $("#select-arrow").click(function(){
 	$(this).next('select').openSelect();
 });
-
-
-//Step 2: Moving From & Moving To Edit Buttons
-$(".moving-from.edit, .moving-to.edit").show();
 
 $("#moving-from-text-edit").click(function(){
 	$(".moving-from").show();
@@ -76,6 +116,21 @@ $("#moving-to-text-edit").click(function(){
 	$(".moving-to").show();
 	$(".moving-to.edit").hide();
 });
+
+//Slide 2: Datepicker
+$("#cal").datepicker({
+		minDate: 0,
+		maxDate: '+90D',
+		onSelect:function(text){
+			console.log(text);
+			$("#move-date").val(text);
+			$("#cal").hide();
+		}
+});
+$("#move-date").click(function(e){
+	$("#cal").toggle();
+});
+
 
 //Step 3: Update Field Trip Info
 $("#field-trip-edit").click(function(e){
@@ -116,7 +171,7 @@ function animateLeft(step1, step2){
 		}, 1);
 	}
 }
-
+//Global: Submit Form Data -> Animate
 $(".submit-form").click(function(e){
 	e.preventDefault();
 	if($(this).attr('id') == "update")
@@ -144,25 +199,7 @@ $(".submit-form").click(function(e){
 	animateLeft(step1, step2);
 });
 
-//datepicker
-
-
-$("#cal").datepicker({
-		minDate: 0,
-		maxDate: '+90D',
-		onSelect:function(text){
-			console.log(text);
-			$("#move-date").val(text);
-			$("#cal").hide();
-		}
-});
-
-
-$("#move-date").click(function(e){
-	$("#cal").toggle();
-});
-
-//ziphelp
+//Global: Ziphelp
 $("body").click(function(e){
 	var target = $(e.target);
 	//if the target element is inside the zipcode helper
@@ -178,7 +215,6 @@ $("body").click(function(e){
 	//div next to input with lis of all ajax'd 
 	//cities and states
 });
-
 
 $(".ziphelp").click(function(e){
 	//stops body from also registering click
@@ -213,46 +249,10 @@ $(".info").click(function(){
 });
 
 
-//Masks
+//Global: Mask Inputs (Prevent Bad Numbers)
 $("input[type=tel]").mask('99999', {
 	placeholder:""
 });
 $("#phone_number").mask('(999) 999-9999', {
 	placeholder: ""
 });
-
-//subslides carousel
-$(".substep-arrow.left a").click(function(e){
-	e.preventDefault();
-	var subSteps = $(".sub-step");
-	var activeSlide = $(".sub-step.active");
-	
-	if(activeSlide.is('.sub-step1')){
-		activeSlide.removeClass('active');
-		$(".sub-step3").addClass('active');
-
-	}else {
-		activeSlide.removeClass('active');
-		activeSlide.prev().addClass('active');
-	}
-});
-
-$(".substep-arrow.right a").click(function(e){
-	e.preventDefault();
-	var subSteps = $(".sub-step");
-	var activeSlide = $(".sub-step.active");
-	
-	if(activeSlide.is('.sub-step3')){
-		activeSlide.removeClass('active');
-		$(".sub-step1").addClass('active');
-
-	}else {
-		activeSlide.removeClass('active');
-		activeSlide.next().addClass('active');
-	}
-});
-
-
-if($("#step1").is(":visible")){
-	//$("#sidebar").show();
-}

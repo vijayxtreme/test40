@@ -60,10 +60,12 @@ $step2Par:#53a4d7;
 			margin-bottom: 23px;
 			font-weight: 700;
 		}
-		.moving-from, .moving-to{
+		.moving-from {
 			display:none;
 		}
+
 		.moving-from.edit, .moving-to.edit {
+			display:block;
 			padding-bottom:9px;
 			border-bottom:1px solid $lightBorder;
 			margin-bottom: 8px;
@@ -87,9 +89,13 @@ $step2Par:#53a4d7;
 				color:white;
 			}
 		}
+
+		.moving-to.edit {
+			display: none;
+		}
 		.moving-date {
 			padding-top:2px;
-			#datepicker {
+			#move-date {
 				background-image:url(../img/cal.png);
 				background-repeat:no-repeat;
 				background-position-x:calc(100% - 2px);

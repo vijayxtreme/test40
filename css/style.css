@@ -433,9 +433,10 @@ button.submit-form:hover {
     height: 55px;
     margin-bottom: 23px;
     font-weight: 700; }
-  #step2 .form-area .moving-from, #step2 .form-area .moving-to {
+  #step2 .form-area .moving-from {
     display: none; }
   #step2 .form-area .moving-from.edit, #step2 .form-area .moving-to.edit {
+    display: block;
     padding-bottom: 9px;
     border-bottom: 1px solid #4290d1;
     margin-bottom: 8px;
@@ -454,9 +455,11 @@ button.submit-form:hover {
       font-size: 13px;
       font-weight: 500;
       color: white; }
+  #step2 .form-area .moving-to.edit {
+    display: none; }
   #step2 .form-area .moving-date {
     padding-top: 2px; }
-    #step2 .form-area .moving-date #datepicker {
+    #step2 .form-area .moving-date #move-date {
       background-image: url(../img/cal.png);
       background-repeat: no-repeat;
       background-position-x: calc(100% - 2px);
@@ -637,7 +640,7 @@ button.submit-form:hover {
           #step3 .moving-info #update-my-info .edit-area .col-z .ziphelp span {
             position: relative;
             top: -4px; }
-        #step3 .moving-info #update-my-info .edit-area .row.moving-to {
+        #step3 .moving-info #update-my-info .edit-area .row.u-moving-to {
           padding-top: 20px; }
         #step3 .moving-info #update-my-info .edit-area #update-zip {
           clear: both;
