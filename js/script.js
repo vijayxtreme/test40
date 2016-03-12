@@ -98,7 +98,7 @@ function validationSuccess(submitBtn){
 			$("footer.steps, .disclaimer").hide();
 			$(".background").css('min-height', 'initial');
 			$("footer.thanks").show();
-			animateLeft(stepA, stepB);
+
 		}, 500);
 	}
 
