@@ -767,7 +767,7 @@ button.submit-form:hover {
       transform: skew(157.857deg);
       left: 131px;
       right: inherit;
-      width: 766px;
+      width: 0px;
       height: 461px;
       background: rgba(146, 200, 62, 0.85); }
       .giant-loader .container .parallelogram .loader-text {
@@ -778,13 +778,20 @@ button.submit-form:hover {
         position: absolute;
         top: 392px;
         left: 251px; }
+        .giant-loader .container .parallelogram .loader-text h1.search {
+          display: none;
+          position: absolute;
+          top: -36px;
+          width: 300px; }
         .giant-loader .container .parallelogram .loader-text h1.found {
+          display: none;
           position: relative;
           text-align: center;
           top: -39px;
           left: -53px; }
       .giant-loader .container .parallelogram .loader-circle {
         position: absolute;
+        display: none;
         top: 36px;
         left: 50%;
         margin-left: -146px;
@@ -1110,8 +1117,7 @@ aside#sidebar {
 .disclaimer {
   background-color: #0596d1;
   font-family: 'Source Sans Pro', serif;
-  padding-top: 29px;
-  display: none; }
+  padding-top: 29px; }
   .disclaimer p {
     opacity: 0.7;
     font-size: 14px;

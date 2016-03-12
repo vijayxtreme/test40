@@ -14,7 +14,7 @@ $loaderCircle:#214373;
 			transform: skew(157.857deg);
 			left:131px;
 			right:inherit;
-			width:766px;
+			width:0px;
 			height:461px;
 			background:$greenLoader;
 
@@ -26,7 +26,17 @@ $loaderCircle:#214373;
 				position:absolute;
 				top:392px;
 				left:251px;
+				h1.calc {
+					//display: none;
+				}
+				h1.search {
+					display:none;
+					position:absolute;
+					top:-36px;
+					width:300px;
+				}
 				h1.found {
+					display: none;
 					position:relative;
 					text-align:center;
 					top:-39px;
@@ -36,6 +46,7 @@ $loaderCircle:#214373;
 
 			.loader-circle {
 				position:absolute;
+				display: none;
 				top: 36px;
 				left: 50%;
 				margin-left: -146px;
