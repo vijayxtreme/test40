@@ -98,7 +98,7 @@ function validationSuccess(submitBtn){
 			$("footer.steps, .disclaimer").hide();
 			$(".background").css('min-height', 'initial');
 			$("footer.thanks").show();
-
+			animateLeft(stepA, stepB);
 		}, 500);
 	}
 
@@ -120,7 +120,7 @@ function animateGreenLdr(options, callback1, callback2){
 	
 	var intv = setInterval(function(){
 		width +=1;
-		console.log(width, maxWidth);
+
 		$(id).css('width', width + 'px');
 		var halftime = maxWidth / 2;
 		
