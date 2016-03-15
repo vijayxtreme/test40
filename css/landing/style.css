@@ -374,7 +374,7 @@ button.submit-form:hover {
       font-weight: 700;
       width: 153px;
       padding-top: 17px; }
-    .price-text .price-calculator #from-zip {
+    .price-text .price-calculator #zip_from {
       width: 151px; }
     .price-text .price-calculator #go {
       height: 53px;

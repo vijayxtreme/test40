@@ -4,7 +4,6 @@
 //Global: Privacy Policy, Terms & Conditions, Disclaimer
 
 
-
 //Global: Animates each div left
 function animateLeft(step1, step2){
 	var lf = 0; 
@@ -61,6 +60,11 @@ function validationSuccess(submitBtn){
 
 	if(stepB == "step3"){
 		//show giant loader
+		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&sensor=true&callback=initialize&v=3.20')
+
+		var start = $('#zip_from').val();
+		var end = $('#zip_to').val();
+
 		$(".background, .disclaimer").hide();
 		animateLeft(stepA, stepB);	
 		$(".giant-loader").show();
@@ -76,18 +80,24 @@ function validationSuccess(submitBtn){
 		function callback1(){
 			$(".loader-text .calc").hide();
 			$(".loader-text .search").show();
+			calculateDistance(start, end, function(result){
+				console.log(result);
+				$("#field-trip-length").text("Trip length " + result);
+			});
 		}
 				
 		function callback2(){
 			$(".loader-text .search").hide();
 			$(".loader-text .found").show();
 			$(".loader-circle").show();
+
 			setTimeout(function(){
+				googleMap(start, end);
 				$(".giant-loader").hide();
 				$("footer").removeClass('giant-loader-active');
 				$(".background, .disclaimer").show();
 				$("#quotes-disc").show();	
-			}, 2000);
+			}, 1000);
 		}
 		
 		animateGreenLdr(options, callback1, callback2);
@@ -101,11 +111,8 @@ function validationSuccess(submitBtn){
 			animateLeft(stepA, stepB);
 		}, 500);
 	}
-
-	
 };
 //Step 2: Animate Green Loaders
-
 function animateGreenLdr(options, callback1, callback2){
 	if(options === undefined) return;
 
@@ -137,32 +144,23 @@ function animateGreenLdr(options, callback1, callback2){
 	}, speed);
 }
 
-/*
-var options = {
-	div:'giant-parallelogram',
-	maxWidth:766,
-	speed:20
-}
-animateGreenLdr(options);
-*/
-
-
 //Global: Ziphelp
-$("body").click(function(e){
-	var target = $(e.target);
-	//if the target element is inside the zipcode helper
-	//return true or false
-	var childOfZip = !!(target.closest('.zipcode-helper').length);
-	//if zipcode-helper is visible and clicking 
-	//is not inside the zipcode helper, hide zipcode-helper
-	if($(".zipcode-helper").is(":visible") && !childOfZip){
-	 	$(".zipcode-helper").hide();
-	}
+// $("body").click(function(e){
+// 	var target = $(e.target);
+// 	//if the target element is inside the zipcode helper
+// 	//return true or false
+// 	var childOfZip = !!(target.closest('.zipcode-helper').length);
+// 	//if zipcode-helper is visible and clicking 
+// 	//is not inside the zipcode helper, hide zipcode-helper
+// 	if($(".zipcode-helper").is(":visible") && !childOfZip){
+// 	 	//$(".zipcode-helper").hide();
+// 	}
 
-	//on focus input -- need to show an absolute
-	//div next to input with lis of all ajax'd 
-	//cities and states
-});
+// 	//on focus input -- need to show an absolute
+// 	//div next to input with lis of all ajax'd 
+// 	//cities and states
+// });
+
 $(".ziphelp").click(function(e){
 	//stops body from also registering click
 	e.stopPropagation();
@@ -184,7 +182,137 @@ $(".ziphelp").click(function(e){
 	});
 
 	$(".zipcode-helper").toggle();
+
+	var target = $(e.target);
+	var zipf = target.attr('data-zip');
+	var input = $('input[data-zip='+zipf+']');
+
+	$("#zipfinder").one('blur', function(e){
+		input.val($('#zipfinder').val());
+		input.trigger('change');
+	});
+
+	$(".zipcode-helper input").on('keypress', function(e){
+		var code = e.keyCode || e.which;
+
+		if(code == 13){
+			e.preventDefault();
+			$(".zipcode-helper").hide();
+		}
+	})
+
 });
+
+$("#move-date").on('change', function(){
+	var date = $("#move-date").val();
+	
+	date = new Date(date);
+	var months = ['Jan', 'Feb', 'Mar', 
+				 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+				 'Sep', 'Oct', 'Nov', 'Dec'];
+
+	var month = months[date.getMonth()];
+	var day = date.getDate();
+	var year = date.getFullYear(); //getYear returns Y2K bug lol
+
+	var formatted_date = month + " " + day + ", " + year;
+
+	$('#field-trip-date').text(formatted_date);
+});
+
+$("#move_size").on('change', function(){
+	var size = $(this).val();
+	var map = {
+		'Studio':'STDI',
+		'1 Bedroom':'1 BR',
+		'2 Bedrooms':'2 BR',
+		'3 Bedrooms':'3 BR',
+		'4 Bedrooms':'4 BR',
+		'5 Bedrooms':'5 BR',
+		'6 Bedrooms':'6 BR',
+		'Commercial Move':'COMM'
+	}
+	size = map[size];
+	$('#field-trip-size').text(size);
+});
+
+
+$(".zipc").on('change', function(e){
+	var zip = $(this).val();
+	var dataZip = $(this).attr('data-zip');
+	console.log(dataZip)
+	$('.edit span[data-zip='+dataZip+']').text('');
+	$.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+zip)
+		.done(function(data){
+			var address = data.results[0].formatted_address;
+			console.log(data);
+
+			$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
+		});
+
+});
+
+function calculateDistance(start, end, cb){
+	var service = new google.maps.DistanceMatrixService();
+	service.getDistanceMatrix(
+	  {
+		origins: [start],
+		destinations: [end],
+		travelMode: google.maps.TravelMode.DRIVING,
+		unitSystem: google.maps.UnitSystem.IMPERIAL,
+		avoidHighways: false,
+		avoidTolls: false
+	  }, function callback(response, status){
+	  		if(status == "OK"){
+	  			cb(response.rows[0].elements[0].distance.text);
+	  		}
+	  });
+}
+
+
+//Step 3: Google Maps Init
+var directionDisplay,
+	directionsService,
+	map;
+function initialize() {
+	console.log('initialized map')
+}
+function googleMap(start, end){
+	var mapOptions = {
+		zoom:8,
+		scrollwheel:true,
+		navigationControl:true,
+		mapTypeControl:true,
+		scaleControl:true,
+		draggable:true,
+		disableDoubleClickZoom:true,
+		disableDefaultUI:true,
+		mapTypeId: google.maps.MapTypeId.DEFAULT
+	};
+	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+	var directionsOptions = {
+		markerOptions: {clickable: false}
+	};
+		directionsService = new google.maps.DirectionsService();
+	directionsDisplay = new google.maps.DirectionsRenderer();
+	directionsDisplay.setMap(map);
+	directionsDisplay.setOptions(directionsOptions);
+	//calculateDistances();
+	var request = {
+						origin:start,
+						destination:end,
+						optimizeWaypoints:true,
+						travelMode: google.maps.DirectionsTravelMode.DRIVING
+					};
+	directionsService.route(request, function(response, status) {
+	  if (status == google.maps.DirectionsStatus.OK) {
+		directionsDisplay.setDirections(response);
+							var route = response.routes[0];
+
+	  }
+	});
+}
 
 //Global: Mask Inputs (Prevent Bad Numbers)
 $("input[type=tel]").mask('99999', {
@@ -309,12 +437,31 @@ $("#f-step3-u").validate({
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
-		console.log("Change Div Back");
+		
+		var start = $('input[name=move_from2]').val();
+		var end = $('input[name=move_to2]').val();
 		$("#update-my-info").hide();
 		$("#show-my-info").show();
-		//do some google redraw on the map
+		var request = {
+			origin:start,
+			destination:end,
+			optimizeWaypoints:true,
+			travelMode: google.maps.DirectionsTravelMode.DRIVING
+		};
+		directionsService.route(request, function(response, status) {
+		  if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(response);
+								var route = response.routes[0];
+
+		  }
+		});
+		
+		calculateDistance(start,end,function(result){
+			console.log(result);
+			$("#field-trip-length").text("Trip length " + result);
+		});
 	}
-})
+});
 
 //Individual Steps Only
 
@@ -405,6 +552,7 @@ $("#cal").datepicker({
 			$("#move-date").val(text);
 			$("#move-date").removeClass('validation-error');
 			$(".cal-area").hide();
+			$("#move-date").trigger('change');
 		}
 });
 $("#move-date").click(function(e){
@@ -419,119 +567,6 @@ $("#field-trip-edit").click(function(e){
 	$("#update-my-info").show();
 });
 
-//Step 3 + 4: Google Maps & Callback
-function calculateDistances() {
-	var start = '90036';
-	var end = '90210';
-	if($('#zip_from').val() != ''){
-		start = $('#zip_from').val();
-	}
-	if($('#zip_to').val() != ''){
-		end = $('#zip_to').val();
-	}
-	var service = new google.maps.DistanceMatrixService();
-	service.getDistanceMatrix(
-	  {
-		origins: [start],
-		destinations: [end],
-		travelMode: google.maps.TravelMode.DRIVING,
-		unitSystem: google.maps.UnitSystem.IMPERIAL,
-		avoidHighways: false,
-		avoidTolls: false
-	  }, callback);
-}
-
-function callback(response, status) {
-	if (status != google.maps.DistanceMatrixStatus.OK) {
-	} else {
-	  var origins = response.originAddresses;
-      var destinations = response.destinationAddresses;
-	  var test = '';
-	  var str1 = origins.toString();
-	  var str2 = destinations.toString();
-	  if( str1.match(/\bUSA\b/) && str2.match(/\bUSA\b/)){
-			try{
-			  for (var i = 0; i < origins.length; i++) {
-				var results = response.rows[i].elements;
-				for (var j = 0; j < results.length; j++) {
-				   test += results[j].distance.text;
-				}
-			  }
-			  var rooms = 'six bedrooms and more house';
-			  if($('#number_of_rooms').val() != ''){
-				rooms = $('#number_of_rooms').val()
-			  }	  
-				$.post(
-					'/validate/calculator/calc',
-					{
-						rooms: rooms,
-						miles: test
-					},
-					function(data){
-						var d = $.parseJSON(data);
-						setTimeout(
-							function(){
-								var min = d.self_service_small.min;
-								var max = d.full_service_p_large.max;
-								console.log(d);
-								$('#range').html('$' + min + ' to $' + max);
-								$('#range-loader').hide('blind');
-								$('#quote-range').show('blind');
-							}
-						, 5000 );
-					}
-				);	  
-			  //alert(test);
-			}catch(e){
-				setTimeout(
-					function(){
-						$('#quote-range').html('Unable to calculate price range, one or more of your locations may not be accessible by moving trucks');
-						$('#range-loader').hide('blind');
-						$('#quote-range').show('blind');
-					}
-				, 5000 );
-			}
-		}
-	  else{
-		setTimeout(
-			function(){
-				$('#quote-range').html('Unable to calculate, Locations may not be in the USA');
-				$('#range-loader').hide('blind');
-				$('#quote-range').show('blind');
-			}
-		, 3000 );
-	  }
-	}
-}
-//Step 3: Google Maps Init
-var directionDisplay,
-	directionsService,
-	map;
-
-function initialize() {
-	directionsService = new google.maps.DirectionsService();
-	directionsDisplay = new google.maps.DirectionsRenderer();
-	var mapOptions = {
-      scrollwheel: false,
-      navigationControl: false,
-      mapTypeControl: false,
-      scaleControl: false,
-      draggable: false,
-	  disableDoubleClickZoom: true,
-	  disableDefaultUI: true,
-	  clickable: false,
-	  mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-	
-	var directionsOptions = {
-		markerOptions: {clickable: false}
-	};
-	directionsDisplay.setMap(map);
-	directionsDisplay.setOptions(directionsOptions);
-	//calculateDistances();
-	calcRoute();
-}
 //Step 3: Calculate Quote
 function calcRoute() {
 	var start = $('#zip_from').val();

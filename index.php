@@ -1,3 +1,4 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,13 @@
 	<header>
 		<div class="container">
 			<div class="logo">
-				<div class="logo-main"><img src="img/test40/header.png" height="34" width="239"></div>		
+				<div class="logo-main"><a href="http://localhost/devsites/bvl40"><img src="img/test40/header.png" height="34" width="239"></a></div>		
 				<div class="matching-service"><p>Your mover matching service</p></div>
 			</div>
 			<div id="parallelogram"></div>
 			<div class="phone">
 				<div class="any-questions"><p>Any Questions?</div>
-				<div class="call-us"><span class="phone-icon"><img src="img/test40/phone-call.png"></span><span>Call US: <a href="">1.800.611.6001</a></span></div>
+				<div class="call-us"><span class="phone-icon"><img src="img/test40/phone-call.png"></span><span>Call US: <a href="tel:18006116001">1.800.611.6001</a></span></div>
 			</div>
 		</div>
 	</header>
@@ -35,7 +36,8 @@
 							<div class="price-body">
 								<div class="price-col moving-from">Moving From?</div>
 								<div class="price-col zip-entry">
-									<input name="from_zip" class="zip" id="from-zip" type="tel" placeholder="Enter From Zip">
+								<!-- CLEAN UP-->
+									<input name="from_zip" class="zip zipc" id="zip_from" type="tel" placeholder="Enter From Zip" data-zip="from_zip">
 								</div>
 								<div class="price-col">
 									<button id="go" class="submit-form" type="submit">GO</button>
@@ -44,7 +46,7 @@
 							<div class="zipfinder">
 								<div class="price-col moving-from">&nbsp;</div>
 								<div class="ziphelp-area">
-									<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span>ZIP Help?</span></a> 
+									<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a> 
 								</div>
 								
 							</div>
@@ -81,30 +83,30 @@
 							Where are you moving from?
 						</div>
 						<div class="col-i2">
-							<input type="tel" name="move_from" value="" placeholder="Enter From Zip">
+							<input type="tel" class="zipc" name="move_from" value="" placeholder="Enter From Zip" data-zip="from_zip">
 						</div>
 						<div class="col-z ziphelp-area">
-							<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span>ZIP Help?</span></a>
+							<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
 						</div>
 					</div>
 					<div class="moving-from edit">
 						<h6>MOVING FROM:</h6>
-						<div><span id="moving-from-text">Chestnut Mountain, GA 36001</span><a id="moving-from-text-edit" href="#">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="from_zip">Chestnut Mountain, GA 30502</span><a id="moving-from-text-edit" href="#">Edit</a></div>
 					</div>
 					<div class="moving-to">
 						<div class="col-q">
 							Where are you moving to?
 						</div>
 						<div class="col-i2">
-							<input type="tel" name="move_to" value="" placeholder="Enter To Zip">
+							<input type="tel" id="zip_to" class="zipc" name="move_to" value="" placeholder="Enter To Zip" data-zip="move_to">
 						</div>
 						<div class="col-z ziphelp-area">
-							<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span>ZIP Help?</span></a>
+							<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
 						</div>
 					</div>
 					<div class="moving-to edit">
 						<h6>MOVING TO:</h6>
-						<div><span id="moving-from-text">Los Angeles, CA 90036</span><a id="moving-to-text-edit" href="#">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="move_to">Los Angeles, CA 90036</span><a id="moving-to-text-edit" href="#">Edit</a></div>
 					</div>
 					<div class="moving-date">
 						<div class="col-q">
@@ -124,7 +126,7 @@
 						</div>
 						<div class="col-i">
 							<div id="select-arrow"></div>
-							<select name="move_size">
+							<select name="move_size" id="move_size">
 								<option class="select-inactive" value="" selected>Enter Move Size</option>
 								<option class="select-active" value="Moving Boxes Only">Box Only</option>
 								<option class="select-active" value="Studio">Studio</option>
@@ -218,10 +220,10 @@
 											<h4>Where are you moving from?</h4>
 										</div>
 										<div class="col-t">
-											<input name="move_from" type="tel" placeholder="From Zip">
+											<input name="move_from2" class="zipc" type="tel" placeholder="From Zip" data-zip="from_zip">
 										</div>
 										<div class="col-z">
-											<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span>ZIP Help?</span></a>
+											<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
 										</div>
 									</div>
 									<div class="row u-moving-to">
@@ -229,10 +231,10 @@
 											<h4>Where are you moving to?</h4>
 										</div>
 										<div class="col-t">
-											<input name="move_to" type="tel" placeholder="To Zip">
+											<input name="move_to2" class="zipc" type="tel" placeholder="To Zip" data-zip="move_to">
 										</div>
 										<div class="col-z">
-											<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span>ZIP Help?</span></a>
+											<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
 										</div>
 									</div>
 									<div id="update-zip">
@@ -249,16 +251,16 @@
 						<div id="show-my-info">
 							<div class="trip-info">
 								<div class="field-trip1">
-									<span id="field-trip-date"><img src="img/test40/tiny-cal.png">Feb. 25th</span>
-									<span id="field-trip-size"><img src="img/test40/tiny-bed.png">3 BR</span>
-									<span id="field-trip-length">
-									<img src="img/test40/tiny-car.png">Trip length 921 miles</span>
+									<span><img src="img/test40/tiny-cal.png">&nbsp;<span id="field-trip-date">Feb. 25th</span></span>
+									<span><img src="img/test40/tiny-bed.png">&nbsp;<span id="field-trip-size">3 BR</span></span>
+									<span>
+									<img src="img/test40/tiny-car.png">&nbsp;<span id="field-trip-length">Trip length 921 miles</span></span>
 								</div>
 								<div class="field-trip2">
-									<p><span id="field-trip-from-zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip">Los Angeles, CA 90036</span> <a id="field-trip-edit" href="#">Edit</a></p>
+									<p><span id="field-trip-from-zip" data-zip="from_zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip" data-zip="move_to">Los Angeles, CA 90036</span> <a id="field-trip-edit" href="#">Edit</a></p>
 								</div>
 							</div>
-							<div class="google-map">
+							<div class="google-map" id="map_canvas">
 							</div>
 						</div>
 					</div>
@@ -421,6 +423,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
+
 <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
