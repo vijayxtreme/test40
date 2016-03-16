@@ -1,4 +1,3 @@
-<?php header('Access-Control-Allow-Origin: *'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +45,7 @@
 							<div class="zipfinder">
 								<div class="price-col moving-from">&nbsp;</div>
 								<div class="ziphelp-area">
-									<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a> 
+									<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a> 
 								</div>
 								
 							</div>
@@ -56,7 +55,7 @@
 					<div class="bvl-logos">
 						<span class='verisign'><img src="img/test40/verisign.png"></span>
 						<span class="bbb"><img src="img/test40/bbb.png"></span>
-						<span class="lock"><img src="img/test40/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
+						<span class="lock"><img src="img/test40/lock.png"><span class='priv-and-terms'><a class="privacy-policy" href="">Privacy Policy</a> | <a class="terms-of-use" href="">Terms of Use</a></span></span>
 						<span class="info"><img src="img/test40/info.png"></span>
 					</div>
 				</div>
@@ -86,12 +85,12 @@
 							<input type="tel" class="zipc" name="move_from" value="" placeholder="Enter From Zip" data-zip="from_zip">
 						</div>
 						<div class="col-z ziphelp-area">
-							<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
+							<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
 						</div>
 					</div>
 					<div class="moving-from edit">
 						<h6>MOVING FROM:</h6>
-						<div><span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="#">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="">Edit</a></div>
 					</div>
 					<div class="moving-to">
 						<div class="col-q">
@@ -101,12 +100,12 @@
 							<input type="tel" id="zip_to" class="zipc" name="move_to" value="" placeholder="Enter To Zip" data-zip="move_to">
 						</div>
 						<div class="col-z ziphelp-area">
-							<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
+							<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
 						</div>
 					</div>
 					<div class="moving-to edit">
 						<h6>MOVING TO:</h6>
-						<div><span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="#">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="">Edit</a></div>
 					</div>
 					<div class="moving-date">
 						<div class="col-q">
@@ -157,7 +156,7 @@
 				<div class="bvl-logos">
 					<span class='verisign'><img src="img/test40/verisign.png"></span>
 					<span class="bbb"><img src="img/test40/bbb.png"></span>
-					<span class="lock"><img src="img/test40/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
+					<span class="lock"><img src="img/test40/lock.png"><span class='priv-and-terms'><a class="privacy-policy" href="">Privacy Policy</a> | <a class="terms-of-use" href="">Terms of Use</a></span></span>
 				</div>
 			</div>
 		</section>
@@ -224,7 +223,7 @@
 											<input name="move_from2" class="zipc" type="tel" placeholder="From Zip" data-zip="from_zip">
 										</div>
 										<div class="col-z">
-											<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
+											<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
 										</div>
 									</div>
 									<div class="row u-moving-to">
@@ -235,7 +234,7 @@
 											<input name="move_to2" class="zipc" type="tel" placeholder="To Zip" data-zip="move_to">
 										</div>
 										<div class="col-z">
-											<a class="ziphelp" href="#"><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
+											<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
 										</div>
 									</div>
 									<div id="update-zip">
@@ -258,7 +257,7 @@
 									<img src="img/test40/tiny-car.png">&nbsp;<span id="field-trip-length">Trip length 921 miles</span></span>
 								</div>
 								<div class="field-trip2">
-									<p><span id="field-trip-from-zip" data-zip="from_zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip" data-zip="move_to">Los Angeles, CA 90036</span>&nbsp;<a id="field-trip-edit" href="#">Edit</a></p>
+									<p><span id="field-trip-from-zip" data-zip="from_zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip" data-zip="move_to">Los Angeles, CA 90036</span>&nbsp;<a id="field-trip-edit" href="">Edit</a></p>
 								</div>
 							</div>
 							<div class="google-map" id="map_canvas">
@@ -268,7 +267,7 @@
 					<div class="bvl-logos">
 						<span class='verisign'><img src="img/test40/verisign.png"></span>
 						<span class="bbb"><img src="img/test40/bbb.png"></span>
-						<span class="lock"><img src="img/test40/lock.png"><span class='priv-and-terms'><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></span></span>
+						<span class="lock"><img src="img/test40/lock.png"><span class='priv-and-terms'><a class="privacy-policy" href="">Privacy Policy</a> | <a class="terms-of-use" href="">Terms of Use</a></span></span>
 					</div>
 				</div>
 			</div>
@@ -391,7 +390,7 @@
 	</aside>
 	<div class="disclaimer">
 		<div class="container">
-		<p id="quotes-disc">By clicking on the "Get My Quotes" button I am verifying that I am over 18 years of age and agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.  My "click" is my expressed written consent to be contacted via email, text, SMS or phone (including the use of autodialed calls or prerecorded calls) by Budget Van Lines, inc. and its moving partners that can quote or service my move, as well as companies offering other useful products or services.  My consent supercedes any registration on any do-not-call list.  Consent is required to proceed, but is not a condition of any purchase.</p>
+		<p id="quotes-disc">By clicking on the "Get My Quotes" button I am verifying that I am over 18 years of age and agree to the <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.  My "click" is my expressed written consent to be contacted via email, text, SMS or phone (including the use of autodialed calls or prerecorded calls) by Budget Van Lines, inc. and its moving partners that can quote or service my move, as well as companies offering other useful products or services.  My consent supercedes any registration on any do-not-call list.  Consent is required to proceed, but is not a condition of any purchase.</p>
 		<p>*Disclaimer: Once submitting a quote request on BudgetVanLines.com, based on your search criteria, our system will match you with licensed third party companies that can service your route.  Budget Van Lines Inc, a federally licensed moving broker, could also be one of the companies competing for your business.  Budget Van Lines is not a motor carrier and does not own moving trucks.  Budget Van Lines will generate a quote for you based on the details of your intended move, as well as the availability of licensed motor carriers in Budget Van Lines' network.</p>
 		</div>
 	</div>
@@ -413,10 +412,10 @@
 				</div>
 			</div>
 			<div class="thanks-disclaimer">
-				<p>*Disclaimer: Once submitting a quote request on <a href="#">BudgetVanLines.com</a>, based on your search criteria, our system will match you with licensed third party companies that can service your route.  Budget Van Lines Inc, a federally licensed moving broker, could also be one of the companies competing for your business.  Budget Van Lines is not a motor carrier and does not own moving trucks.  Budget Van Lines will generate a quote for you based on the details of your intended move, as well as the availability of licensed motor carriers in Budget Van Lines' network.</p> 
+				<p>*Disclaimer: Once submitting a quote request on <a href="">BudgetVanLines.com</a>, based on your search criteria, our system will match you with licensed third party companies that can service your route.  Budget Van Lines Inc, a federally licensed moving broker, could also be one of the companies competing for your business.  Budget Van Lines is not a motor carrier and does not own moving trucks.  Budget Van Lines will generate a quote for you based on the details of your intended move, as well as the availability of licensed motor carriers in Budget Van Lines' network.</p> 
 			</div>
 			<div class="thanks-copyright">
-				<p>Copyright 2015 &copy; <a href="#">www.BudgetVanLines.com</a>
+				<p>Copyright 2015 &copy; <a href="">www.BudgetVanLines.com</a>
 			</div>
 		</div>
 	</footer>

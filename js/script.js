@@ -2,8 +2,28 @@
  Test 40: Custom JS
 =====================================*/
 //Global: Privacy Policy, Terms & Conditions, Disclaimer
-
-
+$(".privacy-policy").click(function(e){
+	e.preventDefault();
+	var w = screen.width;
+	var left = w - 350;
+	var top = 0;
+	window.open(
+		'/info/privacy-policy',
+		'Privacy_Policy',
+		'width=350,height=550,scrollbars=1,top='+top+',left='+left
+	);
+});
+$(".terms-of-use").click(function(e){
+	e.preventDefault();
+	var w = screen.width;
+	var left = w - 350;
+	var top = 0;
+	window.open(
+		'/info/terms-of-use',
+		'Terms_of_Use',
+		'width=350,height=550,scrollbars=1,top='+top+',left='+left
+	);
+});
 //Global: Animates each div left
 function animateLeft(step1, step2){
 	var lf = 0; 
