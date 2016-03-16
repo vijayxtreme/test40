@@ -104,26 +104,39 @@ function validationSuccess(submitBtn){
 	}
 
 	if(stepB == "step4"){
-			$(".thank-you-area .loading").show();
-			$(".thank-you-area .finished").hide();
-
+		animateLeft(stepA, stepB);
+		$(".background").css('min-height', 'initial');
+		$("footer.steps, .disclaimer").hide();
+		$("footer.thanks").show();
+		$(".thank-you-area .finished").hide();
+		$(".thank-you-area .loading").show();
+		
+		
 		setTimeout(function(){
-			$("footer.steps, .disclaimer").hide();
-			$(".background").css('min-height', 'initial');
-			$("footer.thanks").show();
-			animateLeft(stepA, stepB);
-			animateGreenLdr({
-				div:'loader4',
-				maxWidth:940,
-				seconds:1
-			}, function(){
-				//quote calculation
 
-			}, function(){
-				$(".thank-you-area").hide();
-				$(".thank-you-area.finished").show();
-			});
-		}, 500);
+			setTimeout(function(){
+				var time = 0;
+				var timer = setInterval(function(){
+					time++;
+					$("#current-percent4").html(time + "%");
+					if(time >= 100){
+						clearInterval(timer);
+					}
+				}, 37);
+
+				animateGreenLdr({
+					div:'loader4',
+					maxWidth:940,
+					seconds:1
+				}, function(){
+					//quote calculation
+
+				}, function(){
+					$(".thank-you-area").hide();
+					$(".thank-you-area.finished").show();
+				});
+			}, 600);
+		}, 600);
 	}
 };
 //Step 2: Animate Green Loaders
@@ -453,10 +466,20 @@ $("#f-step3-u").validate({
 			maxWidth:692,
 			seconds:1 
 		}
-		
+		var time = 0;
+		var timer = setInterval(function(){
+			time++;
+			$("#current-percent").html(time + "%");
+			if(time >= 100){
+				clearInterval(timer);
+			}
+		}, 35);
+
 		animateGreenLdr(options, function(){
 			
 		}, function(){
+
+
 			var request = {
 				origin:start,
 				destination:end,
@@ -477,6 +500,7 @@ $("#f-step3-u").validate({
 				$(".movers-found").show();	
 				$("#update-my-info").hide();
 				$("#show-my-info").show();
+				$("#loader3").css('width', '0px');
 			});
 		});
 	}

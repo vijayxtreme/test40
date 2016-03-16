@@ -174,7 +174,8 @@
 				</div>
 				<div id="loading-area" class="loader-area">
 					<h2>Calculating...</h2>
-					<div id="loader3"><div id="current-percent">0%</div></div>
+					<div id="loader3"></div>
+					<div id="current-percent">0%</div>
 				</div>
 				<div id="moves-found" class="movers-found">
 					<div class="movers-found-title">
@@ -252,7 +253,7 @@
 							<div class="trip-info">
 								<div class="field-trip1">
 									<span><img src="img/test40/tiny-cal.png">&nbsp;<span id="field-trip-date">Feb. 25th</span></span>
-									<span><img src="img/test40/tiny-bed.png">&nbsp;<span id="field-trip-size">3 BR</span></span>
+									<span><img class="field-bed" src="img/test40/tiny-bed.png">&nbsp;<span id="field-trip-size">3 BR</span></span>
 									<span>
 									<img src="img/test40/tiny-car.png">&nbsp;<span id="field-trip-length">Trip length 921 miles</span></span>
 								</div>
@@ -276,9 +277,8 @@
 			<div class="container">
 				<div class="thank-you-area loading">
 					<h4>Now Calculating Your Estimated Quote</h4>
-					<div id="loader4" class="loader">
-						<div id="current-percent">0%</div>
-					</div>
+					<div id="loader4" class="loader"></div>
+					<div id="current-percent4">0%</div>
 				</div>
 				<div class="thank-you-area finished">
 					<h4>Thank you John Smith</h4>

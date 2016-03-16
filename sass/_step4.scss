@@ -42,6 +42,14 @@
 			font-size:36px;
 			margin-bottom:54px;
 		}
+		#current-percent4 {
+			position:absolute;
+			top:170px;
+			left:50%;
+			font-family: "Source Sans Pro";
+			font-weight:300;
+			font-size:29.29px;
+		}
 	}
 	.thank-you-area.loading .loader {
 		@include loader();
@@ -52,10 +60,7 @@
 		margin-bottom: 17px;
 		margin-left:65px;
 		margin-right: 0px;
-		#current-percent {
-			position:absolute;
-			left:50%;
-		}
+
 	}
 
 	.thank-you-area.finished {

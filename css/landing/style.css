@@ -532,7 +532,8 @@ button.submit-form:hover {
     float: left;
     margin-left: 30px; }
   #step3 .movers-found {
-    padding-top: 17px; }
+    padding-top: 17px;
+    display: block; }
     #step3 .movers-found span {
       font-family: "Montserrat Regular";
       font-size: 36px;
@@ -575,6 +576,10 @@ button.submit-form:hover {
           padding-right: 19px; }
           #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-date img {
             padding-right: 11px; }
+        #step3 .moving-info #show-my-info .trip-info .field-trip1 .field-bed {
+          position: relative;
+          top: 5px;
+          left: -3px; }
         #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-size {
           padding-right: 20px; }
           #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-size img {
@@ -686,8 +691,13 @@ button.submit-form:hover {
       #step3 .loader-area #loader3 #current-percent {
         transform: skew(20deg);
         -webkit-transform: skew(20deg); }
-      #step3 .loader-area #loader3 #current-percent {
-        left: 50%; }
+    #step3 .loader-area #current-percent {
+      font-size: 29.29px;
+      font-weight: 300;
+      font-family: "Source Sans Pro";
+      position: absolute;
+      top: 67px;
+      left: 50%; }
 
 #step4 h4 {
   font-family: "Source Sans Pro";
@@ -745,6 +755,13 @@ button.submit-form:hover {
     font-family: "Montserrat Regular";
     font-size: 36px;
     margin-bottom: 54px; }
+  #step4 .thank-you-area.loading #current-percent4 {
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    font-family: "Source Sans Pro";
+    font-weight: 300;
+    font-size: 29.29px; }
 
 #step4 .thank-you-area.loading .loader {
   width: 692px;
@@ -771,9 +788,6 @@ button.submit-form:hover {
   #step4 .thank-you-area.loading .loader #current-percent {
     transform: skew(20deg);
     -webkit-transform: skew(20deg); }
-  #step4 .thank-you-area.loading .loader #current-percent {
-    position: absolute;
-    left: 50%; }
 
 #step4 .thank-you-area.finished {
   display: none;

@@ -70,7 +70,7 @@ $inputF:#1374c6;
 
 	.movers-found {
 		padding-top:17px;
-
+		display:block;
 		span {
 			font-family: "Montserrat Regular";
 			font-size: 36px;
@@ -127,6 +127,11 @@ $inputF:#1374c6;
 							padding-right:11px;
 
 						}
+					}
+					.field-bed {
+						position:relative;
+						top:5px;
+						left:-3px;
 					}
 					#field-trip-size {
 						padding-right:20px;
@@ -263,10 +268,14 @@ $inputF:#1374c6;
 			margin-left: 176.5px;
 			margin-right:0px;
 		   // background: rgba(75, 184, 232, 0.1);
-
-		   #current-percent {
-		    	left:50%;
-		   }
+		}
+		#current-percent {
+			font-size:29.29px;
+			font-weight: 300;
+			font-family: "Source Sans Pro";
+	  	    position: absolute;
+		    top: 67px;
+		  	left:50%;
 		}
 	}
 
