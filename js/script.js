@@ -72,7 +72,7 @@ function validationSuccess(submitBtn){
 		var options = {
 			div:'giant-parallelogram',
 			maxWidth:766,
-			seconds:4 //not true seconds because jquery takes 300ms per action, so eh
+			seconds:3 //not true seconds because jquery takes 300ms per action, so eh
 		}
 		//50 x 766 width = 38,300 iterations
 		//38,300 / 3600 ( iter / 60 milliseconds / 60 seconds) in sec
@@ -104,11 +104,25 @@ function validationSuccess(submitBtn){
 	}
 
 	if(stepB == "step4"){
+			$(".thank-you-area .loading").show();
+			$(".thank-you-area .finished").hide();
+
 		setTimeout(function(){
 			$("footer.steps, .disclaimer").hide();
 			$(".background").css('min-height', 'initial');
 			$("footer.thanks").show();
 			animateLeft(stepA, stepB);
+			animateGreenLdr({
+				div:'loader4',
+				maxWidth:940,
+				seconds:1
+			}, function(){
+				//quote calculation
+
+			}, function(){
+				$(".thank-you-area").hide();
+				$(".thank-you-area.finished").show();
+			});
 		}, 500);
 	}
 };
@@ -137,7 +151,7 @@ function animateGreenLdr(options, callback1, callback2){
 		}
 
 		//Fire off callback2 when animation finished
-		if(parseInt($(id).css('width')) === maxWidth){
+		if(parseInt($(id).css('width')) >= maxWidth){
 			clearInterval(intv);
 			callback2();
 		}
@@ -223,6 +237,7 @@ $("#move-date").on('change', function(){
 $("#move_size").on('change', function(){
 	var size = $(this).val();
 	var map = {
+		'Moving Boxes Only':'BOX',
 		'Studio':'STDI',
 		'1 Bedroom':'1 BR',
 		'2 Bedrooms':'2 BR',
@@ -246,7 +261,6 @@ $(".zipc").on('change', function(e){
 		.done(function(data){
 			var address = data.results[0].formatted_address;
 			console.log(data);
-
 			$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
 		});
 
@@ -255,18 +269,18 @@ $(".zipc").on('change', function(e){
 function calculateDistance(start, end, cb){
 	var service = new google.maps.DistanceMatrixService();
 	service.getDistanceMatrix(
-	  {
+	{
 		origins: [start],
 		destinations: [end],
 		travelMode: google.maps.TravelMode.DRIVING,
 		unitSystem: google.maps.UnitSystem.IMPERIAL,
 		avoidHighways: false,
 		avoidTolls: false
-	  }, function callback(response, status){
-	  		if(status == "OK"){
-	  			cb(response.rows[0].elements[0].distance.text);
-	  		}
-	  });
+	}, function callback(response, status){
+		if(status == "OK"){
+			cb(response.rows[0].elements[0].distance.text);
+		}
+	});
 }
 
 
@@ -294,22 +308,22 @@ function googleMap(start, end){
 	var directionsOptions = {
 		markerOptions: {clickable: false}
 	};
-		directionsService = new google.maps.DirectionsService();
+	
+	directionsService = new google.maps.DirectionsService();
 	directionsDisplay = new google.maps.DirectionsRenderer();
 	directionsDisplay.setMap(map);
 	directionsDisplay.setOptions(directionsOptions);
 	//calculateDistances();
 	var request = {
-						origin:start,
-						destination:end,
-						optimizeWaypoints:true,
-						travelMode: google.maps.DirectionsTravelMode.DRIVING
-					};
+		origin:start,
+		destination:end,
+		optimizeWaypoints:true,
+		travelMode: google.maps.DirectionsTravelMode.DRIVING
+	};
 	directionsService.route(request, function(response, status) {
 	  if (status == google.maps.DirectionsStatus.OK) {
 		directionsDisplay.setDirections(response);
-							var route = response.routes[0];
-
+			var route = response.routes[0];
 	  }
 	});
 }
@@ -333,11 +347,9 @@ $("#f-step1").validate({
 		}
 	},
 	errorPlacement:function(error, element){
-
 	},
 	focusInvalid:false,
 	invalidHandler:function(form, validator){
-
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
@@ -363,14 +375,11 @@ $("#f-step2").validate({
 		}
 	},
 	messages:{
-
 	},
 	errorPlacement:function(error, element){
-
 	},
 	focusInvalid:false,
 	invalidHandler:function(form, validator){
-
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
@@ -396,14 +405,11 @@ $("#f-step3").validate({
 		}
 	},
 	messages:{
-
 	},
 	errorPlacement:function(error, element){
-
 	},
 	focusInvalid:false,
 	invalidHandler:function(form, validator){
-
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
@@ -426,39 +432,52 @@ $("#f-step3-u").validate({
 		},
 	},
 	messages:{
-
 	},
 	errorPlacement:function(error, element){
-
 	},
 	focusInvalid:false,
 	invalidHandler:function(form, validator){
-
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
 		
 		var start = $('input[name=move_from2]').val();
 		var end = $('input[name=move_to2]').val();
-		$("#update-my-info").hide();
-		$("#show-my-info").show();
-		var request = {
-			origin:start,
-			destination:end,
-			optimizeWaypoints:true,
-			travelMode: google.maps.DirectionsTravelMode.DRIVING
-		};
-		directionsService.route(request, function(response, status) {
-		  if (status == google.maps.DirectionsStatus.OK) {
-			directionsDisplay.setDirections(response);
-								var route = response.routes[0];
 
-		  }
-		});
+		$(".movers-found").hide();	
+		$(".loader-area").show();
+
+		//Animate Green Loader
+		var options = {
+			div:'loader3',
+			maxWidth:692,
+			seconds:1 
+		}
 		
-		calculateDistance(start,end,function(result){
-			console.log(result);
-			$("#field-trip-length").text("Trip length " + result);
+		animateGreenLdr(options, function(){
+			
+		}, function(){
+			var request = {
+				origin:start,
+				destination:end,
+				optimizeWaypoints:true,
+				travelMode: google.maps.DirectionsTravelMode.DRIVING
+			};
+			directionsService.route(request, function(response, status) {
+			  if (status == google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(response);
+					var route = response.routes[0];
+
+			  }
+			});
+			calculateDistance(start,end,function(result){
+				console.log(result);
+				$("#field-trip-length").text("Trip length " + result);
+				$(".loader-area").hide();
+				$(".movers-found").show();	
+				$("#update-my-info").hide();
+				$("#show-my-info").show();
+			});
 		});
 	}
 });
@@ -567,90 +586,6 @@ $("#field-trip-edit").click(function(e){
 	$("#update-my-info").show();
 });
 
-//Step 3: Calculate Quote
-function calcRoute() {
-	var start = $('#zip_from').val();
-	var end = $('#zip_to').val();
-	var request = {
-		origin:start,
-		destination:end,
-		travelMode: google.maps.DirectionsTravelMode.DRIVING
-	};
-	directionsService.route(request, function(response, status) {
-	  if (status == google.maps.DirectionsStatus.OK) {
-		$('.google-map-wrap').animate({"height": "430px"}, 1000);
-		directionsDisplay.setDirections(response);
-	  }else{
-		$('#map_canvas').hide();
-		$('.google-map-wrap').animate({"height": "0px"}, "slow");
-	  }
-	});
-}
-//Step 3: Conversion Scripts 
-function conversionScripts(){
-	//Yahoo + Bing Conversions moved to Get My Quotes Button Click
-	window.uetq = window.uetq || [];
-	window.uetq.push({ 'ea':'quote'}); 
-}
 
-//Step 3: Google Conversion
-(function($){
-	$.fn.conversion = function(google_conversion_id,google_conversion_label){
+//Step 3: Loader
 
-		try{
-			_gaq.push(['_trackEvent', 'desktop', '999moving', 'step3-test34']);
-			setTimeout(
-				function(){
-					_gaq.push(['_trackEvent', 'Conversion', 'Landing-test34', 'Validate']);
-				}, 100
-			);
-			__adroll.record_user({"adroll_segments": "quote_complete"});
-		}catch(e){
-			
-		}
-		//google conversion script
-		var image = new Image(1,1); 
-		image.src = "http://www.googleadservices.com/pagead/conversion/"+google_conversion_id+"/?label="+google_conversion_label + "&script=0";
-	};
-}(jQuery));
-
-(function($){
-	$.fn.queue_submission = function(){
-		$.post(
-			'/validate/validate/send',
-			{
-				source: $('#source').val()
-			},
-			function(data){
-				var rooms =  {	'studio'	:	'Studio',
-								'one bedrooms apartment'	:	'1 bedroom apartment',
-								'one bedrooms house'		:	'1 bedroom house',
-								'two bedrooms apartment'	:	'2 bedroom apartment',
-								'two bedrooms house'		:	'2 bedroom house',
-								'three bedrooms apartment'	:	'3 bedroom apartment',
-								'three bedrooms house'		:	'3 bedroom house',
-								'four bedrooms apartment'	:	'4 bedroom apartment',
-								'four bedrooms house'		:	'4 bedroom house',
-								'five bedrooms apartment'	:	'5 bedroom apartment',
-								'five bedrooms house'		:	'5 bedroom house',
-								'six bedrooms apartment'	:	'6 bedroom apartment',
-								'six bedrooms house'		:	'6 bedroom house',
-								'six bedrooms and more apartment'	:	'6 or more bedroom apartment',
-								'six bedrooms and more house'		:	'6 or more bedroom house'};
-				$('.google-map-wrap').animate({"height": "0px"}, 200);
-				$('.slide-wrapp').animate({"height": "510px"}, 200);
-				$('.regulation-terms-w').hide('blind');
-				$('#full_name').html($('#first_name').val() + ' ' + $('#last_name').val());
-				$('#room').html(rooms[$('#number_of_rooms').val()]);
-				$(".third-slide").closest(".slide-wrapp").hide("slide",{direction:"left"}, function(){
-						$(".forth-slide").closest(".slide-wrapp").show("slide",{direction:"right"});
-					});
-				calculateDistances();
-				//$(this).thankyou();
-				conversionScripts();
-				$(this).conversion(1070276245,"Ls4OCOWhRhCVvaz-Aw");
-			}
-		);
-		
-	};
-}(jQuery));

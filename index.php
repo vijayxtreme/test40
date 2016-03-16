@@ -91,7 +91,7 @@
 					</div>
 					<div class="moving-from edit">
 						<h6>MOVING FROM:</h6>
-						<div><span id="moving-from-text" data-zip="from_zip">Chestnut Mountain, GA 30502</span><a id="moving-from-text-edit" href="#">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="#">Edit</a></div>
 					</div>
 					<div class="moving-to">
 						<div class="col-q">
@@ -106,7 +106,7 @@
 					</div>
 					<div class="moving-to edit">
 						<h6>MOVING TO:</h6>
-						<div><span id="moving-from-text" data-zip="move_to">Los Angeles, CA 90036</span><a id="moving-to-text-edit" href="#">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="#">Edit</a></div>
 					</div>
 					<div class="moving-date">
 						<div class="col-q">
@@ -172,11 +172,11 @@
 						Step 3: Get Quotes
 					</div>
 				</div>
-				<div class="loader-area">
+				<div id="loading-area" class="loader-area">
 					<h2>Calculating...</h2>
 					<div id="loader3"><div id="current-percent">0%</div></div>
 				</div>
-				<div class="movers-found">
+				<div id="moves-found" class="movers-found">
 					<div class="movers-found-title">
 						<span><img src="img/test40/check-green.png"></span><span class="text">Movers Found</span>
 						<span><img src="img/test40/check-gray.png"></span><span class="text next">Next Step: View Your Estimate</span>
@@ -257,7 +257,7 @@
 									<img src="img/test40/tiny-car.png">&nbsp;<span id="field-trip-length">Trip length 921 miles</span></span>
 								</div>
 								<div class="field-trip2">
-									<p><span id="field-trip-from-zip" data-zip="from_zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip" data-zip="move_to">Los Angeles, CA 90036</span> <a id="field-trip-edit" href="#">Edit</a></p>
+									<p><span id="field-trip-from-zip" data-zip="from_zip">Chestnut Mountain, GA 36001</span> - <span id="field-trip-to-zip" data-zip="move_to">Los Angeles, CA 90036</span>&nbsp;<a id="field-trip-edit" href="#">Edit</a></p>
 								</div>
 							</div>
 							<div class="google-map" id="map_canvas">
@@ -276,7 +276,7 @@
 			<div class="container">
 				<div class="thank-you-area loading">
 					<h4>Now Calculating Your Estimated Quote</h4>
-					<div class="loader">
+					<div id="loader4" class="loader">
 						<div id="current-percent">0%</div>
 					</div>
 				</div>
@@ -384,7 +384,7 @@
 				</div>
 			</div>
 			<div class="substep-arrow left"><a href=""><i class="arr-left"></i></a></div>
-			<div class="substep-arrow right"><a href="">					<i class="arr-right"></i></a></div>
+			<div class="substep-arrow right"><a href=""><i class="arr-right"></i></a></div>
 		</div>
 
 		</div>

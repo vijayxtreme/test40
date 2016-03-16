@@ -33,6 +33,7 @@
 	}
 	.thank-you-area.loading {
 		display: block;
+		position:relative;
 		//display: none;
 		padding-top:67px;
 		padding-bottom:90px;
@@ -41,8 +42,22 @@
 			font-size:36px;
 			margin-bottom:54px;
 		}
-
 	}
+	.thank-you-area.loading .loader {
+		@include loader();
+		width: 0px;
+		padding-top:15px;
+		padding-bottom:10px;
+		font-weight: 300;
+		margin-bottom: 17px;
+		margin-left:65px;
+		margin-right: 0px;
+		#current-percent {
+			position:absolute;
+			left:50%;
+		}
+	}
+
 	.thank-you-area.finished {
 		//display: block;
 		display: none;

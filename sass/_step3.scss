@@ -248,6 +248,7 @@ $inputF:#1374c6;
 
 	.loader-area {
 		display: none;
+		position:relative;
 		h2 {
 			font-family: "Montserrat Regular";
 			font-size:32px;
@@ -257,8 +258,15 @@ $inputF:#1374c6;
 		}
 		#loader3 {
 			@include loader();
+			width:0px;
 			margin-bottom: 20px;
+			margin-left: 176.5px;
+			margin-right:0px;
 		   // background: rgba(75, 184, 232, 0.1);
+
+		   #current-percent {
+		    	left:50%;
+		   }
 		}
 	}
 
