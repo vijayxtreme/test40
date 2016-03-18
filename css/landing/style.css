@@ -64,6 +64,10 @@ aside {
   aside a {
     text-decoration: none; }
 
+input {
+  margin-top: 0px;
+  margin-bottom: 0px; }
+
 @font-face {
   font-family: 'Montserrat Regular';
   src: url(../../fonts/Montserrat-Regular.otf); }
@@ -1073,7 +1077,8 @@ input.zip {
         width: 212px; }
 
 aside#sidebar {
-  display: none; }
+  display: none;
+  background-color: #f8f8f8; }
   aside#sidebar .container {
     position: relative; }
   aside#sidebar .how-it-works-title {
