@@ -50,7 +50,8 @@ body {
   color: white;
   min-width: 1050px;
   -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased; }
+  -moz-font-smoothing: antialiased;
+  overflow-x: hidden; }
 
 .container {
   width: 1050px;
@@ -417,13 +418,17 @@ button.submit-form:hover {
       padding-bottom: 7px;
       padding-left: 16px;
       -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
       margin-bottom: 12px;
       width: 211px;
       font-family: "Source Sans Pro";
       font-size: 13px;
       color: #1374c6;
       font-weight: 600;
-      cursor: pointer; }
+      cursor: pointer;
+      border-radius: 5px; }
     #step2 .form-area .moving-size #select-arrow {
       position: absolute;
       top: 16px;
@@ -466,7 +471,7 @@ button.submit-form:hover {
     #step2 .form-area .moving-date #move-date {
       background-image: url(../../img/test40/cal.png);
       background-repeat: no-repeat;
-      background-position-x: calc(100% - 2px);
+      background-position: calc(100% - 2px);
       cursor: pointer; }
 
 #step2 .parallelogram {
@@ -686,7 +691,7 @@ button.submit-form:hover {
       margin-top: 20px;
       width: 0px;
       margin-bottom: 20px;
-      margin-left: 176.5px;
+      margin-left: 136.5px;
       margin-right: 0px; }
       #step3 .loader-area #loader3 #current-percent {
         transform: skew(20deg);
@@ -697,7 +702,8 @@ button.submit-form:hover {
       font-family: "Source Sans Pro";
       position: absolute;
       top: 67px;
-      left: 50%; }
+      left: 50%;
+      margin-left: -41.836px; }
 
 #step4 h4 {
   font-family: "Source Sans Pro";
@@ -1016,8 +1022,11 @@ input.zip {
     border-radius: 3px;
     margin-bottom: 14px;
     font-weight: 500;
-    width: 253px;
+    width: 241px;
     outline: none; }
+  .zipcode-helper input.open {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px; }
   .zipcode-helper .zip-arrow {
     position: absolute;
     left: -15px;
@@ -1030,6 +1039,38 @@ input.zip {
     font-size: 15.94px;
     font-family: "Source Sans Pro";
     padding-bottom: 9px; }
+  .zipcode-helper #results {
+    position: relative;
+    top: -14px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px; }
+    .zipcode-helper #results .zipline {
+      height: 2px;
+      width: 212px;
+      position: absolute;
+      background-color: #d9d9d9;
+      left: 12px;
+      display: none; }
+    .zipcode-helper #results ul {
+      background-color: #e6e6e6;
+      padding-left: 12px;
+      color: #454545;
+      font-family: "Source Sans Pro";
+      font-size: 19.36px;
+      max-height: 225px;
+      overflow: auto;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px; }
+      .zipcode-helper #results ul li a {
+        margin-top: 8px;
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: #a4a4a4; }
+      .zipcode-helper #results ul li a:hover {
+        background-color: #454545;
+        color: white;
+        width: 212px; }
 
 aside#sidebar {
   display: none; }

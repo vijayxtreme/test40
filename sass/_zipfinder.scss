@@ -2,6 +2,7 @@ $zipShadow:#3999c9;
 $zipHeader:#1374c6;
 $zipHelperInput:#454545;
 $zipHelperInputBg:#e6e6e6;
+$zipHelperInputSoftBg:#a4a4a4;
 $inputF:#1374c6;
 
 .zip-entry {
@@ -60,6 +61,7 @@ input.zip {
 	// border-bottom-left-radius:5px;
 	box-shadow:0px 5px 0px $zipShadow;
 
+
 	input {
 		background-color:$zipHelperInputBg;
 		border:0px;
@@ -70,8 +72,13 @@ input.zip {
 		border-radius:3px;
 		margin-bottom:14px;
 		font-weight: 500;
-		width: 253px;
+		width: 241px;
 		outline:none;
+	    
+	}
+	input.open {
+		border-bottom-left-radius: 0px;
+	    border-bottom-right-radius: 0px;
 	}
 
 	.zip-arrow {
@@ -83,5 +90,48 @@ input.zip {
 		font-size:15.94px;
 		font-family:"Source Sans Pro";
 		padding-bottom:9px;
+	}
+
+	#results {
+		position:relative;
+		top:-14px;
+
+		.zipline {
+			height:2px;
+			width:212px;
+			position:absolute;
+			background-color:#d9d9d9;
+			left:12px;
+			display:none;
+		}
+
+		ul {
+			background-color:$zipHelperInputBg;
+			padding-left:12px;
+			color:$zipHelperInput;
+			font-family: "Source Sans Pro";
+			font-size:19.36px;
+			max-height: 225px;
+			overflow:auto;
+
+			li {
+				a {
+					margin-top:8px;
+					position:relative;
+					display:block;
+					text-decoration: none;
+					color:$zipHelperInputSoftBg;
+				}
+				a:hover{
+					background-color:$zipHelperInput;
+					color:white;
+					width:212px; 
+				}
+			}
+			border-bottom-left-radius:3px;
+			border-bottom-right-radius:3px;
+		}
+		border-bottom-left-radius:3px;
+		border-bottom-right-radius:3px;
 	}
 }

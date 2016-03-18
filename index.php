@@ -36,10 +36,10 @@
 								<div class="price-col moving-from">Moving From?</div>
 								<div class="price-col zip-entry">
 								<!-- CLEAN UP-->
-									<input name="from_zip" class="zip zipc" id="zip_from" type="tel" placeholder="Enter From Zip" data-zip="from_zip">
+									<input name="zip_from" class="zip zipc" id="zip_from" type="tel" placeholder="Enter From Zip" data-zip="from_zip">
 								</div>
 								<div class="price-col">
-									<button id="go" class="submit-form" type="submit">GO</button>
+									<button id="go" class="submit-form" type="submit" disabled>GO</button>
 								</div>
 							</div>
 							<div class="zipfinder">
@@ -82,7 +82,7 @@
 							Where are you moving from?
 						</div>
 						<div class="col-i2">
-							<input type="tel" class="zipc" name="move_from" value="" placeholder="Enter From Zip" data-zip="from_zip">
+							<input type="tel" class="zipc" name="zip_from" value="" placeholder="Enter From Zip" data-zip="from_zip">
 						</div>
 						<div class="col-z ziphelp-area">
 							<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
@@ -97,7 +97,7 @@
 							Where are you moving to?
 						</div>
 						<div class="col-i2">
-							<input type="tel" id="zip_to" class="zipc" name="move_to" value="" placeholder="Enter To Zip" data-zip="move_to">
+							<input type="tel" id="zip_to" class="zipc" name="zip_to" value="" placeholder="Enter To Zip" data-zip="move_to">
 						</div>
 						<div class="col-z ziphelp-area">
 							<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
@@ -136,15 +136,14 @@
 								<option class="select-active" value="5 Bedrooms">5 Bedrooms</option>
 								<option class="select-active" value="6 Bedrooms">6 Bedrooms</option>
 								<option class="select-active" value="Commercial Move">Commercial Move</option>
-							</select>
-						</div>
+							</select>						</div>
 					</div>
 					<div>
 						<div class="col-q">
 							&nbsp;
 						</div>
 						<div class="col-i">
-							<button id="calculate" class="submit-form">CALCULATE</button>
+							<button id="calculate" class="submit-form" disabled>CALCULATE</button>
 						</div>
 					</div>
 					</form>
@@ -189,22 +188,23 @@
 					<form id="f-step3">
 						<div>
 							<div class='col-n'>Full Name</div>
-							<div class="col-i4 first"><input type="text" name="first_name" value="" placeholder="First"></div>
-							<div class="col-i4"><input type="text" name="last_name" placeholder="Last"></div>
+							<div class="col-i4 first"><input type="text" id="first_name" name="first_name" value="" placeholder="First"></div>
+							<div class="col-i4"><input type="text" name="last_name" id="last_name" placeholder="Last"></div>
 						</div>
 						<div>
 							<div class='col-n'>Valid Email</div>
-							<div class="col-i3"><input name="email" type="text" value="" placeholder="Email Address"></div>
+							<div class="col-i3"><input name="email_address" type="text" id="email" value="" placeholder="Email Address"></div>
 						</div>
 						<div>
 							<div class='col-n'>Valid Phone</div>
-							<div class="col-i3"><input type="tel" id="phone_number" name="phone_number" value="" placeholder="Phone Number"></div>
+							<div class="col-i3"><input type="tel" id="phone_number" id="phone_number" name="phone_number" value="" placeholder="Phone Number"></div>
+							
 						</div>
 						<div>
 							<div class='col-n'>
 								<p id="legal">By clicking on "Get My Quotes" you agree to the terms below.</p>
 							</div>
-							<button class="submit-form" id="get-my-quotes">GET MY QUOTES</button>
+							<button class="submit-form" onclick=""  id="get-my-quotes" disabled>GET MY QUOTES</button>
 						</div>
 					</form>
 				</div>
@@ -220,7 +220,7 @@
 											<h4>Where are you moving from?</h4>
 										</div>
 										<div class="col-t">
-											<input name="move_from2" class="zipc" type="tel" placeholder="From Zip" data-zip="from_zip">
+											<input name="zip_from" class="zipc" type="tel" placeholder="From Zip" data-zip="from_zip">
 										</div>
 										<div class="col-z">
 											<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a>
@@ -231,7 +231,7 @@
 											<h4>Where are you moving to?</h4>
 										</div>
 										<div class="col-t">
-											<input name="move_to2" class="zipc" type="tel" placeholder="To Zip" data-zip="move_to">
+											<input name="zip_to" class="zipc" type="tel" placeholder="To Zip" data-zip="move_to">
 										</div>
 										<div class="col-z">
 											<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="move_to">ZIP Help?</span></a>
@@ -290,6 +290,7 @@
 			</div>
 		</section>
 	</div>
+
 	<div class="giant-loader">
 		<div class="container">
 			<div class="moving-people">
@@ -310,9 +311,14 @@
 	<div class="zipcode-helper">
 		<div class="zip-arrow"></div>
 		<h3>ZipCode Helper</h3>
-		<form>
+		<form onsubmit="return false;">
 			<input id="zipfinder" placeholder="City, State" autofocus>
 		</form>
+
+		<div id="results">
+			<div class="zipline"></div>
+			<ul></ul>
+		</div>
 	</div>
 	<aside id="sidebar">
 		<div class="container">
@@ -422,7 +428,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
-
 <script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

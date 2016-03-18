@@ -35,6 +35,9 @@ $step2Par:#53a4d7;
 				padding-bottom:7px;
 				padding-left:16px;
 				-webkit-appearance:none;
+				-moz-appearance:none;
+				-ms-appearance:none;
+				appearance:none;
 				margin-bottom: 12px;
 				width:211px;
 				font-family: "Source Sans Pro";
@@ -42,6 +45,7 @@ $step2Par:#53a4d7;
 				color:$formArea;
 				font-weight: 600;
 				cursor: pointer;
+				border-radius:5px;
 			}
 			#select-arrow {
 				position:absolute;
@@ -98,7 +102,7 @@ $step2Par:#53a4d7;
 			#move-date {
 				background-image:url(../../img/test40/cal.png);
 				background-repeat:no-repeat;
-				background-position-x:calc(100% - 2px);
+				background-position:calc(100% - 2px);
 				cursor: pointer;
 			}
 		}

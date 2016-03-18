@@ -1,6 +1,18 @@
 /*====================================  
  Test 40: Custom JS
 =====================================*/
+$("button").removeAttr('disabled');
+
+
+//Global: Cache 
+var cache = {
+	distance:0,
+	moveSize:0,
+	moveDate:'',
+	toZip:'',
+	fromZip:'',
+};
+
 //Global: Privacy Policy, Terms & Conditions, Disclaimer
 $(".privacy-policy").click(function(e){
 	e.preventDefault();
@@ -44,7 +56,6 @@ function animateLeft(step1, step2){
 		$('#' + step2).show();
 		var intv = setInterval(function(){ 
 			lf2-=10; 
-			// console.log(lf2); 
 			$('#' + step2).css('margin-left', lf2 + 'px');
 
 			if(lf2 == 0){
@@ -81,13 +92,19 @@ function validationSuccess(submitBtn){
 	if(stepB == "step3"){
 		//show giant loader
 		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&sensor=true&callback=initialize&v=3.20')
+		cache.fromZip = $("#f-step2 input[name=zip_from]").val();
+		cache.toZip = $("#f-step2 input[name=zip_to]").val();
 
-		var start = $('#zip_from').val();
-		var end = $('#zip_to').val();
+		var start = cache.fromZip;
+		var end = cache.toZip;
 
 		$(".background, .disclaimer").hide();
 		animateLeft(stepA, stepB);	
 		$(".giant-loader").show();
+		
+		//Cache current from and to zip values
+
+		
 		$("footer").addClass('giant-loader-active');
 		var options = {
 			div:'giant-parallelogram',
@@ -97,11 +114,12 @@ function validationSuccess(submitBtn){
 		//50 x 766 width = 38,300 iterations
 		//38,300 / 3600 ( iter / 60 milliseconds / 60 seconds) in sec
 		//~10 seconds 
+		
 		function callback1(){
 			$(".loader-text .calc").hide();
 			$(".loader-text .search").show();
 			calculateDistance(start, end, function(result){
-				console.log(result);
+				cache.distance = result;
 				$("#field-trip-length").text("Trip length " + result);
 			});
 		}
@@ -149,8 +167,18 @@ function validationSuccess(submitBtn){
 					maxWidth:940,
 					seconds:1
 				}, function(){
-					//quote calculation
-
+					
+					var fullname = $("#first_name").val() + " " + $("#last_name").val();
+					$(".thank-you-area.finished h4").text("Thank you "+ fullname);					
+					$.post('/validate/calculator/calc', {rooms:cache.moveSize, miles:cache.distance}).done(function(result){
+						result = JSON.parse(result);
+						
+						var min = result.self_service_small.min;
+						var max = result.full_service_p_large.max;
+						$(".thank-you-area.finished #current-percent").text("Estimated quote is $" + min + " - $" + max);
+						
+					});
+										
 				}, function(){
 					$(".thank-you-area").hide();
 					$(".thank-you-area.finished").show();
@@ -165,12 +193,10 @@ function animateGreenLdr(options, callback1, callback2){
 
 	options.seconds = (options.seconds == null) ? 10 : options.seconds; 
 	
-	console.log(options.seconds);
 	var id = "#" + options.div;
 	var width = parseInt($(id).css('width'));
 	var maxWidth = options.maxWidth;
 	var speed = (options.seconds * 3600) / maxWidth;
-	console.log(speed);
 	
 	var intv = setInterval(function(){
 		width +=1;
@@ -192,27 +218,30 @@ function animateGreenLdr(options, callback1, callback2){
 }
 
 //Global: Ziphelp
-// $("body").click(function(e){
-// 	var target = $(e.target);
-// 	//if the target element is inside the zipcode helper
-// 	//return true or false
-// 	var childOfZip = !!(target.closest('.zipcode-helper').length);
-// 	//if zipcode-helper is visible and clicking 
-// 	//is not inside the zipcode helper, hide zipcode-helper
-// 	if($(".zipcode-helper").is(":visible") && !childOfZip){
-// 	 	//$(".zipcode-helper").hide();
-// 	}
+ $("body").click(function(e){
+ 	var target = $(e.target);
+ 	//if the target element is inside the zipcode helper
+ 	//return true or false
+ 	var childOfZip = !!(target.closest('.zipcode-helper').length);
+ 	//if zipcode-helper is visible and clicking 
+ 	//is not inside the zipcode helper, hide zipcode-helper
+ 	if($(".zipcode-helper").is(":visible") && !childOfZip){
+ 	 	$(".zipcode-helper").hide();
+ 	}
+ 	//on focus input -- need to show an absolute
+ 	//div next to input with lis of all ajax'd 
+ 	//cities and states
+ });
 
-// 	//on focus input -- need to show an absolute
-// 	//div next to input with lis of all ajax'd 
-// 	//cities and states
-// });
+var input, 
+	target, 
+	zipf, 
+	form;
 
 $(".ziphelp").click(function(e){
 	//stops body from also registering click
 	e.stopPropagation();
 	e.preventDefault();
-	console.log(e.pageX, e.pageY);
 	
 	//can prob fix this to get end pos of link
 	var posX, posY;
@@ -230,18 +259,86 @@ $(".ziphelp").click(function(e){
 
 	$(".zipcode-helper").toggle();
 
-	var target = $(e.target);
-	var zipf = target.attr('data-zip');
-	var input = $('input[data-zip='+zipf+']');
+	target = $(e.target);
+	zipf = target.attr('data-zip');
+	form = target.closest('form');
+	input = form.find('input[data-zip='+zipf+']');
 
-	$("#zipfinder").one('blur', function(e){
-		input.val($('#zipfinder').val());
-		input.trigger('change');
-	});
-
-	$(".zipcode-helper input").on('keypress', function(e){
+	$(".zipcode-helper input").on('keyup', function(e){
 		var code = e.keyCode || e.which;
+		var inputZ = $(this);
+		if(inputZ.val() == "") {
+			$("input.open").removeClass("open");
+			$(".zipline").hide();
+			$("#results").hide();
 
+		}else{
+
+			function getJSON(results){
+				$("#results ul").html("");
+				$.each(results, function(k,v){
+
+					var li = "<li><a class='result-zipcode' href='' data-zipcode='"+v+"'>" + k + "</a></li>"
+					$("#results ul").append(li);
+
+				});
+
+				$(".result-zipcode").click(function(e){
+					e.preventDefault();
+					var zip = $(this).attr('data-zipcode');
+					console.log(zipf);
+					if(zipf == "from_zip"){
+						$('input[data-zip='+zipf+']').val(zip).trigger('change');
+					}
+					if(zipf == "move_to"){ 
+						$('input[data-zip='+zipf+']').val(zip).trigger('change');;
+					}
+					
+					$(".zipcode-helper").hide();
+				});
+
+
+				$(inputZ).one('keydown', function(e){
+					e.stopImmediatePropagation();
+					var code = (e.keyCode ? e.keyCode : e.which);
+					if(code == 40){
+						console.log('down')
+					}else if(code == 38) {
+						console.log('up')
+					}
+				});
+				$(".zipline").show();
+				$("input").addClass('open');
+				$("#results").show();
+			}
+
+
+			$.get('http://localhost:1337/').done(getJSON).fail(function(){
+					var json = {
+						"New York":"10001",
+						"Washington, D.C": "20001",
+						"San Francisco":"94102",
+						"Los Angeles":"90001",
+						"Las Vegas":"89101",
+						"Orlando":"32801",
+						"Chicago":"60290",
+						"New Orleans":"00000",
+						"Charleston":"00000",
+						"Honolulu":"00000",
+						"Sedona":"00000",
+						"Nashville":"00000",
+						"Austin":"00000",
+						"Houston":"00000",
+						"Boston":"00000",
+						"Savannah":"00000"
+					};
+
+					getJSON(json);
+
+				});
+
+		}
+		
 		if(code == 13){
 			e.preventDefault();
 			$(".zipcode-helper").hide();
@@ -250,9 +347,10 @@ $(".ziphelp").click(function(e){
 
 });
 
-$("#move-date").on('change', function(){
+
+function cacheMoveDate(){
 	var date = $("#move-date").val();
-	
+	cache.moveDate = date;
 	date = new Date(date);
 	var months = ['Jan', 'Feb', 'Mar', 
 				 'Apr', 'May', 'Jun', 'Jul', 'Aug',
@@ -265,40 +363,55 @@ $("#move-date").on('change', function(){
 	var formatted_date = month + " " + day + ", " + year;
 
 	$('#field-trip-date').text(formatted_date);
-});
+}
 
-$("#move_size").on('change', function(){
-	var size = $(this).val();
+function cacheMoveSize(){
+	var size = $("#move_size").val();
+	cache.moveSize = size;
 	var map = {
-		'Moving Boxes Only':'BOX',
-		'Studio':'STDI',
-		'1 Bedroom':'1 BR',
-		'2 Bedrooms':'2 BR',
-		'3 Bedrooms':'3 BR',
-		'4 Bedrooms':'4 BR',
-		'5 Bedrooms':'5 BR',
-		'6 Bedrooms':'6 BR',
-		'Commercial Move':'COMM'
+		'moving boxes only':'BOX',
+		'studio':'STDI',
+		'one bedrooms apartment':'1 BR',
+		'one bedrooms house':'1 BR',
+		'two bedrooms apartment':'2 BR',
+		'two bedrooms house':'2 BR',
+		'three bedrooms apartment':'3 BR',
+		'three bedrooms house':'3 BR',
+		'four bedrooms apartment':'4 BR',
+		'four bedrooms house':'4 BR',
+		'five bedrooms apartment':'5 BR',
+		'five bedrooms house':'5 BR',
+		'six bedrooms apartment':'6 BR',
+		'six bedrooms house':'6 BR',
+		'six bedrooms and more apartment':'COMM',
+		'six bedrooms and more house':'COMM'
 	}
 	size = map[size];
 	$('#field-trip-size').text(size);
-});
+}
 
+$("#move-date").on('change', cacheMoveDate());
+$("#move_size").on('change', cacheMoveSize());
 
+//Step 2: Show City via ZipCode (Google Maps Ajax)
 $(".zipc").on('change', function(e){
 	var zip = $(this).val();
 	var dataZip = $(this).attr('data-zip');
-	console.log(dataZip)
 	$('.edit span[data-zip='+dataZip+']').text('');
 	$.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+zip)
 		.done(function(data){
-			var address = data.results[0].formatted_address;
-			console.log(data);
+			try {
+				var address = data.results[0].formatted_address;
 			$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
+			}catch(e){
+				//
+			}
 		});
 
 });
 
+//Step 3: Calculate Distance between two zips (Google Maps)
+//Requires a callback function
 function calculateDistance(start, end, cb){
 	var service = new google.maps.DistanceMatrixService();
 	service.getDistanceMatrix(
@@ -316,14 +429,14 @@ function calculateDistance(start, end, cb){
 	});
 }
 
-
-//Step 3: Google Maps Init
+//Step 3: Initialize Google Maps after Step 2 Loader
 var directionDisplay,
 	directionsService,
 	map;
 function initialize() {
-	console.log('initialized map')
+	console.log('');
 }
+//Step 3: Draw & Update Google Map given two zips, start and end
 function googleMap(start, end){
 	var mapOptions = {
 		zoom:8,
@@ -346,7 +459,7 @@ function googleMap(start, end){
 	directionsDisplay = new google.maps.DirectionsRenderer();
 	directionsDisplay.setMap(map);
 	directionsDisplay.setOptions(directionsOptions);
-	//calculateDistances();
+
 	var request = {
 		origin:start,
 		destination:end,
@@ -373,10 +486,14 @@ $("#phone_number").mask('(999) 999-9999', {
 //Step 1: Validation
 $("#f-step1").validate({
 	rules: {
-		from_zip:{
+		zip_from:{
 			required:true,
 			minlength:5,
-			maxlength:5
+			maxlength:5,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/from-zipcode'
+			// }
 		}
 	},
 	errorPlacement:function(error, element){
@@ -386,25 +503,53 @@ $("#f-step1").validate({
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
-		console.log('Go!');
+
 		var submitBtn = $(form).find('.submit-form');
+		try{
+			_gaq.push(['_trackEvent', 'desktop', '999moving', 'step1-test40']);
+		}catch(e){
+			
+		}
+		cache.fromZip = $("#f-step1 input[name=zip_from]").val();
+		
+		$("#f-step2 input[name=zip_from]").val(cache.fromZip);
 		validationSuccess(submitBtn);
 	}
 });
+
+
+
+
 //Step 2: Validation
 $("#f-step2").validate({
 	rules: {
-		move_from:{
-			required:true
+		zip_from:{
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/from-zipcode'
+			// }
 		},
-		move_to:{
-			required:true
+		zip_to:{
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/to-zipcode'
+			// }
 		},
 		move_date:{
-			required:true
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/movedate'
+			// }
 		},
-		move_size:{
-			required:true
+		number_of_rooms:{
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/rooms'
+			// }
 		}
 	},
 	messages:{
@@ -416,8 +561,23 @@ $("#f-step2").validate({
 	},
 	errorClass:'validation-error',
 	submitHandler:function(form){
-		console.log('Calculate!')
 		var submitBtn = $(form).find('.submit-form');
+		try{
+			_gaq.push(['_trackEvent', 'desktop', '999moving', 'step2-test40']);
+		}catch(e){
+			
+		}
+		cache.toZip = $("#f-step2 input[name=to_zip]").val();
+		cacheMoveDate();
+		cacheMoveSize();
+
+		var zipFrom3 = $('#f-step3-u input[name=zip_from]').val(),
+			zipTo3 = $('#f-step3-u input[name=zip_to]').val();
+	
+		$(zipFrom3).val(cache.fromZip);
+		$(zipTo3).val(cache.toZip);
+		
+	
 		validationSuccess(submitBtn);
 	}
 });
@@ -425,44 +585,36 @@ $("#f-step2").validate({
 $("#f-step3").validate({
 	rules: {
 		first_name:{
-			required:true
+			required:true,
+			minlength: 2,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/firstname'
+			// }
 		},
 		last_name:{
-			required:true
+			required:true,
+			minlength: 2,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/lastname'
+			// }
 		},
-		email:{
-			required:true
+		email_address:{
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/email'
+			// }
 		},
 		phone_number:{
-			required:true
+			required:true,
+			phoneUS: true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/phone'
+			// }
 		}
-	},
-	messages:{
-	},
-	errorPlacement:function(error, element){
-	},
-	focusInvalid:false,
-	invalidHandler:function(form, validator){
-	},
-	errorClass:'validation-error',
-	submitHandler:function(form){
-		console.log('Get My Quote!');
-		//need conversion script to fire off
-		//can use async conversion w/google
-		//plus yahoo + bing
-		var submitBtn = $(form).find('.submit-form');
-		validationSuccess(submitBtn);
-	}
-});
-//Step 3: Update Info Validation
-$("#f-step3-u").validate({
-	rules: {
-		move_from:{
-			required:true
-		},
-		move_to:{
-			required:true
-		},
 	},
 	messages:{
 	},
@@ -474,55 +626,105 @@ $("#f-step3-u").validate({
 	errorClass:'validation-error',
 	submitHandler:function(form){
 		
-		var start = $('input[name=move_from2]').val();
-		var end = $('input[name=move_to2]').val();
-
-		$(".movers-found").hide();	
-		$(".loader-area").show();
-
-		//Animate Green Loader
-		var options = {
-			div:'loader3',
-			maxWidth:692,
-			seconds:1 
-		}
-		var time = 0;
-		var timer = setInterval(function(){
-			time++;
-			$("#current-percent").html(time + "%");
-			if(time >= 100){
-				clearInterval(timer);
+		queueSubmission();
+		
+		var submitBtn = $(form).find('.submit-form');
+		validationSuccess(submitBtn);
+	}
+});
+//Step 3: Update Info Validation
+$("#f-step3-u").validate({
+	rules: {
+		zip_from:{
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/from-zipcode'
+			// }
+		},
+		zip_to:{
+			required:true,
+			// remote: {
+			// 	type: 'post',
+			// 	url: '/validate/validate/to-zipcode'
+			// }
+		},
+	},
+	messages:{
+	},
+	errorPlacement:function(error, element){
+	},
+	focusInvalid:false,
+	invalidHandler:function(form, validator){
+	},
+	errorClass:'validation-error',
+	submitHandler:function(form){
+		var zipFrom = $('#f-step3-u input[name=zip_from]').val(),
+			zipTo = $('#f-step3-u input[name=zip_to]').val();
+		
+		if((zipFrom == cache.fromZip) && ( zipTo == cache.toZip))
+		{
+			//Don't update because the zips are the same
+			$("#update-my-info").hide();
+			$("#show-my-info").show();
+		}else {
+			//Redraw map
+			(cache.fromZip == zipFrom) ? '': cache.fromZip = zipFrom;
+			(cache.toZip == zipTo) ? '' : cache.toZip = zipTo;
+		
+			var start = cache.fromZip;
+			var end = cache.toZip;
+	
+			$(".movers-found").hide();	
+			$(".loader-area").show();
+	
+			//Animate Green Loader
+			var options = {
+				div:'loader3',
+				maxWidth:692,
+				seconds:1 
 			}
-		}, 35);
-
-		animateGreenLdr(options, function(){
-			
-		}, function(){
-
-
-			var request = {
-				origin:start,
-				destination:end,
-				optimizeWaypoints:true,
-				travelMode: google.maps.DirectionsTravelMode.DRIVING
-			};
-			directionsService.route(request, function(response, status) {
-			  if (status == google.maps.DirectionsStatus.OK) {
-				directionsDisplay.setDirections(response);
-					var route = response.routes[0];
-
-			  }
+			var time = 0;
+			var timer = setInterval(function(){
+				time++;
+				$("#current-percent").html(time + "%");
+				if(time >= 100){
+					clearInterval(timer);
+				}
+			}, 35);
+	
+			animateGreenLdr(options, function(){
+				
+			}, function(){
+	
+	
+				var request = {
+					origin:start,
+					destination:end,
+					optimizeWaypoints:true,
+					travelMode: google.maps.DirectionsTravelMode.DRIVING
+				};
+				directionsService.route(request, function(response, status) {
+				  if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+						var route = response.routes[0];
+	
+				  }
+				});
+				
+				//After we update the zip, we need to get and cache the new distance.  Distance + moveSize are the arguments we need for our equate validate/calc controller
+				calculateDistance(start,end,function(result){
+					cache.distance = result;
+					$("#field-trip-length").text("Trip length " + result);
+					$(".loader-area").hide();
+					$(".movers-found").show();	
+					$("#update-my-info").hide();
+					$("#show-my-info").show();
+					$("#loader3").css('width', '0px');
+				});
 			});
-			calculateDistance(start,end,function(result){
-				console.log(result);
-				$("#field-trip-length").text("Trip length " + result);
-				$(".loader-area").hide();
-				$(".movers-found").show();	
-				$("#update-my-info").hide();
-				$("#show-my-info").show();
-				$("#loader3").css('width', '0px');
-			});
-		});
+
+		}
 	}
 });
 
@@ -576,25 +778,34 @@ $(".sub-step3").mouseover(function(e){
 });
 
 //Step 2: Blur Edit Inputs
-$(".moving-from input").blur(function(){
-	$(".moving-from").hide();
-	$(".moving-from.edit").show();
+$(".moving-from input").on('change', function(){
+	var valid = $(this).valid();
+	
+	if(valid){
+		$("#f-step2 .moving-from").hide();
+		$(".moving-from.edit").show();
+	}
 	//issue when clicking on any other button in same div
 	//do some other stuff like update dom with ajax'd zip info
 });
-$(".moving-to input").blur(function(){
-	$(".moving-to").hide();
-	$(".moving-to.edit").show();
-
+$(".moving-to input").on('change', function(){
+	var valid = $(this).valid();
+	
+	if(valid){
+		$("#f-step2 .moving-to").hide();
+		$(".moving-to.edit").show();
+	}
 	//do some other stuff like update dom with ajax'd zip info
 });
 
 //Step 2: Edit Link for Zips
-$("#moving-from-text-edit").click(function(){
+$("#moving-from-text-edit").click(function(e){
+	e.preventDefault();
 	$(".moving-from").show();
 	$(".moving-from.edit").hide();
 });
-$("#moving-to-text-edit").click(function(){
+$("#moving-to-text-edit").click(function(e){
+	e.preventDefault();
 	$(".moving-to").show();
 	$(".moving-to.edit").hide();
 });
@@ -611,7 +822,6 @@ $("#cal").datepicker({
 		maxDate: '+90D',
 		dayNamesMin: ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'],
 		onSelect:function(text){
-			console.log(text);
 			$("#move-date").val(text);
 			$("#move-date").removeClass('validation-error');
 			$(".cal-area").hide();
@@ -619,7 +829,6 @@ $("#cal").datepicker({
 		}
 });
 $("#move-date").click(function(e){
-	console.log('clicked')
 	$(".cal-area").toggle();
 });
 
@@ -630,6 +839,41 @@ $("#field-trip-edit").click(function(e){
 	$("#update-my-info").show();
 });
 
+//Step 3: Queue Submission
+function queueSubmission(){
+	$.post('/validate/validate/send',{
+		source: $('#source').val()
+	});
+	//conversionScripts();
+}
 
-//Step 3: Loader
-
+//Step 3: Conversion Scripts
+function conversionScripts(){
+	//Yahoo DOT
+	window.dotq=window.dotq||[];
+	window.dotq.push({projectId:'10001059850032',properties:{pixelId:'431153',qstrings:{et:'custom',ea:'conversion'}}});
+	
+	//UETQ	
+	window.uetq = window.uetq || [];
+	window.uetq.push({ 'ea':'quote'}); 
+	
+	//Google
+	var google_conversion_id = 1070276245,
+		google_conversion_label = "Ls4OCOWhRhCVvaz-Aw";
+		
+	try{
+		_gaq.push(['_trackEvent', 'desktop', '999moving', 'step3-test40']);
+		setTimeout(
+			function(){
+				_gaq.push(['_trackEvent', 'Conversion', 'Landing-test40', 'Validate']);
+			}, 100);
+		__adroll.record_user({"adroll_segments": "quote_complete"});
+	}catch(e){
+		
+	}
+	//google conversion script
+	var image = new Image(1,1); 
+	image.src = "http://www.googleadservices.com/pagead/conversion/"+google_conversion_id+"/?label="+google_conversion_label + "&script=0";
+	$('body').append(image);
+	
+}
