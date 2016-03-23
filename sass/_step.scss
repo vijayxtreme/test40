@@ -1,11 +1,12 @@
 $section: #4bb8e8;
-$greenBtn: #7ad014;
-$greenBtnA: #50880D;
-$greenBtnH: #99FF20;
+$greenBtn: #6bd039;
+$greenBtnA: #58AD2E;
+$greenBtnH: #8AE220;
 $formArea: #1374c6;
 $lightCol: #cfebfa;
 $inputPlaceholder: #949494;
 $lightBorder:#4290d1;
+$textShadowGreen:#70c012;
 
 .background {
 	background-color:$section;
@@ -43,13 +44,14 @@ section {
 button.submit-form {
 	background-color:$greenBtn;
 	color:white;
-	font-family: "Montserrat Regular";
+	font-family: "Montserrat Bold";
 	font-weight: 700;
-	font-size:20px;
+	font-size:24px;
 	border:0px;
-	border-radius:5px;
+	border-radius:3px;
 	cursor: pointer;
 	outline:none;
+	text-shadow:0px 2px 0px $textShadowGreen;
 }
 button.submit-form:active {
 	background-color:$greenBtnA;
@@ -75,7 +77,7 @@ button.submit-form:hover {
 		padding-top:9px;
 		padding-bottom:7px;
 		padding-left:16px;
-		border-radius:4px;
+		border-radius:3px;
 		font-family: "Source Sans Pro";
 		font-size:13px;
 		color:$formArea;

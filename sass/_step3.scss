@@ -18,6 +18,7 @@ $inputF:#1374c6;
 		.col-n {
 			float:left;
 			width:165px;
+			padding-top:7px;
 
 			#legal {
 				margin-top:22px;
@@ -29,9 +30,19 @@ $inputF:#1374c6;
 				opacity:0.6;
 			}
 		}
+
+		#f-step3 {
+			div:last-child .col-n {
+				padding-top:0px;
+			}
+		}
+
 		input {
 			padding-top:6px;
 			padding-bottom:5px;
+		}
+		button.submit-form {
+			font-size:19.95px;
 		}
 
 		.col-i3 {
@@ -72,12 +83,15 @@ $inputF:#1374c6;
 		padding-top:17px;
 		display:block;
 		span {
-			font-family: "Montserrat Regular";
+			font-family: "Montserrat Light";
 			font-size: 36px;
 			font-weight: 400;
 			img {
 				margin-right: 6px;
 			}
+		}
+		#moves-check-gray {
+			padding-left:19px;
 		}
 		.text {
 			position:relative;
@@ -85,6 +99,7 @@ $inputF:#1374c6;
 		}
 		.text.next {
 			opacity:0.5;
+			letter-spacing: -1px;
 		}
 		.movers-found-body {
 			padding-top:12px;

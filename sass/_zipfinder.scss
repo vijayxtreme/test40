@@ -36,6 +36,8 @@ input.zip {
 	a{
 		text-decoration: none;
 		color:white;
+		position:relative;
+	
 	}
 	span {
 		position:relative;
@@ -64,8 +66,8 @@ input.zip {
 
 	input {
 		background-color:$zipHelperInputBg;
-		border:0px;
-		padding-left:12px;
+		border:2px solid transparent;
+		padding-left:10px; 
 		font-family: "Source Sans Pro";
 		font-size:19.36px;
 		color:$zipHelperInput;
@@ -116,17 +118,22 @@ input.zip {
 
 			li {
 				a {
-					margin-top:8px;
+					margin-top:8px; 
 					position:relative;
 					display:block;
 					text-decoration: none;
 					color:$zipHelperInputSoftBg;
+					padding-bottom:4px; 
 				}
 				a:hover{
 					background-color:$zipHelperInput;
 					color:white;
-					width:212px; 
+					width:212px;
+
 				}
+			}
+			li.active {
+				font-weight: bold; 
 			}
 			border-bottom-left-radius:3px;
 			border-bottom-right-radius:3px;

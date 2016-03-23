@@ -178,7 +178,7 @@
 				<div id="moves-found" class="movers-found">
 					<div class="movers-found-title">
 						<span><img src="img/test40/check-green.png"></span><span class="text">Movers Found</span>
-						<span><img src="img/test40/check-gray.png"></span><span class="text next">Next Step: View Your Estimate</span>
+						<span id="moves-check-gray"><img src="img/test40/check-gray.png"></span><span class="text next">Next Step: View Your Estimate</span>
 					</div>
 					<div class="movers-found-body">
 						<p>Movers will contact by phone or email with their quotes and our system will also display your estimated quote.</p>

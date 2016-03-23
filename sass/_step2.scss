@@ -26,7 +26,17 @@ $step2Par:#53a4d7;
 		z-index: 10;
 		padding-left:32px;
 		padding-right:30px;
+		padding-top:14px;
 		top:90px;
+
+		input {
+			font-size:15px;
+			padding-top:7px;
+			padding-bottom:5px;
+		}
+		.ziphelp-area a {
+			top:4px;
+		}
 		.moving-size {
 			position:relative;
 			select {
@@ -58,6 +68,10 @@ $step2Par:#53a4d7;
 			}
 
 		}
+
+		button.submit-form {
+			font-size:24.16px;
+		}
 		#calculate {
 			width:210px;
 			height:55px;
@@ -72,7 +86,7 @@ $step2Par:#53a4d7;
 			display:block;
 			padding-bottom:9px;
 			border-bottom:1px solid $lightBorder;
-			margin-bottom: 8px;
+			margin-bottom: 12px;
 			width:480px;
 			h6 {
 				font-family: "Montserrat Regular";
@@ -81,7 +95,7 @@ $step2Par:#53a4d7;
 			}
 
 			#moving-from-text {
-				font-family: "Montserrat Regular";
+				font-family: "Montserrat Light";
 				font-size:18px;
 				font-weight: 300;
 				padding-right:10px;
@@ -91,6 +105,8 @@ $step2Par:#53a4d7;
 				font-size:13px;
 				font-weight: 500;
 				color:white;
+				position:relative;
+				top:-4px;
 			}
 		}
 

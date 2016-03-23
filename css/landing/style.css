@@ -72,6 +72,14 @@ input {
   font-family: 'Montserrat Regular';
   src: url(../../fonts/Montserrat-Regular.otf); }
 
+@font-face {
+  font-family: 'Montserrat Bold';
+  src: url(../../fonts/Montserrat-Bold.otf); }
+
+@font-face {
+  font-family: 'Montserrat Light';
+  src: url(../../fonts/Montserrat-Light.otf); }
+
 [class^=arr-] {
   /* Arrows @RCB */
   border: solid currentColor;
@@ -212,21 +220,22 @@ section {
   margin-left: 0px; }
 
 button.submit-form {
-  background-color: #7ad014;
+  background-color: #6bd039;
   color: white;
-  font-family: "Montserrat Regular";
+  font-family: "Montserrat Bold";
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24px;
   border: 0px;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
-  outline: none; }
+  outline: none;
+  text-shadow: 0px 2px 0px #70c012; }
 
 button.submit-form:active {
-  background-color: #50880D; }
+  background-color: #58AD2E; }
 
 button.submit-form:hover {
-  background-color: #99FF20; }
+  background-color: #8AE220; }
 
 .form-area {
   float: left;
@@ -244,7 +253,7 @@ button.submit-form:hover {
     padding-top: 9px;
     padding-bottom: 7px;
     padding-left: 16px;
-    border-radius: 4px;
+    border-radius: 3px;
     font-family: "Source Sans Pro";
     font-size: 13px;
     color: #1374c6;
@@ -413,7 +422,14 @@ button.submit-form:hover {
   z-index: 10;
   padding-left: 32px;
   padding-right: 30px;
+  padding-top: 14px;
   top: 90px; }
+  #step2 .form-area input {
+    font-size: 15px;
+    padding-top: 7px;
+    padding-bottom: 5px; }
+  #step2 .form-area .ziphelp-area a {
+    top: 4px; }
   #step2 .form-area .moving-size {
     position: relative; }
     #step2 .form-area .moving-size select {
@@ -441,6 +457,8 @@ button.submit-form:hover {
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       cursor: pointer; }
+  #step2 .form-area button.submit-form {
+    font-size: 24.16px; }
   #step2 .form-area #calculate {
     width: 210px;
     height: 55px;
@@ -452,14 +470,14 @@ button.submit-form:hover {
     display: block;
     padding-bottom: 9px;
     border-bottom: 1px solid #4290d1;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     width: 480px; }
     #step2 .form-area .moving-from.edit h6, #step2 .form-area .moving-to.edit h6 {
       font-family: "Montserrat Regular";
       font-size: 11px;
       opacity: 0.5; }
     #step2 .form-area .moving-from.edit #moving-from-text, #step2 .form-area .moving-to.edit #moving-from-text {
-      font-family: "Montserrat Regular";
+      font-family: "Montserrat Light";
       font-size: 18px;
       font-weight: 300;
       padding-right: 10px; }
@@ -467,7 +485,9 @@ button.submit-form:hover {
       font-family: "Source Sans Pro";
       font-size: 13px;
       font-weight: 500;
-      color: white; }
+      color: white;
+      position: relative;
+      top: -4px; }
   #step2 .form-area .moving-to.edit {
     display: none; }
   #step2 .form-area .moving-date {
@@ -506,7 +526,8 @@ button.submit-form:hover {
     padding-top: 49px; }
     #step3 .form-area .col-n {
       float: left;
-      width: 165px; }
+      width: 165px;
+      padding-top: 7px; }
       #step3 .form-area .col-n #legal {
         margin-top: 22px;
         font-family: "Source Sans Pro";
@@ -515,9 +536,13 @@ button.submit-form:hover {
         line-height: 17.2px;
         font-weight: 400;
         opacity: 0.6; }
+    #step3 .form-area #f-step3 div:last-child .col-n {
+      padding-top: 0px; }
     #step3 .form-area input {
       padding-top: 6px;
       padding-bottom: 5px; }
+    #step3 .form-area button.submit-form {
+      font-size: 19.95px; }
     #step3 .form-area .col-i3 {
       width: 231px;
       float: left; }
@@ -544,16 +569,19 @@ button.submit-form:hover {
     padding-top: 17px;
     display: block; }
     #step3 .movers-found span {
-      font-family: "Montserrat Regular";
+      font-family: "Montserrat Light";
       font-size: 36px;
       font-weight: 400; }
       #step3 .movers-found span img {
         margin-right: 6px; }
+    #step3 .movers-found #moves-check-gray {
+      padding-left: 19px; }
     #step3 .movers-found .text {
       position: relative;
       top: -9px; }
     #step3 .movers-found .text.next {
-      opacity: 0.5; }
+      opacity: 0.5;
+      letter-spacing: -1px; }
     #step3 .movers-found .movers-found-body {
       padding-top: 12px;
       font-family: "Source Sans Pro";
@@ -717,7 +745,7 @@ button.submit-form:hover {
 
 #step4 h1 {
   margin-top: 13px;
-  font-family: "Montserrat Regular";
+  font-family: "Montserrat Light";
   font-size: 36px;
   line-height: 37.6px;
   width: 600px;
@@ -759,10 +787,10 @@ button.submit-form:hover {
 #step4 .thank-you-area.loading {
   display: block;
   position: relative;
-  padding-top: 67px;
+  padding-top: 68px;
   padding-bottom: 90px; }
   #step4 .thank-you-area.loading h4 {
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat Light";
     font-size: 36px;
     margin-bottom: 54px; }
   #step4 .thank-you-area.loading #current-percent4 {
@@ -944,7 +972,8 @@ button.submit-form:hover {
     .cal-area #cal .ui-datepicker td {
       font-family: "Source Sans Pro";
       border: 1px solid #dfdfdf;
-      cursor: pointer; }
+      cursor: pointer;
+      padding: 0px; }
     .cal-area #cal .ui-state-default, .cal-area #cal .ui-widget-content .ui-state-default, .cal-area #cal .ui-widget-header .ui-state-default {
       font-weight: 500; }
     .cal-area #cal .ui-state-hover, .cal-area #cal .ui-widget-content .ui-state-hover, .cal-area #cal .ui-widget-header .ui-state-hover, .cal-area #cal .ui-state-focus, .cal-area #cal .ui-widget-content .ui-state-focus, .cal-area #cal .ui-widget-header .ui-state-focus {
@@ -952,7 +981,8 @@ button.submit-form:hover {
     .cal-area #cal td.ui-state-disabled span.ui-state-default {
       color: #ECE9E9; }
     .cal-area #cal .ui-datepicker td span, .cal-area #cal .ui-datepicker td a {
-      text-align: center; }
+      text-align: center;
+      padding: 0.3em; }
     .cal-area #cal .ui-state-default, .cal-area #cal .ui-widget-content .ui-state-default, .cal-area #cal .ui-widget-header .ui-state-default {
       background-color: white;
       border: 0px;
@@ -997,7 +1027,8 @@ input.zip {
   font-family: "Source Sans Pro"; }
   .ziphelp-area a {
     text-decoration: none;
-    color: white; }
+    color: white;
+    position: relative; }
   .ziphelp-area span {
     position: relative;
     top: -4px;
@@ -1018,8 +1049,8 @@ input.zip {
   box-shadow: 0px 5px 0px #3999c9; }
   .zipcode-helper input {
     background-color: #e6e6e6;
-    border: 0px;
-    padding-left: 12px;
+    border: 2px solid transparent;
+    padding-left: 10px;
     font-family: "Source Sans Pro";
     font-size: 19.36px;
     color: #454545;
@@ -1070,11 +1101,14 @@ input.zip {
         position: relative;
         display: block;
         text-decoration: none;
-        color: #a4a4a4; }
+        color: #a4a4a4;
+        padding-bottom: 4px; }
       .zipcode-helper #results ul li a:hover {
         background-color: #454545;
         color: white;
         width: 212px; }
+      .zipcode-helper #results ul li.active {
+        font-weight: bold; }
 
 aside#sidebar {
   display: none;
