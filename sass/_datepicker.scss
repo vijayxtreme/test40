@@ -1,4 +1,5 @@
 $calShadow:#3999c9;
+$dateClick:#002f54;
 .cal-area {
     display: none;
     .cal-arrow {
@@ -74,11 +75,17 @@ $calShadow:#3999c9;
                 border-left:0px;
                 border-right:10px solid $arrow;
             }
+            span:hover, span:active {
+                border-right: 10px solid $dateClick;
+            }
         }
         .ui-datepicker-next {
             right:-20px;
             span {
                 @include arrow();
+            }
+            span:hover, span:active {
+                border-left: 10px solid $dateClick;
             }
         }
         .ui-datepicker-prev.ui-state-disabled {

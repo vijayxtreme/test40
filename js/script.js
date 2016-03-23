@@ -370,11 +370,11 @@ $(document).ready(function(){
 			var prev = curr.prev();
 			var next = curr.next();
 			var results = $("#results ul");
-			results.scrollTop(0);
+			
 
 			//down
 			if(code == 40 && next.length!==0){
-
+				results.scrollTop(0);
 				results.scrollTop(curr.position().top)
 				curr.removeClass('active');
 				next.addClass('active');
@@ -382,6 +382,7 @@ $(document).ready(function(){
 			//up							
 			}else if(code == 38 && prev.length!==0) {
 				//up
+				results.scrollTop(0);
 				results.scrollTop(prev.position().top)
 				curr.removeClass('active');
 				prev.addClass('active');

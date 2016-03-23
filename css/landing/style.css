@@ -951,6 +951,8 @@ button.submit-form:hover {
         cursor: pointer;
         border-left: 0px;
         border-right: 10px solid #3e8dd0; }
+      .cal-area #cal .ui-datepicker-prev span:hover, .cal-area #cal .ui-datepicker-prev span:active {
+        border-right: 10px solid #002f54; }
     .cal-area #cal .ui-datepicker-next {
       right: -20px; }
       .cal-area #cal .ui-datepicker-next span {
@@ -961,6 +963,8 @@ button.submit-form:hover {
         height: 0px;
         width: 0px;
         cursor: pointer; }
+      .cal-area #cal .ui-datepicker-next span:hover, .cal-area #cal .ui-datepicker-next span:active {
+        border-left: 10px solid #002f54; }
     .cal-area #cal .ui-datepicker-prev.ui-state-disabled span {
       opacity: 0.35;
       border-right: 8px solid #ECE9E9 !important; }
@@ -1104,9 +1108,7 @@ input.zip {
         color: #a4a4a4;
         padding-bottom: 4px; }
       .zipcode-helper #results ul li a:hover {
-        background-color: #454545;
-        color: white;
-        width: 212px; }
+        font-weight: 800; }
       .zipcode-helper #results ul li.active {
         font-weight: bold; }
 

@@ -126,10 +126,8 @@ input.zip {
 					padding-bottom:4px; 
 				}
 				a:hover{
-					background-color:$zipHelperInput;
-					color:white;
-					width:212px;
-
+				    // color: #656565;
+				    font-weight: 800;
 				}
 			}
 			li.active {
