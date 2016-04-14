@@ -55,11 +55,12 @@ body {
 
 .container {
   width: 1050px;
-  margin: 0px auto; }
+  margin: 0px auto;
+  position: relative; }
 
 aside {
   background-color: white;
-  min-height: 232px;
+  min-height: 200px;
   color: #78add8; }
   aside a {
     text-decoration: none; }
@@ -85,7 +86,7 @@ input {
   border: solid currentColor;
   border-width: 0 2px 2px 0px;
   display: inline-block;
-  padding: 0px 14px 14px 0px;
+  padding: 0px 10px 10px 0px;
   color: #c1c1c2; }
 
 .arr-right {
@@ -222,7 +223,7 @@ section {
 button.submit-form {
   background-color: #6bd039;
   color: white;
-  font-family: "Montserrat Bold";
+  font-family: "Montserrat Bold", sans-serif;
   font-weight: 700;
   font-size: 24px;
   border: 0px;
@@ -231,11 +232,23 @@ button.submit-form {
   outline: none;
   text-shadow: 0px 2px 0px #70c012; }
 
+button.submit-form:hover {
+  background-color: #8AE220; }
+
 button.submit-form:active {
   background-color: #58AD2E; }
 
-button.submit-form:hover {
-  background-color: #8AE220; }
+input::-webkit-input-placeholder {
+  color: darkgrey;
+  font-weight: 400 !important; }
+
+input::-moz-input-placeholder {
+  color: darkgrey;
+  font-weight: 400 !important; }
+
+input:-ms-input-placeholder {
+  color: darkgrey;
+  font-weight: 400 !important; }
 
 .form-area {
   float: left;
@@ -331,7 +344,7 @@ button.submit-form:hover {
       position: relative;
       top: -9px;
       padding-left: 12px;
-      opacity: 0.8; }
+      opacity: 1; }
       .bvl-logos .lock .priv-and-terms a {
         color: white;
         text-decoration: none; }
@@ -347,10 +360,13 @@ button.submit-form:hover {
   padding-bottom: 30px; }
 
 .price-text {
-  font-family: 'Montserrat Light', arial;
+  font-family: 'Montserrat Light', sans-serif;
   padding-top: 45px;
-  float: left;
-  width: 60%; }
+  position: absolute;
+  width: 600px;
+  top: 0;
+  left: 0px;
+  z-index: 100; }
   .price-text h1 {
     font-size: 40px;
     text-align: left;
@@ -374,7 +390,7 @@ button.submit-form:hover {
       padding-top: 17px;
       padding-bottom: 18px;
       padding-left: 40px;
-      font-family: 'Montserrat Regular';
+      font-family: 'Montserrat Regular', sans-serif;
       font-size: 18px;
       background-color: #004d8e;
       border-radius: 4px;
@@ -395,10 +411,8 @@ button.submit-form:hover {
       width: 211px; }
 
 .movers {
-  float: left;
-  width: 40%;
-  position: relative;
-  left: -166px; }
+  position: absolute;
+  left: 466px; }
 
 #step2 .container {
   position: relative; }
@@ -409,23 +423,18 @@ button.submit-form:hover {
   width: 940px;
   z-index: 10; }
 
-#step2 .movers {
-  float: right;
-  left: -48px;
-  padding-top: 109px; }
-
 #step2 .bvl-logos {
   padding-top: 85px; }
 
 #step2 .form-area {
   position: absolute;
-  z-index: 10;
+  z-index: 100;
   padding-left: 32px;
   padding-right: 30px;
   padding-top: 14px;
   top: 90px; }
   #step2 .form-area input {
-    font-size: 15px;
+    font-size: 14px;
     padding-top: 7px;
     padding-bottom: 5px; }
   #step2 .form-area .ziphelp-area a {
@@ -434,8 +443,8 @@ button.submit-form:hover {
     position: relative; }
     #step2 .form-area .moving-size select {
       border: 2px solid transparent;
-      padding-top: 9px;
-      padding-bottom: 7px;
+      padding-top: 8px;
+      padding-bottom: 6px;
       padding-left: 16px;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -444,11 +453,14 @@ button.submit-form:hover {
       margin-bottom: 12px;
       width: 211px;
       font-family: "Source Sans Pro";
-      font-size: 13px;
+      font-size: 14px;
       color: #1374c6;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 5px; }
+      border-radius: 3px; }
+    #step2 .form-area .moving-size select.select-inactive {
+      color: darkgrey;
+      font-weight: 400; }
     #step2 .form-area .moving-size #select-arrow {
       position: absolute;
       top: 16px;
@@ -457,6 +469,8 @@ button.submit-form:hover {
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       cursor: pointer; }
+    #step2 .form-area .moving-size #select-arrow.ie {
+      display: none; }
   #step2 .form-area button.submit-form {
     font-size: 24.16px; }
   #step2 .form-area #calculate {
@@ -473,11 +487,11 @@ button.submit-form:hover {
     margin-bottom: 12px;
     width: 480px; }
     #step2 .form-area .moving-from.edit h6, #step2 .form-area .moving-to.edit h6 {
-      font-family: "Montserrat Regular";
+      font-family: "Montserrat Regular", sans-serif;
       font-size: 11px;
       opacity: 0.5; }
     #step2 .form-area .moving-from.edit #moving-from-text, #step2 .form-area .moving-to.edit #moving-from-text {
-      font-family: "Montserrat Light";
+      font-family: "Montserrat Light", sans-serif;
       font-size: 18px;
       font-weight: 300;
       padding-right: 10px; }
@@ -516,14 +530,15 @@ button.submit-form:hover {
 
 #step3 {
   padding-top: 34px;
-  height: 521px;
+  height: 519px;
   box-sizing: border-box; }
   #step3 .steps-completed {
     margin-bottom: 0px; }
   #step3 .form-area {
     padding-left: 48px;
     padding-right: 48px;
-    padding-top: 49px; }
+    padding-top: 49px;
+    width: 406px; }
     #step3 .form-area .col-n {
       float: left;
       width: 165px;
@@ -535,7 +550,7 @@ button.submit-form:hover {
         font-size: 14px;
         line-height: 17.2px;
         font-weight: 400;
-        opacity: 0.6; }
+        opacity: 1; }
     #step3 .form-area #f-step3 div:last-child .col-n {
       padding-top: 0px; }
     #step3 .form-area input {
@@ -569,26 +584,30 @@ button.submit-form:hover {
     padding-top: 17px;
     display: block; }
     #step3 .movers-found span {
-      font-family: "Montserrat Light";
+      font-family: "Montserrat Light", sans-serif;
       font-size: 36px;
       font-weight: 400; }
       #step3 .movers-found span img {
         margin-right: 6px; }
+    #step3 .movers-found #green-check-img {
+      opacity: 0.5; }
     #step3 .movers-found #moves-check-gray {
       padding-left: 19px; }
     #step3 .movers-found .text {
+      opacity: 1;
       position: relative;
       top: -9px; }
     #step3 .movers-found .text.next {
-      opacity: 0.5;
+      opacity: 1;
       letter-spacing: -1px; }
     #step3 .movers-found .movers-found-body {
-      padding-top: 12px;
+      padding-top: 13px;
       font-family: "Source Sans Pro";
       font-size: 16px;
       font-weight: 600;
       line-height: 19px;
-      padding-bottom: 27px; }
+      padding-bottom: 27px;
+      width: 896px; }
   #step3 .moving-info {
     font-family: "Source Sans Pro";
     font-size: 13px;
@@ -606,7 +625,7 @@ button.submit-form:hover {
       #step3 .moving-info #show-my-info .trip-info .field-trip1 {
         padding-top: 11px;
         padding-bottom: 5px;
-        font-family: "Montserrat Regular";
+        font-family: "Montserrat Regular", sans-serif;
         font-size: 13.45px;
         font-weight: 200; }
         #step3 .moving-info #show-my-info .trip-info .field-trip1 #field-trip-date {
@@ -653,6 +672,12 @@ button.submit-form:hover {
         #step3 .moving-info #update-my-info .edit-area a {
           color: white;
           text-decoration: none; }
+        #step3 .moving-info #update-my-info .edit-area a#close-update {
+          position: absolute;
+          top: -37px;
+          right: 0px;
+          font-family: "Montserrat Bold", sans-serif;
+          font-size: 18px; }
         #step3 .moving-info #update-my-info .edit-area .row {
           clear: both; }
         #step3 .moving-info #update-my-info .edit-area .col-t, #step3 .moving-info #update-my-info .edit-area .col-z, #step3 .moving-info #update-my-info .edit-area .col-i {
@@ -664,7 +689,9 @@ button.submit-form:hover {
             font-family: "Source Sans Pro";
             font-weight: 700;
             line-height: 22.62px;
-            margin-right: 28px; }
+            margin-right: 28px;
+            position: relative;
+            top: 6px; }
         #step3 .moving-info #update-my-info .edit-area .col-t {
           margin-right: 13px; }
           #step3 .moving-info #update-my-info .edit-area .col-t input {
@@ -701,7 +728,7 @@ button.submit-form:hover {
     display: none;
     position: relative; }
     #step3 .loader-area h2 {
-      font-family: "Montserrat Regular";
+      font-family: "Montserrat Regular", sans-serif;
       font-size: 32px;
       padding-top: 15px;
       text-align: center;
@@ -737,100 +764,96 @@ button.submit-form:hover {
       left: 50%;
       margin-left: -41.836px; }
 
-#step4 h4 {
-  font-family: "Source Sans Pro";
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 13px; }
-
-#step4 h1 {
-  margin-top: 13px;
-  font-family: "Montserrat Light";
-  font-size: 36px;
-  line-height: 37.6px;
-  width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  font-weight: 200;
-  margin-bottom: 24px; }
-
-#step4 p {
-  font-family: "Source Sans Pro";
-  font-size: 12px;
-  width: 965px;
-  margin: 0 auto; }
-
-#step4 .loader {
-  width: 692px;
-  height: 33px;
-  background-color: #95d72e;
-  margin: 0 auto;
-  transform: skew(160deg);
-  -webkit-transform: skew(160deg);
-  -moz-transform: skew(160deg);
-  -o-transform: skew(160deg);
-  text-align: center;
-  font-family: "Source Sans Pro";
-  font-weight: 200;
-  font-size: 29.29px;
-  margin-bottom: 26px;
-  margin-top: 20px;
-  width: 940px;
-  padding-top: 15px;
-  padding-bottom: 10px;
-  font-weight: 300;
-  margin-bottom: 17px; }
-  #step4 .loader #current-percent {
-    transform: skew(20deg);
-    -webkit-transform: skew(20deg); }
-
-#step4 .thank-you-area.loading {
-  display: block;
-  position: relative;
-  padding-top: 68px;
-  padding-bottom: 90px; }
-  #step4 .thank-you-area.loading h4 {
-    font-family: "Montserrat Light";
-    font-size: 36px;
-    margin-bottom: 54px; }
-  #step4 .thank-you-area.loading #current-percent4 {
-    position: absolute;
-    top: 170px;
-    left: 50%;
+#step4 {
+  height: 323px; }
+  #step4 h4 {
     font-family: "Source Sans Pro";
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 13px; }
+  #step4 h1 {
+    margin-top: 13px;
+    font-family: "Montserrat Light", sans-serif;
+    font-size: 36px;
+    line-height: 37.6px;
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 200;
+    margin-bottom: 24px; }
+  #step4 p {
+    font-family: "Source Sans Pro";
+    font-size: 12px;
+    width: 965px;
+    margin: 0 auto; }
+  #step4 .loader {
+    width: 692px;
+    height: 33px;
+    background-color: #95d72e;
+    margin: 0 auto;
+    transform: skew(160deg);
+    -webkit-transform: skew(160deg);
+    -moz-transform: skew(160deg);
+    -o-transform: skew(160deg);
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-weight: 200;
+    font-size: 29.29px;
+    margin-bottom: 26px;
+    margin-top: 20px;
+    width: 940px;
+    padding-top: 15px;
+    padding-bottom: 10px;
     font-weight: 300;
-    font-size: 29.29px; }
-
-#step4 .thank-you-area.loading .loader {
-  width: 692px;
-  height: 33px;
-  background-color: #95d72e;
-  margin: 0 auto;
-  transform: skew(160deg);
-  -webkit-transform: skew(160deg);
-  -moz-transform: skew(160deg);
-  -o-transform: skew(160deg);
-  text-align: center;
-  font-family: "Source Sans Pro";
-  font-weight: 200;
-  font-size: 29.29px;
-  margin-bottom: 26px;
-  margin-top: 20px;
-  width: 0px;
-  padding-top: 15px;
-  padding-bottom: 10px;
-  font-weight: 300;
-  margin-bottom: 17px;
-  margin-left: 65px;
-  margin-right: 0px; }
-  #step4 .thank-you-area.loading .loader #current-percent {
-    transform: skew(20deg);
-    -webkit-transform: skew(20deg); }
-
-#step4 .thank-you-area.finished {
-  display: none;
-  padding-top: 29px;
-  padding-bottom: 60px; }
+    margin-bottom: 17px; }
+    #step4 .loader #current-percent {
+      transform: skew(20deg);
+      -webkit-transform: skew(20deg); }
+  #step4 .thank-you-area.loading {
+    display: block;
+    position: relative;
+    padding-top: 68px;
+    padding-bottom: 90px; }
+    #step4 .thank-you-area.loading h4 {
+      font-family: "Montserrat Light", sans-serif;
+      font-size: 36px;
+      margin-bottom: 54px; }
+    #step4 .thank-you-area.loading #current-percent4 {
+      position: absolute;
+      top: 170px;
+      left: 50%;
+      font-family: "Source Sans Pro";
+      font-weight: 300;
+      font-size: 29.29px; }
+  #step4 .thank-you-area.loading .loader {
+    width: 692px;
+    height: 33px;
+    background-color: #95d72e;
+    margin: 0 auto;
+    transform: skew(160deg);
+    -webkit-transform: skew(160deg);
+    -moz-transform: skew(160deg);
+    -o-transform: skew(160deg);
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-weight: 200;
+    font-size: 29.29px;
+    margin-bottom: 26px;
+    margin-top: 20px;
+    width: 0px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    font-weight: 300;
+    margin-bottom: 17px;
+    margin-left: 65px;
+    margin-right: 0px; }
+    #step4 .thank-you-area.loading .loader #current-percent {
+      transform: skew(20deg);
+      -webkit-transform: skew(20deg); }
+  #step4 .thank-you-area.finished {
+    display: none;
+    padding-top: 29px;
+    padding-bottom: 60px; }
 
 .disclaimer {
   display: block; }
@@ -852,6 +875,8 @@ button.submit-form:hover {
       transform: skew(157.45deg);
       position: absolute;
       right: 41px;
+      -webkit-transform: skew(157.857deg);
+      -ms-transform: skew(157.857deg);
       transform: skew(157.857deg);
       left: 131px;
       right: inherit;
@@ -859,8 +884,10 @@ button.submit-form:hover {
       height: 461px;
       background: rgba(146, 200, 62, 0.85); }
       .giant-loader .container .parallelogram .loader-text {
+        -webkit-transform: skew(-156deg);
+        -ms-transform: skew(-156deg);
         transform: skew(-156deg);
-        font-family: "Montserrat Regular";
+        font-family: "Montserrat Regular", sans-serif;
         font-size: 40px;
         color: white;
         position: absolute;
@@ -887,6 +914,8 @@ button.submit-form:hover {
         width: 292px;
         background: #214373;
         border-radius: 100%;
+        -webkit-transform: skew(-158deg);
+        -ms-transform: skew(-158deg);
         transform: skew(-158deg);
         text-align: center; }
         .giant-loader .container .parallelogram .loader-circle img {
@@ -909,9 +938,10 @@ button.submit-form:hover {
   .cal-area #cal {
     position: absolute;
     top: 122px;
-    right: -275px; }
+    right: -275px;
+    z-index: 1000; }
     .cal-area #cal .ui-datepicker {
-      width: 277px;
+      width: 547px !important;
       border: 0;
       padding-bottom: 8px;
       border-radius: 5px;
@@ -920,6 +950,9 @@ button.submit-form:hover {
       padding-left: 19px;
       box-sizing: border-box;
       box-shadow: 0px 4px 0px #3999c9; }
+    .cal-area #cal .ui-datepicker-multi .ui-datepicker-group table {
+      width: 93%;
+      margin: 0 auto .4em; }
     .cal-area #cal .ui-widget-header {
       background: white;
       border: 0px;
@@ -1004,6 +1037,10 @@ button.submit-form:hover {
     .cal-area #cal .ui-datepicker-prev.ui-state-hover, .cal-area #cal .ui-datepicker-next.ui-state-hover {
       background: transparent !important;
       color: #1374c6 !important; }
+    .cal-area #cal a.ui-state-default.ui-priority-secondary {
+      color: #3B8C37 !important; }
+    .cal-area #cal a.ui-state-default.ui-priority-secondary.ui-state-hover {
+      background-color: #C6F9C6 !important; }
 
 .zip-entry {
   width: 188px; }
@@ -1012,11 +1049,11 @@ input.zip {
   padding-top: 13px;
   padding-left: 12px;
   padding-bottom: 13px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 0px;
   font-family: 'Source Sans Pro';
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   color: #1374c6;
   border: 2px solid transparent; }
 
@@ -1111,10 +1148,11 @@ input.zip {
         font-weight: 800; }
       .zipcode-helper #results ul li.active {
         font-weight: bold; }
+        .zipcode-helper #results ul li.active a {
+          color: #444444; }
 
 aside#sidebar {
-  display: none;
-  background-color: #f8f8f8; }
+  background-color: #F4EFEF; }
   aside#sidebar .container {
     position: relative; }
   aside#sidebar .how-it-works-title {
@@ -1129,7 +1167,7 @@ aside#sidebar {
   aside#sidebar .sub-step {
     display: none;
     font-family: "Source Sans Pro";
-    padding-top: 27px; }
+    padding-top: 15px; }
   aside#sidebar .sub-step.active {
     display: block; }
   aside#sidebar .substep-arrow {
@@ -1144,13 +1182,22 @@ aside#sidebar {
       padding-top: 24px;
       font-size: 14px;
       line-height: 21.2px;
-      opacity: 0.7; }
+      opacity: 1; }
   aside#sidebar .sub-step1 .col.list {
     margin-left: 168px; }
+    aside#sidebar .sub-step1 .col.list img {
+      height: 40%;
+      width: 40%; }
   aside#sidebar .sub-step1 .col.coins {
     margin-left: 108px; }
+    aside#sidebar .sub-step1 .col.coins img {
+      height: 50%;
+      width: 50%; }
   aside#sidebar .sub-step1 .col.cash {
     margin-left: 92px; }
+    aside#sidebar .sub-step1 .col.cash img {
+      height: 30%;
+      width: 30%; }
   aside#sidebar .sub-step2 .col2 {
     display: inline-block;
     vertical-align: top;
@@ -1251,12 +1298,12 @@ aside#sidebar {
   font-family: 'Source Sans Pro', serif;
   padding-top: 29px; }
   .disclaimer p {
-    opacity: 0.7;
+    opacity: 1;
     font-size: 14px;
     line-height: 17.2px;
-    font-weight: 200;
+    font-weight: 300;
     width: 871px;
-    padding-bottom: 19px; }
+    padding-bottom: 29px; }
   .disclaimer a {
     color: white;
     text-decoration: none; }
@@ -1265,3 +1312,109 @@ aside#sidebar {
 
 .validation-error {
   border: 2px solid red !important; }
+
+#google-map1, #google-map2 {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  height: 462px;
+  width: 571px;
+  display: none; }
+
+#google-map2 {
+  top: -109px;
+  left: -120px;
+  display: block; }
+
+.overlay-gm1 {
+  width: 333px;
+  height: 461px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: #4bb8e8;
+  transform: skew(157.45deg);
+  position: absolute;
+  top: 0;
+  right: 431px;
+  z-index: 10;
+  display: none; }
+
+.overlay-gm2 {
+  width: 333px;
+  height: 462px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: #4bb8e8;
+  transform: skew(157.45deg);
+  position: absolute;
+  top: 0;
+  right: -236px; }
+
+.overlay-gm3 {
+  width: 334px;
+  height: 461px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: rgba(0, 0, 0, 0.12);
+  transform: skew(157.45deg);
+  position: absolute;
+  top: 0;
+  right: 96px;
+  z-index: 10;
+  display: none; }
+
+#step2 .bvl-logos {
+  clear: both;
+  padding-top: 292px;
+  padding-left: 8px;
+  position: absolute;
+  top: 110px;
+  z-index: 10; }
+
+#step2 .movers {
+  position: absolute;
+  top: 109px;
+  left: 586px; }
+
+#step2 .overlay-gm1 {
+  width: 333px;
+  height: 462px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: #4bb8e8;
+  transform: skew(157.45deg);
+  position: absolute;
+  top: -109px;
+  right: 25px;
+  z-index: 1; }
+
+#step2 .overlay-gm2 {
+  width: 333px;
+  height: 462px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: #4bb8e8;
+  transform: skew(157.45deg);
+  position: absolute;
+  top: -109px;
+  right: -644px;
+  z-index: 1; }
+
+#step2 .overlay-gm3 {
+  width: 335px;
+  height: 463px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  background: rgba(0, 0, 0, 0.12);
+  transform: skew(157.45deg);
+  position: absolute;
+  top: -110px;
+  right: -311px;
+  z-index: 1;
+  display: none !important; }

@@ -12,7 +12,20 @@ $(document).ready(function(){
 		moveDate:'',
 		toZip:'',
 		fromZip:'',
+		mapsLoaded:false
 	};
+
+	//Select Styling (default gray)
+	if($(".select-inactive option:selected").val() !== ""){
+		$(".select-inactive").removeClass('select-inactive');
+	}
+	
+	$(".select-inactive").on('change', function(){
+		console.log($('option:selected', this).val())
+		if($('option:selected', this).val()!==""){
+			$(".select-inactive").removeClass('select-inactive');
+		}	
+	});
 	
 	function lazyloadImages(images){
 		function imgLoad(imgId, link){
@@ -53,7 +66,8 @@ $(document).ready(function(){
 			'width=350,height=550,scrollbars=1,top='+top+',left='+left
 		);
 	});
-	//Global: Animates each div left
+
+
 	function animateLeft(step1, step2){
 		var lf = 0; 
 		$(".zipcode-helper").hide();
@@ -103,18 +117,27 @@ $(document).ready(function(){
 			$("aside#sidebar").hide();
 		}
 		if(stepB == "step2"){
-			animateLeft(stepA, stepB);
+			var q = new Promise(function(resolve, reject){
+				resolve(animateLeft(stepA, stepB));
+			});
+
+			q.then(function(){
+				changeGoogleMap(s1cache.zip, "google-map2", 600)
+			});
 		}
+
+		
 	
 		if(stepB == "step3"){
 			//show giant loader
-			$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&sensor=true&callback=initialize&v=3.20')
+
 			cache.fromZip = $("#f-step2 input[name=zip_from]").val();
 			cache.toZip = $("#f-step2 input[name=zip_to]").val();
 	
 			var start = cache.fromZip;
 			var end = cache.toZip;
-	
+
+
 			$(".background, .disclaimer").hide();
 			animateLeft(stepA, stepB);	
 			$(".giant-loader").show();
@@ -126,7 +149,7 @@ $(document).ready(function(){
 			var options = {
 				div:'giant-parallelogram',
 				maxWidth:766,
-				seconds:2.2 //not true seconds because jquery takes 300ms per action, so eh
+				seconds:1 //not true seconds because jquery takes 300ms per action, so eh
 			}
 			//50 x 766 width = 38,300 iterations
 			//38,300 / 3600 ( iter / 60 milliseconds / 60 seconds) in sec
@@ -147,13 +170,18 @@ $(document).ready(function(){
 				$(".loader-circle").show();
 	
 				setTimeout(function(){
-					googleMap(start, end);
+					var zipFrom3 = $('#f-step3-u input[name=zip_from]'),
+						zipTo3 = $('#f-step3-u input[name=zip_to]');
+
+					$(zipFrom3).val(cache.fromZip);
+					$(zipTo3).val(cache.toZip);
+					setTimeout(function(){googleMap(start, end);}, 500);
 					$(".giant-loader").hide();
 					$("footer").removeClass('giant-loader-active');
 					$(".disclaimer p").css('width', '923px');
 					$(".background, .disclaimer").show();
 					$("#quotes-disc").show();	
-				}, 1000);
+				}, 2000);
 			}
 			
 			animateGreenLdr(options, callback1, callback2);
@@ -238,6 +266,8 @@ $(document).ready(function(){
 	//Global: Ziphelp
 	 $("body").click(function(e){
 	 	var target = $(e.target);
+
+
 	 	//if the target element is inside the zipcode helper
 	 	//return true or false
 	 	var childOfZip = !!(target.closest('.zipcode-helper').length);
@@ -246,6 +276,18 @@ $(document).ready(function(){
 	 	if($(".zipcode-helper").is(":visible") && !childOfZip){
 	 	 	$(".zipcode-helper").hide();
 	 	}
+		if($("#cal").is(":visible")){
+			
+		 	if(!target.hasClass("hasDatepicker") && 
+	        !target.hasClass("ui-datepicker") && 
+	        !target.hasClass("ui-icon") && 
+	        !target.hasClass("ui-datepicker-next") && 
+	        !target.hasClass("ui-datepicker-prev") && 
+	        (target.attr('id') != "move-date") && 
+	        !$(target).parents(".ui-datepicker").length){
+	            $('.cal-area').hide();
+	    	}
+	    }
 	 	//on focus input -- need to show an absolute
 	 	//div next to input with lis of all ajax'd 
 	 	//cities and states
@@ -423,6 +465,62 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+
+	function changeGoogleMap(zip, id){
+		var lat, lng;
+		var speed = arguments[2] || 100;
+
+		var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+zip);
+		var div = document.getElementById(id);
+		$(div).html('');
+		var movers = $(div).parentsUntil('.movers');
+		movers.remove();
+		//$(".movers:eq(0)").css('transform', 'skew(157.45deg)');
+		$(div).show();
+		$(".overlay-gm1, .overlay-gm3").show();
+
+		q.done(function(data){	
+			 try {
+				lat = data.results[0].geometry.location.lat.toString();
+				lng = data.results[0].geometry.location.lng.toString();
+
+				console.log(lat,lng)
+
+				var latlng = new google.maps.LatLng(lat, lng);
+				console.log(latlng)
+
+				var myOptions = {
+				    zoom: 12,
+			        scrollwheel: false,
+				    zoomControl:false,
+				    center: latlng,
+				    mapTypeId: google.maps.MapTypeId.ROADMAP,
+				    navigationControl: false,
+			        mapTypeControl: false,
+			        scaleControl: false,
+			        draggable: false,
+			        streetViewControl:false,
+			        disableDoubleClickZoom: true,
+				}
+
+				setTimeout(function(){
+					map = new google.maps.Map(document.getElementById(id), myOptions);
+
+
+					var marker = new google.maps.Marker({
+					    position: latlng,
+					    map: map,
+					    icon: '../bvl40/img/test40/marker_icon.png'
+					  });
+				}, speed);
+
+				// map.panTo(latlng);
+			 }catch (e){
+				console.log(e);
+			}
+		});
+	}
 	
 	function cacheMoveDate(){
 		var date = $("#move-date").val();
@@ -540,8 +638,7 @@ $(document).ready(function(){
 	
 	//Step 3: Initialize Google Maps after Step 2 Loader
 	var directionDisplay,
-		directionsService,
-		map;
+		directionsService;
 
 	//Step 3: Draw & Update Google Map given two zips, start and end
 	function googleMap(start, end){
@@ -550,7 +647,7 @@ $(document).ready(function(){
 			scrollwheel:true,
 			navigationControl:true,
 			mapTypeControl:true,
-			scaleControl:true,
+			scaleControl:false,
 			draggable:true,
 			disableDoubleClickZoom:true,
 			disableDefaultUI:true,
@@ -563,9 +660,7 @@ $(document).ready(function(){
 		};
 		
 		directionsService = new google.maps.DirectionsService();
-		directionsDisplay = new google.maps.DirectionsRenderer();
-		directionsDisplay.setMap(map);
-		directionsDisplay.setOptions(directionsOptions);
+
 	
 		var request = {
 			origin:start,
@@ -575,8 +670,12 @@ $(document).ready(function(){
 		};
 		directionsService.route(request, function(response, status) {
 		  if (status == google.maps.DirectionsStatus.OK) {
+ 			directionsDisplay = new google.maps.DirectionsRenderer();
+			directionsDisplay.setMap(map);
+			directionsDisplay.setOptions(directionsOptions);
 			directionsDisplay.setDirections(response);
 				var route = response.routes[0];
+
 		  }
 		});
 	}
@@ -591,6 +690,15 @@ $(document).ready(function(){
 	
 	//Global: Validations
 	//Step 1: Validation
+
+	var s1cache = {
+		zip:null,
+	}
+
+	$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&sensor=true&callback=initialize&v=3.20');
+	
+		
+
 	$("#f-step1").validate({
 		rules: {
 			zip_from:{
@@ -609,8 +717,19 @@ $(document).ready(function(){
 		invalidHandler:function(form, validator){
 		},
 		errorClass:'validation-error',
+		success:function(label, element){
+
+			//prevents extra bubbling
+			if(s1cache.zip != $(element).val()){
+				s1cache.zip = $(element).val();
+
+				changeGoogleMap(s1cache.zip, 'google-map1')
+			}
+
+			
+		},
 		submitHandler:function(form){
-	
+			$('#step1 .movers').hide();
 			var submitBtn = $(form).find('.submit-form');
 			try{
 				_gaq.push(['_trackEvent', 'desktop', '999moving', 'step1-test40']);
@@ -640,7 +759,9 @@ $(document).ready(function(){
 		}
 	});
 	
-
+	var s2cache = {
+		zip:null
+	};
 	
 	
 	//Step 2: Validation
@@ -683,6 +804,109 @@ $(document).ready(function(){
 		invalidHandler:function(form, validator){
 		},
 		errorClass:'validation-error',
+		success:function(label, element){
+
+			if(element.id == "zip_to"){
+				if(s2cache.zip != $(element).val()){
+					s2cache.zip = $(element).val();
+					
+					var start = s1cache.zip;
+					var end = s2cache.zip;
+					console.log(element.id)
+					var div = document.getElementById("google-map2");
+					
+					$(div).html('');
+					var movers = $(div).parentsUntil('.movers');
+					movers.remove();
+					//$(".movers:eq(0)").css('transform', 'skew(157.45deg)');
+					$(div).show();
+					$(".overlay-gm1").show();
+
+						var myOptions = {
+						    zoom: 14,
+						    zoomControl:false,
+						    mapTypeId: google.maps.MapTypeId.ROADMAP,
+						    navigationControl: false,
+					        mapTypeControl: false,
+					        scaleControl: false,
+	
+					        streetViewControl:false,
+					        disableDoubleClickZoom: true,
+						}
+
+						map = new google.maps.Map(document.getElementById("google-map2"), myOptions);
+						
+
+						var directionsOptions = {
+							markerOptions: {clickable: false}
+						};
+
+						
+						directionsService = new google.maps.DirectionsService();
+					
+					
+						var request = {
+							origin:start,
+							destination:end,
+							optimizeWaypoints:true,
+							travelMode: google.maps.DirectionsTravelMode.DRIVING
+						};
+ 						var icons = {
+					        start: new google.maps.MarkerImage(
+					        // URL
+					        '../bvl40/img/test40/marker_icon.png',
+					        // (width,height)
+					        new google.maps.Size(53, 64),
+					        // The origin point (x,y)
+					        new google.maps.Point(0, 0),
+					        // The anchor point (x,y)
+					        new google.maps.Point(22, 32)),
+					        end: new google.maps.MarkerImage(
+					        // URL
+					        '../bvl40/img/test40/marker_icon.png',
+					        // (width,height)
+					        new google.maps.Size(53, 64),
+					        // The origin point (x,y)
+					        new google.maps.Point(0, 0),
+					        // The anchor point (x,y)
+					        new google.maps.Point(22, 32))
+					    };
+
+					    function makeMarker(position, icon, title, map) {
+					        new google.maps.Marker({
+					            position: position,
+					            map: map,
+					            icon: icon,
+					            title: title
+					        });
+					    }
+
+						directionsService.route(request, function(response, status) {
+						  if (status == google.maps.DirectionsStatus.OK) {
+								directionsDisplay = new google.maps.DirectionsRenderer({
+		                    	map: map,
+		                    	directions: response,
+		                    	suppressMarkers: true
+		                	});
+						directionsDisplay.setMap(map);
+						directionsDisplay.setOptions(directionsOptions);
+							var route = response.routes[0];
+
+			                var leg = response.routes[0].legs[0];
+							makeMarker(leg.start_location, icons.start, "title", map);
+			                makeMarker(leg.end_location, icons.end, 'title', map);
+						  }
+						});
+
+						
+					   
+
+				}	
+			}
+			//prevents extra bubbling
+			
+
+		},
 		submitHandler:function(form){
 			var submitBtn = $(form).find('.submit-form');
 			try{
@@ -717,13 +941,6 @@ $(document).ready(function(){
 			}];
 	
 			lazyloadImages(stepThreeImages);
-			
-	
-			var zipFrom3 = $('#f-step3-u input[name=zip_from]').val(),
-				zipTo3 = $('#f-step3-u input[name=zip_to]').val();
-		
-			$(zipFrom3).val(cache.fromZip);
-			$(zipTo3).val(cache.toZip);
 			
 		
 			validationSuccess(submitBtn);
@@ -924,7 +1141,8 @@ $(document).ready(function(){
 		}
 		$("#sidebar").toggle();
 	});
-	
+
+
 	//Step 1: Subslides Carousel
 	$(".substep-arrow.left a").click(function(e){
 		e.preventDefault();
@@ -1005,16 +1223,47 @@ $(document).ready(function(){
 	//Step 2: Datepicker
 	$("#cal").datepicker({
 			dateFormat: 'mm/dd/yy',
-			minDate: 0,
-			maxDate: '+90D',
+			minDate: '+0D',
+			maxDate: '+94D',
+			numberOfMonths:2,
 			dayNamesMin: ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'],
-			onSelect:function(text){
+			onSelect:function(text, inst){
+				console.log(inst);
 				$("#move-date").val(text);
 				$("#move-date").removeClass('validation-error');
 				$(".cal-area").hide();
 				$("#move-date").trigger('change');
-			}
+				//updateMonths(inst);  
+			},
+			beforeShow: function(){  
+				//var id = document.getElementById('cal');
+				//var inst = window.$.datepicker._getInst(id);
+				//updateMonths(inst);  
+		    }
 	});
+
+	// function updateMonths(inst){
+	// 	var next_day = new Date(
+	// 	    inst.selectedYear,
+	// 	    inst.selectedMonth,
+	// 	    inst.selectedDay
+	// 	    );        
+	//         next_day.setDate(next_day.getDate()+1);
+	//         console.log(inst.selectedMonth);
+	//         console.log(next_day.getMonth());
+	//         if(inst.selectedMonth != next_day.getMonth()){
+	// 			$('#cal').datepicker('option',{
+	//             	showOtherMonths:true,
+	// 				selectOtherMonths:true
+	// 			});
+	// 		}
+	//         else{
+	//         	$('#cal').datepicker('option',{
+	//             	showOtherMonths:false,
+	// 				selectOtherMonths:false
+	// 			});
+	// 		}
+	// }
 	$("#move-date").click(function(e){
 		$(".cal-area").toggle();
 	});
@@ -1034,6 +1283,13 @@ $(document).ready(function(){
 		//conversionScripts();
 	}
 	
+	//Step 3: Close Update Window
+	$("#close-update").click(function(e){
+		e.preventDefault();
+		$("#update-my-info").hide();
+		$("#show-my-info").show();
+	});
+
 	//Step 3: Conversion Scripts
 	function conversionScripts(){
 		//Yahoo DOT
@@ -1064,9 +1320,21 @@ $(document).ready(function(){
 		$('body').append(image);
 		
 	}
+
+
+
+
 });
 
+var map;
+
 function initialize() {
-
+	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var myOptions = {
+	        zoom: 8,
+	        center: latlng,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	    map = new google.maps.Map(document.getElementById("google-map1"),
+	            myOptions);
 }
-

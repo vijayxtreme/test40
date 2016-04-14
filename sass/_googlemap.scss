@@ -1,0 +1,117 @@
+#google-map1, #google-map2 {
+	position:absolute;
+	top:0;
+	left:0px;
+    height: 462px;
+    width: 571px;
+	display:none;
+}
+#google-map2 {
+	top:-109px;
+	left:-120px;
+	display:block;
+}
+
+.overlay-gm1 {
+	width: 333px;
+    height: 461px;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    background: #4bb8e8;
+    transform: skew(157.45deg);
+    position: absolute;
+    top:0;
+    right: 431px;
+    z-index: 10;
+    display: none;
+}
+
+.overlay-gm2 {
+    width: 333px;
+    height: 462px;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    background: #4bb8e8;
+    transform: skew(157.45deg);
+    position: absolute;
+    top:0;
+    right: -236px;
+}
+.overlay-gm3 {
+    width: 334px;
+    height: 461px;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    -o-transform: skew(20deg);
+    background: rgba(0, 0, 0, 0.12);
+    transform: skew(157.45deg);
+    position: absolute;
+    top:0;
+    right: 96px;
+    z-index: 10;
+    display: none;
+}
+
+
+#step2 {
+	.bvl-logos {
+		clear: both;
+	    padding-top: 292px;
+	    padding-left: 8px;
+	    position: absolute;
+	    top: 110px;
+	    z-index: 10;
+	}
+
+	.movers {
+		position:absolute;
+	    top: 109px;
+	    left: 586px;
+	}
+
+	.overlay-gm1 {
+		width: 333px;
+	    height: 462px;
+	    -webkit-transform: skew(20deg);
+	    -moz-transform: skew(20deg);
+	    -o-transform: skew(20deg);
+	    background: #4bb8e8;
+	    transform: skew(157.45deg);
+	    position: absolute;
+	    top: -109px;
+	    right: 25px;
+	    z-index: 1;
+	}
+
+	.overlay-gm2 {
+		width: 333px;
+	    height: 462px;
+	    -webkit-transform: skew(20deg);
+	    -moz-transform: skew(20deg);
+	    -o-transform: skew(20deg);
+	    background: #4bb8e8;
+	    transform: skew(157.45deg);
+	    position: absolute;
+	    top: -109px;
+	    right: -644px;
+	    z-index: 1;
+	}
+
+	.overlay-gm3 {
+	    width: 335px;
+	    height: 463px;
+	    -webkit-transform: skew(20deg);
+	    -moz-transform: skew(20deg);
+	    -o-transform: skew(20deg);
+	    background: rgba(0, 0, 0, 0.12);
+	    transform: skew(157.45deg);
+	    position: absolute;
+	    top: -110px;
+	    right: -311px;
+	    z-index: 1;
+	    display: none !important;
+	}
+
+}

@@ -15,12 +15,12 @@ body {
 .container {
 	width:1050px;
 	margin:0px auto;
-
+	position:relative;
 }
 
 aside {
 	background-color:white;
-	min-height:232px;
+	min-height:200px;
 	color:$aside;
 	a {
 		text-decoration:none;

@@ -11,6 +11,8 @@ $loaderCircle:#214373;
 
 		.parallelogram {
 			@include parallelogram();
+			-webkit-transform: skew(157.857deg);
+			-ms-transform: skew(157.857deg);
 			transform: skew(157.857deg);
 			left:131px;
 			right:inherit;
@@ -19,8 +21,10 @@ $loaderCircle:#214373;
 			background:$greenLoader;
 
 			.loader-text {
+				-webkit-transform: skew(-156deg);
+				-ms-transform: skew(-156deg);
 				transform:skew(-156deg);
-				font-family: "Montserrat Regular";
+				font-family: "Montserrat Regular", sans-serif;
 				font-size:40px;
 				color: white;
 				position:absolute;
@@ -54,6 +58,8 @@ $loaderCircle:#214373;
 				width:292px;
 				background:$loaderCircle;
 				border-radius:100%;
+				-webkit-transform: skew(-158deg);
+				-ms-transform: skew(-158deg);
 				transform: skew(-158deg);
 				text-align: center;
 				img {

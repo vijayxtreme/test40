@@ -36,7 +36,7 @@
 								<div class="price-col moving-from">Moving From?</div>
 								<div class="price-col zip-entry">
 								<!-- CLEAN UP-->
-									<input name="zip_from" class="zip zipc" id="zip_from" type="tel" placeholder="Enter From Zip" data-zip="from_zip">
+									<input name="zip_from" class="zip zipc" id="zip_from" type="tel" placeholder="Enter From Zip" data-zip="from_zip" autofocus>
 								</div>
 								<div class="price-col">
 									<button id="go" class="submit-form" type="submit" disabled>GO</button>
@@ -60,7 +60,11 @@
 					</div>
 				</div>
 				<div class="movers">
-					<img src="img/test40/movers.png">
+					<div class="overlay-gm1"></div>
+					<img class="moving_people" src="img/test40/movers.png">
+					<div id="google-map1"></div>
+					<div class="overlay-gm2"></div>
+					<div class="overlay-gm3"></div>
 				</div>
 			</div>
 		</section>
@@ -125,8 +129,8 @@
 						</div>
 						<div class="col-i">
 							<div id="select-arrow"></div>
-							<select name="move_size" id="move_size">
-								<option class="select-inactive" value="" selected>Enter Move Size</option>
+							<select class="select-inactive" name="move_size" id="move_size">
+								<option value="" selected disabled>Enter Move Size</option>
 								<option class="select-active" value="Moving Boxes Only">Box Only</option>
 								<option class="select-active" value="Studio">Studio</option>
 								<option class="select-active" value="1 Bedroom">1 Bedroom</option>
@@ -150,7 +154,12 @@
 				</div>
 				<div class="parallelogram"></div>
 				<div class="movers">
-					<img src="img/test40/usa-map.png">
+					<div class="overlay-gm1"></div>
+
+					<div id="google-map2"></div>
+					<div class="overlay-gm2"></div>
+					<div class="overlay-gm3"></div>
+
 				</div>				
 				<div class="bvl-logos">
 					<span class='verisign'><img src="img/test40/verisign.png"></span>
@@ -177,11 +186,11 @@
 				</div>
 				<div id="moves-found" class="movers-found">
 					<div class="movers-found-title">
-						<span><img src="img/test40/check-green.png"></span><span class="text">Movers Found</span>
+						<span><img id="green-check-img" src="img/test40/check-green.png"></span><span class="text">Movers Found</span>
 						<span id="moves-check-gray"><img src="img/test40/check-gray.png"></span><span class="text next">Next Step: View Your Estimate</span>
 					</div>
 					<div class="movers-found-body">
-						<p>Movers will contact by phone or email with their quotes and our system will also display your estimated quote.</p>
+						<p>Movers will contact you by phone or email with their quotes and our system will also display your estimated quote.</p>
 					</div>
 				</div>
 				<div class="form-area">
@@ -215,7 +224,9 @@
 								<div class="moving-info-edit">
 								</div>
 								<div class="edit-area">
+								<a id="close-update" href="#">X</a>
 									<div class="row u-moving-from">
+
 										<div class="col-i">
 											<h4>Where are you moving from?</h4>
 										</div>
@@ -290,7 +301,6 @@
 			</div>
 		</section>
 	</div>
-
 	<div class="giant-loader">
 		<div class="container">
 			<div class="moving-people">
@@ -379,7 +389,6 @@
 							<li id="q3">What is Budget Van Lines?</li>
 						</ul>
 					</div>
-					
 				</div>
 				<div class="answers">
 					<h4>Answer:</h4>
@@ -391,7 +400,6 @@
 			<div class="substep-arrow left"><a href=""><i class="arr-left"></i></a></div>
 			<div class="substep-arrow right"><a href=""><i class="arr-right"></i></a></div>
 		</div>
-
 		</div>
 	</aside>
 	<div class="disclaimer">
@@ -426,7 +434,7 @@
 		</div>
 	</footer>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </body>

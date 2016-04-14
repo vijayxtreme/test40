@@ -4,6 +4,7 @@ $zipHelperInput:#454545;
 $zipHelperInputBg:#e6e6e6;
 $zipHelperInputSoftBg:#a4a4a4;
 $inputF:#1374c6;
+$darker:#444444;
 
 .zip-entry {
 	width: 188px;
@@ -13,11 +14,11 @@ input.zip {
 	padding-top:13px;
 	padding-left:12px;
 	padding-bottom:13px;
-	border-radius:5px;
+	border-radius:3px;
 	border:0px;
 	font-family: 'Source Sans Pro';
 	font-size:18px;
-	font-weight:400;
+	font-weight:600;
 	color:$inputF;
 	border:2px solid transparent;
 }
@@ -132,6 +133,9 @@ input.zip {
 			}
 			li.active {
 				font-weight: bold; 
+				 a{
+				 	color:$darker;
+				 }
 			}
 			border-bottom-left-radius:3px;
 			border-bottom-right-radius:3px;

@@ -1,10 +1,11 @@
 $asideTitle: #599bd0;
 $asideColTitle:#5c5c5c;
 $borderP: #e8e8e8;
-$asideBg:#f8f8f8;
+// $asideBg:#f8f8f8;
+$asideBg:#F4EFEF;
 
 aside#sidebar {
-	display:none;
+	// display:none;
 	background-color:$asideBg;
 	.container {
 		position:relative;
@@ -25,7 +26,7 @@ aside#sidebar {
 	.sub-step {
 		display: none;
 		font-family: "Source Sans Pro";
-		padding-top:27px;
+		padding-top:15px;
 	}
 	.sub-step.active {
 		display: block;
@@ -47,17 +48,29 @@ aside#sidebar {
 				padding-top:24px;
 				font-size:14px;
 				line-height: 21.2px;
-				opacity: 0.7;
+				opacity: 1;
 			}
 		}
 		.col.list {
 			margin-left: 168px;
+			img {
+				height:40%;
+				width:40%;
+			}
 		}
 		.col.coins {
 			margin-left: 108px;
+			img {
+				height:50%;
+				width:50%;
+			}
 		}
 		.col.cash {
 			margin-left: 92px;
+			img {
+				height:30%;
+				width:30%;
+			}
 		}
 	}
 

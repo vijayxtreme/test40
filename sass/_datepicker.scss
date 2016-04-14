@@ -17,9 +17,10 @@ $dateClick:#002f54;
         position: absolute;
         top:122px;
         right:-275px;
+        z-index:1000;
 
         .ui-datepicker {
-            width: 277px;
+            width: 547px !important;
             border:0;
             padding-bottom:8px;
             border-radius:5px;
@@ -28,6 +29,10 @@ $dateClick:#002f54;
             padding-left:19px;
             box-sizing:border-box;
             box-shadow: 0px 4px 0px $calShadow;
+        }
+        .ui-datepicker-multi .ui-datepicker-group table {
+            width: 93%;
+            margin: 0 auto .4em;
         }
         .ui-widget-header {
             background:white;
@@ -160,6 +165,14 @@ $dateClick:#002f54;
        
         .ui-datepicker-current-day a, .ui-state-active a {
 
+        }
+
+        a.ui-state-default.ui-priority-secondary {
+            color: #3B8C37 !important;
+
+        }
+        a.ui-state-default.ui-priority-secondary.ui-state-hover {
+            background-color: #C6F9C6 !important;
         }
     }
 }

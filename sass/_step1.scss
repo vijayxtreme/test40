@@ -10,8 +10,14 @@ $priceCalculator:#1374c6;
 }
 
 .price-text {
-    font-family: 'Montserrat Light', arial;
+    font-family: 'Montserrat Light', sans-serif;
     padding-top:45px;
+    position:absolute;
+    width:600px;
+    top:0;
+    left:0px;
+    z-index: 100;
+
 	h1 {
 		font-size:40px;
 		text-align:left;
@@ -39,7 +45,7 @@ $priceCalculator:#1374c6;
 			padding-top:17px;
 			padding-bottom:18px;
 			padding-left:40px;
-			font-family: 'Montserrat Regular';
+			font-family: 'Montserrat Regular', sans-serif;
 			font-size:18px;
 			background-color: $priceTitle;
 			border-radius: 4px;
@@ -65,15 +71,12 @@ $priceCalculator:#1374c6;
 			width:211px;
 		}
 	}
-	float:left;
-	width:60%;
+
 }
 
 .movers {
-	float:left;
-	width:40%;
-	position:relative;
-	left:-166px;
+	position:absolute;
+	left:466px;
 }
 
 
