@@ -608,7 +608,12 @@ $(document).ready(function(){
 					address = address.split(delimeter);
 					address = address[0] + ", " + address[1]; 
 					
-					
+				
+				//some other placeholder
+				if(dataZip == "from_zip"){
+					$("#move_from_pl").text(address);
+				}
+
 				$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
 				}catch(e){
 					//
@@ -806,7 +811,7 @@ $(document).ready(function(){
 		errorClass:'validation-error',
 		success:function(label, element){
 
-			if(element.id == "zip_to"){
+			if(element.id == "zip_to" && $(element).val().length === 5){
 				if(s2cache.zip != $(element).val()){
 					s2cache.zip = $(element).val();
 					
@@ -821,24 +826,37 @@ $(document).ready(function(){
 					//$(".movers:eq(0)").css('transform', 'skew(157.45deg)');
 					$(div).show();
 					$(".overlay-gm1").show();
+				var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+end);
+
+				q.done(function(data){	
+				 try {
+					lat = data.results[0].geometry.location.lat.toString();
+					lng = data.results[0].geometry.location.lng.toString();
+
+					console.log(lat,lng)
+
+					var latlng = new google.maps.LatLng(lat, lng);
+
 
 						var myOptions = {
-						    zoom: 14,
+						    zoom: 7,
 						    zoomControl:false,
+						    center: latlng,
 						    mapTypeId: google.maps.MapTypeId.ROADMAP,
 						    navigationControl: false,
 					        mapTypeControl: false,
 					        scaleControl: false,
-	
 					        streetViewControl:false,
 					        disableDoubleClickZoom: true,
 						}
+						console.log(myOptions);
 
 						map = new google.maps.Map(document.getElementById("google-map2"), myOptions);
 						
 
 						var directionsOptions = {
-							markerOptions: {clickable: false}
+							markerOptions: {clickable: false},
+							preserveViewport:true
 						};
 
 						
@@ -863,7 +881,7 @@ $(document).ready(function(){
 					        new google.maps.Point(22, 32)),
 					        end: new google.maps.MarkerImage(
 					        // URL
-					        '../bvl40/img/test40/marker_icon.png',
+					        '../bvl40/img/test40/marker_iconB.png',
 					        // (width,height)
 					        new google.maps.Size(53, 64),
 					        // The origin point (x,y)
@@ -886,10 +904,10 @@ $(document).ready(function(){
 								directionsDisplay = new google.maps.DirectionsRenderer({
 		                    	map: map,
 		                    	directions: response,
-		                    	suppressMarkers: true
+		                    	suppressMarkers: true,
 		                	});
-						directionsDisplay.setMap(map);
-						directionsDisplay.setOptions(directionsOptions);
+							directionsDisplay.setMap(map);
+							directionsDisplay.setOptions(directionsOptions);
 							var route = response.routes[0];
 
 			                var leg = response.routes[0].legs[0];
@@ -898,10 +916,11 @@ $(document).ready(function(){
 						  }
 						});
 
-						
-					   
-
-				}	
+					}catch(e){
+					   console.log(e)
+					}
+				});	
+				}
 			}
 			//prevents extra bubbling
 			

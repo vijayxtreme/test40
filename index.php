@@ -47,7 +47,7 @@
 								<div class="ziphelp-area">
 									<a class="ziphelp" href=""><img src="img/test40/zipfinder.png"><span data-zip="from_zip">ZIP Help?</span></a> 
 								</div>
-								
+								<p id="move_from_pl"></p>
 							</div>
 						</form>
 					</div>
@@ -94,7 +94,7 @@
 					</div>
 					<div class="moving-from edit">
 						<h6>MOVING FROM:</h6>
-						<div><span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="">Edit</a></div>
+						<div>A: <span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="">Edit</a></div>
 					</div>
 					<div class="moving-to">
 						<div class="col-q">
@@ -109,7 +109,7 @@
 					</div>
 					<div class="moving-to edit">
 						<h6>MOVING TO:</h6>
-						<div><span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="">Edit</a></div>
+						<div>B: <span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="">Edit</a></div>
 					</div>
 					<div class="moving-date">
 						<div class="col-q">

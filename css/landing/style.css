@@ -410,6 +410,14 @@ input:-ms-input-placeholder {
       height: 53px;
       width: 211px; }
 
+#move_from_pl {
+  position: absolute;
+  height: 100px;
+  width: 230px;
+  top: 22px;
+  right: 0;
+  color: white; }
+
 .movers {
   position: absolute;
   left: 466px; }
