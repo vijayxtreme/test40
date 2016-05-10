@@ -71,15 +71,26 @@ $priceCalculator:#1374c6;
 			width:211px;
 		}
 	}
-
 }
+
+
 #move_from_pl {
     position: absolute;
     height: 100px;
-    width: 230px;
+    width: 250px;
     top: 22px;
-    right: 0;
+    right: 38px;
     color: white;
+    text-align: right;
+}
+#cover_people {
+	position: absolute;
+    height: 462px;
+    width: 353px;
+    background: #4BB8E8;
+    top: 0px;
+    left: 95px;
+    transform: skew(157deg);
 }
 
 .movers {

@@ -122,7 +122,7 @@ $(document).ready(function(){
 			});
 
 			q.then(function(){
-				changeGoogleMap(s1cache.zip, "google-map2", 600)
+				changeGoogleMap(s1cache.zipf, "google-map2", 600)
 			});
 		}
 
@@ -473,9 +473,9 @@ $(document).ready(function(){
 
 		var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+zip);
 		var div = document.getElementById(id);
-		$(div).html('');
-		var movers = $(div).parentsUntil('.movers');
-		movers.remove();
+		//$(div).html('');
+		//var movers = $(div).parentsUntil('.movers');
+		//movers.remove();
 		//$(".movers:eq(0)").css('transform', 'skew(157.45deg)');
 		$(div).show();
 		$(".overlay-gm1, .overlay-gm3").show();
@@ -502,6 +502,17 @@ $(document).ready(function(){
 			        draggable: false,
 			        streetViewControl:false,
 			        disableDoubleClickZoom: true,
+			         styles: [{
+				        stylers: [{
+				                hue: "#00c3ff"
+				            }, {
+				                gamma: .84
+				            }, {
+				                saturation: 53
+				            }, {
+				                lightness: -16
+				            }]
+				      }]
 				}
 
 				setTimeout(function(){
@@ -609,18 +620,32 @@ $(document).ready(function(){
 					address = address[0] + ", " + address[1]; 
 					
 				
-				//some other placeholder
-				if(dataZip == "from_zip"){
-					$("#move_from_pl").text(address);
-				}
-
-				$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
+					//some other placeholder
+					if(dataZip == "from_zip"){
+						$("#move_from_pl").text(address);
+					}
+					if("#step2:visible"){
+						$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(function(){
+								if(dataZip == "from_zip"){
+									address = "A: " + address;
+									return address;
+								}else {
+									address = "B: " + address;
+									return address;
+								}
+							});
+					}else{
+						var m = address.match(/[A-C]/);
+						address = address.substr(0, address.indexOf(m));
+						console.log(address);
+						$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
+					}
 				}catch(e){
 					//
 				}
 			});
-	
-	});
+		});
+
 	
 	//Step 3: Calculate Distance between two zips (Google Maps)
 	//Requires a callback function
@@ -697,7 +722,7 @@ $(document).ready(function(){
 	//Step 1: Validation
 
 	var s1cache = {
-		zip:null,
+		zipf:null,
 	}
 
 	$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&sensor=true&callback=initialize&v=3.20');
@@ -725,10 +750,10 @@ $(document).ready(function(){
 		success:function(label, element){
 
 			//prevents extra bubbling
-			if(s1cache.zip != $(element).val()){
-				s1cache.zip = $(element).val();
+			if(s1cache.zipf != $(element).val()){
+				s1cache.zipf = $(element).val();
 
-				changeGoogleMap(s1cache.zip, 'google-map1')
+				changeGoogleMap(s1cache.zipf, 'google-map1')
 			}
 
 			
@@ -765,7 +790,8 @@ $(document).ready(function(){
 	});
 	
 	var s2cache = {
-		zip:null
+		zipf:s1cache.zipf,
+		zipt:null
 	};
 	
 	
@@ -810,13 +836,23 @@ $(document).ready(function(){
 		},
 		errorClass:'validation-error',
 		success:function(label, element){
+			if(s2cache.zipf == null){
+				s2cache.zipf = s1cache.zipf;
+			}
+			if(element.dataset.zip == "from_zip" && $(element).val().length === 5){
+				if(s2cache.zipf != $(element).val()){
+					s2cache.zipf = $(element).val();
+					changeGoogleMap(s2cache.zipf, "google-map2");
+				}
+			}
+
 
 			if(element.id == "zip_to" && $(element).val().length === 5){
-				if(s2cache.zip != $(element).val()){
-					s2cache.zip = $(element).val();
+				if(s2cache.zipt != $(element).val()){
+					s2cache.zipt = $(element).val();
 					
-					var start = s1cache.zip;
-					var end = s2cache.zip;
+					var start = s2cache.zipf;
+					var end = s2cache.zipt;
 					console.log(element.id)
 					var div = document.getElementById("google-map2");
 					
@@ -839,7 +875,7 @@ $(document).ready(function(){
 
 
 						var myOptions = {
-						    zoom: 7,
+						    zoom: 14,
 						    zoomControl:false,
 						    center: latlng,
 						    mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -848,10 +884,21 @@ $(document).ready(function(){
 					        scaleControl: false,
 					        streetViewControl:false,
 					        disableDoubleClickZoom: true,
+					        styles: [{
+						        stylers: [{
+						                hue: "#00c3ff"
+						            }, {
+						                gamma: .84
+						            }, {
+						                saturation: 53
+						            }, {
+						                lightness: -16
+						            }]
+						      }]
 						}
 						console.log(myOptions);
 
-						map = new google.maps.Map(document.getElementById("google-map2"), myOptions);
+						map = new google.maps.Map(document.getElementById("google-map1"), myOptions);
 						
 
 						var directionsOptions = {
@@ -869,50 +916,51 @@ $(document).ready(function(){
 							optimizeWaypoints:true,
 							travelMode: google.maps.DirectionsTravelMode.DRIVING
 						};
- 						var icons = {
-					        start: new google.maps.MarkerImage(
-					        // URL
-					        '../bvl40/img/test40/marker_icon.png',
-					        // (width,height)
-					        new google.maps.Size(53, 64),
-					        // The origin point (x,y)
-					        new google.maps.Point(0, 0),
-					        // The anchor point (x,y)
-					        new google.maps.Point(22, 32)),
-					        end: new google.maps.MarkerImage(
-					        // URL
-					        '../bvl40/img/test40/marker_iconB.png',
-					        // (width,height)
-					        new google.maps.Size(53, 64),
-					        // The origin point (x,y)
-					        new google.maps.Point(0, 0),
-					        // The anchor point (x,y)
-					        new google.maps.Point(22, 32))
-					    };
+ 						// var icons = {
+					  //       start: new google.maps.MarkerImage(
+					  //       // URL
+					  //       '',
+					  //       // (width,height)
+					  //       new google.maps.Size(53, 64),
+					  //       // The origin point (x,y)
+					  //       new google.maps.Point(0, 0),
+					  //       // The anchor point (x,y)
+					  //       new google.maps.Point(22, 32)),
+					  //       end: new google.maps.MarkerImage(
+					  //       // URL
+					  //       '',
+					  //       // (width,height)
+					  //       new google.maps.Size(53, 64),
+					  //       // The origin point (x,y)
+					  //       new google.maps.Point(0, 0),
+					  //       // The anchor point (x,y)
+					  //       new google.maps.Point(22, 32))
+					  //   };
 
-					    function makeMarker(position, icon, title, map) {
-					        new google.maps.Marker({
-					            position: position,
-					            map: map,
-					            icon: icon,
-					            title: title
-					        });
-					    }
+					    // function makeMarker(position, icon, title, map) {
+					    //     new google.maps.Marker({
+					    //         position: position,
+					    //         map: map,
+					    //         icon: icon,
+					    //         title: title
+					    //     });
+					    // }
 
 						directionsService.route(request, function(response, status) {
 						  if (status == google.maps.DirectionsStatus.OK) {
 								directionsDisplay = new google.maps.DirectionsRenderer({
 		                    	map: map,
 		                    	directions: response,
-		                    	suppressMarkers: true,
+		                    	suppressMarkers: false,
 		                	});
 							directionsDisplay.setMap(map);
 							directionsDisplay.setOptions(directionsOptions);
 							var route = response.routes[0];
 
 			                var leg = response.routes[0].legs[0];
-							makeMarker(leg.start_location, icons.start, "title", map);
-			                makeMarker(leg.end_location, icons.end, 'title', map);
+							// makeMarker(leg.start_location, icons.start, "title", map);
+			    //             makeMarker(leg.end_location, icons.end, 'title', map);
+			    			map.panBy(-300, 0)
 						  }
 						});
 
@@ -937,6 +985,8 @@ $(document).ready(function(){
 			cacheMoveDate();
 			cacheMoveSize();
 			
+
+
 			//Lazy load step3 images
 			var stepThreeImages = [{
 				link:'check-green.png',
@@ -1283,6 +1333,7 @@ $(document).ready(function(){
 	// 			});
 	// 		}
 	// }
+	
 	$("#move-date").click(function(e){
 		$(".cal-area").toggle();
 	});
@@ -1352,7 +1403,18 @@ function initialize() {
 	    var myOptions = {
 	        zoom: 8,
 	        center: latlng,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP
+	        mapTypeId: google.maps.MapTypeId.ROADMAP,
+	        styles: [{
+				        stylers: [{
+				                hue: "#00c3ff"
+				            }, {
+				                gamma: .84
+				            }, {
+				                saturation: 53
+				            }, {
+				                lightness: -16
+				            }]
+				      }]
 	    };
 	    map = new google.maps.Map(document.getElementById("google-map1"),
 	            myOptions);

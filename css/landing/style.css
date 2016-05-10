@@ -413,14 +413,27 @@ input:-ms-input-placeholder {
 #move_from_pl {
   position: absolute;
   height: 100px;
-  width: 230px;
+  width: 250px;
   top: 22px;
-  right: 0;
-  color: white; }
+  right: 38px;
+  color: white;
+  text-align: right; }
+
+#cover_people {
+  position: absolute;
+  height: 462px;
+  width: 353px;
+  background: #4BB8E8;
+  top: 0px;
+  left: 95px;
+  transform: skew(157deg); }
 
 .movers {
   position: absolute;
   left: 466px; }
+
+#step2 .dest {
+  font-weight: 400; }
 
 #step2 .container {
   position: relative; }
@@ -429,7 +442,7 @@ input:-ms-input-placeholder {
   position: absolute;
   top: 34px;
   width: 940px;
-  z-index: 10; }
+  z-index: 30; }
 
 #step2 .bvl-logos {
   padding-top: 85px; }
@@ -1160,7 +1173,7 @@ input.zip {
           color: #444444; }
 
 aside#sidebar {
-  background-color: #F4EFEF; }
+  background-color: #eaf2f5; }
   aside#sidebar .container {
     position: relative; }
   aside#sidebar .how-it-works-title {
@@ -1323,10 +1336,10 @@ aside#sidebar {
 
 #google-map1, #google-map2 {
   position: absolute;
-  top: 0;
+  top: 87px;
   left: 0px;
   height: 462px;
-  width: 571px;
+  width: 100%;
   display: none; }
 
 #google-map2 {
@@ -1334,45 +1347,12 @@ aside#sidebar {
   left: -120px;
   display: block; }
 
-.overlay-gm1 {
-  width: 333px;
-  height: 461px;
-  -webkit-transform: skew(20deg);
-  -moz-transform: skew(20deg);
-  -o-transform: skew(20deg);
-  background: #4bb8e8;
-  transform: skew(157.45deg);
+#fakebg {
+  background: -webkit-linear-gradient(-45deg, #a9d1ff 0%, rgba(0, 137, 249, 0.86) 0%, rgba(32, 124, 202, 0) 100%, rgba(125, 185, 232, 0) 100%);
   position: absolute;
-  top: 0;
-  right: 431px;
-  z-index: 10;
-  display: none; }
-
-.overlay-gm2 {
-  width: 333px;
   height: 462px;
-  -webkit-transform: skew(20deg);
-  -moz-transform: skew(20deg);
-  -o-transform: skew(20deg);
-  background: #4bb8e8;
-  transform: skew(157.45deg);
-  position: absolute;
-  top: 0;
-  right: -236px; }
-
-.overlay-gm3 {
-  width: 334px;
-  height: 461px;
-  -webkit-transform: skew(20deg);
-  -moz-transform: skew(20deg);
-  -o-transform: skew(20deg);
-  background: rgba(0, 0, 0, 0.12);
-  transform: skew(157.45deg);
-  position: absolute;
-  top: 0;
-  right: 96px;
-  z-index: 10;
-  display: none; }
+  width: 100%;
+  z-index: 20; }
 
 #step2 .bvl-logos {
   clear: both;
@@ -1414,7 +1394,7 @@ aside#sidebar {
   z-index: 1; }
 
 #step2 .overlay-gm3 {
-  width: 335px;
+  width: 336px;
   height: 463px;
   -webkit-transform: skew(20deg);
   -moz-transform: skew(20deg);
@@ -1424,5 +1404,4 @@ aside#sidebar {
   position: absolute;
   top: -110px;
   right: -311px;
-  z-index: 1;
-  display: none !important; }
+  z-index: 1; }

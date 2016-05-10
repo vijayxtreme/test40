@@ -21,6 +21,7 @@
 			</div>
 		</div>
 	</header>
+	<div id="fakebg"></div>
 	<div class='background'>
 		<section id="step1" class="step">
 			<div class="container">
@@ -62,7 +63,7 @@
 				<div class="movers">
 					<div class="overlay-gm1"></div>
 					<img class="moving_people" src="img/test40/movers.png">
-					<div id="google-map1"></div>
+
 					<div class="overlay-gm2"></div>
 					<div class="overlay-gm3"></div>
 				</div>
@@ -94,7 +95,7 @@
 					</div>
 					<div class="moving-from edit">
 						<h6>MOVING FROM:</h6>
-						<div>A: <span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="from_zip"></span><a id="moving-from-text-edit" href="">Edit</a></div>
 					</div>
 					<div class="moving-to">
 						<div class="col-q">
@@ -109,7 +110,7 @@
 					</div>
 					<div class="moving-to edit">
 						<h6>MOVING TO:</h6>
-						<div>B: <span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="">Edit</a></div>
+						<div><span id="moving-from-text" data-zip="move_to"></span><a id="moving-to-text-edit" href="">Edit</a></div>
 					</div>
 					<div class="moving-date">
 						<div class="col-q">
@@ -154,11 +155,9 @@
 				</div>
 				<div class="parallelogram"></div>
 				<div class="movers">
-					<div class="overlay-gm1"></div>
 
 					<div id="google-map2"></div>
-					<div class="overlay-gm2"></div>
-					<div class="overlay-gm3"></div>
+
 
 				</div>				
 				<div class="bvl-logos">
@@ -402,6 +401,7 @@
 		</div>
 		</div>
 	</aside>
+						<div id="google-map1"></div>
 	<div class="disclaimer">
 		<div class="container">
 		<p id="quotes-disc">By clicking on the "Get My Quotes" button I am verifying that I am over 18 years of age and agree to the <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.  My "click" is my expressed written consent to be contacted via email, text, SMS or phone (including the use of autodialed calls or prerecorded calls) by Budget Van Lines, inc. and its moving partners that can quote or service my move, as well as companies offering other useful products or services.  My consent supercedes any registration on any do-not-call list.  Consent is required to proceed, but is not a condition of any purchase.</p>
