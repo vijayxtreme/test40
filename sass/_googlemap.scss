@@ -21,21 +21,6 @@
 }
 
 
-#step1 .price-text.state1 {
-	opacity: 0;
-	transition: opacity .5s ease-out;
-	-moz-transition: opacity .5s ease--out;
-	-webkit-transition: opacity .5s ease-out;
-}
-
-#step1 .price-text.state2 {
-	opacity: 1;
-	transition: opacity 1.5s ease-in;
-	-moz-transition: opacity 1.5s ease-in;
-	-webkit-transition: opacity 1.5s ease-in;
-}
-
-
 // .overlay-gm1 {
 // 	width: 333px;
 //     height: 461px;

@@ -3,7 +3,14 @@
 =====================================*/
 
 $(document).ready(function(){
-	$("button").removeAttr('disabled');
+	$("button").not('#step1 button').removeAttr('disabled');
+			$('html').bind('keypress', function(e)
+			{
+			   if(e.keyCode == 13)
+			   {
+			      return false;
+			   }
+			});
 	
 	var mapLoaded, session;
 
@@ -14,7 +21,7 @@ $(document).ready(function(){
 		zipf:null,
 		zipt:null
 	};
-
+	$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&callback=initialize&v=3');
 
 	//if zip is cached
 	// if($("#f-step1 input").val().length == 5 && $("#f-step1 input").val() !="")	{
@@ -34,12 +41,10 @@ $(document).ready(function(){
 	// 	$("#cover_people").hide();
 	// }
 
-	$("#f-step1 input").on('focus', function(){
-		if(!mapLoaded){
-		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&callback=initialize&v=3');
-		mapLoaded = true;
-		}
-	});
+	// $("#f-step1 input").on('focus', function(){
+	// 	if(!mapLoaded){
+		
+	// });
 
 
 	//Global: Cache 
@@ -150,10 +155,7 @@ $(document).ready(function(){
 		var stepB = step + num;
 		
 		//Hide whatever absolute divs are on screen
-		if($("aside#sidebar").is(':visible')){
-			$("aside#sidebar").hide();
-			$(".zipcode-helper").hide();
-		}
+		
 		// if(stepB == "step2"){
 		// 	var q = new Promise(function(resolve, reject){
 		// 		resolve((function(){
@@ -563,6 +565,8 @@ $(document).ready(function(){
 					    map: map,
 					     icon: '../bvl40/img/test40/marker_icon.png'
 					  });
+
+					map.panBy(-250, 0)
 				}, speed);
 
 				// $("#step2 #zip_to").val('');
@@ -570,31 +574,10 @@ $(document).ready(function(){
 				$(".moving-to.edit").hide();
 
 				if($("#step1 .price-text").is(':visible')){
-					$("#moving-price-calculator").css('color', 'transparent')
-					$("#step1 .price-text").fadeOut();
-					cache.fromZip = $("#f-step1 input[name=zip_from]").val();
-					$("#f-step2 input[name=zip_from]").val(cache.fromZip);
-					setTimeout(function(){
-						// $("#step1 .price-text").fadeIn();
-						var op = 0;
+					step1success()
 
 						
-						$('#step1').hide().css('margin-left', '-1500px');
-						$('#step2').show().css({
-							'margin-left': '0px',
-						});
-						$('#step2 .steps-completed, #step2 .form-area').css('opacity', 0)
-						var intv = setInterval(function(){
-							if(op < 1){
-								op += 0.1;
-								$('#step2 .steps-completed, #step2 .form-area').css('opacity',op)
-							}else if(op >= 1.0){
-								clearInterval(intv);
-							}
-						}, 70);
-
-						
-					},1000)
+					
 				}
 					
 
@@ -829,6 +812,7 @@ $(document).ready(function(){
 		},
 		errorClass:'validation-error',
 		success:function(label, element){
+	
 
 			//prevents extra bubbling
 			if($(element).val() != "" && $(element).val().length == 5){
@@ -837,45 +821,100 @@ $(document).ready(function(){
 				
 				changeGoogleMap(s1cache.zipf, 'google-map1')
 			}
+		
+		},
+		submitHandler:function(){
 			//prevents extra bubbling
-			if(s1cache.zipf != $(element).val()){
+			if($(element).val() != "" && $(element).val().length == 5){
 				s1cache.zipf = $(element).val();
+				zipToCity("#zip_from");
+				
 				changeGoogleMap(s1cache.zipf, 'google-map1')
 			}
-
-			
-		},
-		submitHandler:function(form){
-			$('#step1 .movers').hide();
-			var submitBtn = $(form).find('.submit-form');
-			try{
-				_gaq.push(['_trackEvent', 'desktop', '999moving', 'step1-test40']);
-			}catch(e){
-				
-			}
-			cache.fromZip = $("#f-step1 input[name=zip_from]").val();
-			
-			//Lazy load step2 images
-			var stepTwoImages = [{
-				link:'stock-img-1.png',
-				id:'#moving-people-img'
-			},
-			{
-				link:'usa-map.png',
-				id:'.movers img'
-			},
-			{
-				link:'large-check.png',
-				id:'.loader-circle img'
-			}];
-	
-			lazyloadImages(stepTwoImages);
-
-			$("#f-step2 input[name=zip_from]").val(cache.fromZip);
-			validationSuccess(submitBtn);
 		}
 	});
+	function step1success(){
+		if($("aside#sidebar").is(':visible')){
+			$("aside#sidebar").hide();
+			$(".zipcode-helper").hide();
+		}
+		try{
+			_gaq.push(['_trackEvent', 'desktop', '999moving', 'step1-test40']);
+		}catch(e){
+			}
+		cache.fromZip = $("#f-step1 input[name=zip_from]").val();
+		
+		//Lazy load step2 images
+		var stepTwoImages = [{
+			link:'stock-img-1.png',
+			id:'#moving-people-img'
+		},
+		{
+			link:'usa-map.png',
+			id:'.movers img'
+		},
+		{
+			link:'large-check.png',
+			id:'.loader-circle img'
+		}];
 
+		lazyloadImages(stepTwoImages);
+
+		$("#f-step2 input[name=zip_from]").val(cache.fromZip);
+		$("#moving-price-calculator").css('color', 'transparent')
+			$("#step1 .price-text").fadeOut();
+			cache.fromZip = $("#f-step1 input[name=zip_from]").val();
+			$("#f-step2 input[name=zip_from]").val(cache.fromZip);
+			setTimeout(function(){
+				// $("#step1 .price-text").fadeIn();
+				var op = 0;
+
+				
+				$('#step1').hide().css('margin-left', '-1500px');
+				$('#step2').show().css({
+					'margin-left': '0px',
+				});
+				$('#step2 .form-area').css('opacity', 0)
+				var intv = setInterval(function(){
+					if(op < 0.8){
+						op += 0.1;
+						$('#step2 .form-area').css('opacity',op)
+					}else if(op >= 0.8){
+						clearInterval(intv);
+							$('html').unbind('keypress');
+					}
+				}, 70);
+			},1000)
+	}
+	// function oldstep1(form){
+	// 	$('#step1 .movers').hide();
+	// 	var submitBtn = $(form).find('.submit-form');
+	// 	try{
+	// 		_gaq.push(['_trackEvent', 'desktop', '999moving', 'step1-test40']);
+	// 	}catch(e){
+			
+	// 	}
+	// 	cache.fromZip = $("#f-step1 input[name=zip_from]").val();
+		
+	// 	//Lazy load step2 images
+	// 	var stepTwoImages = [{
+	// 		link:'stock-img-1.png',
+	// 		id:'#moving-people-img'
+	// 	},
+	// 	{
+	// 		link:'usa-map.png',
+	// 		id:'.movers img'
+	// 	},
+	// 	{
+	// 		link:'large-check.png',
+	// 		id:'.loader-circle img'
+	// 	}];
+
+	// 	lazyloadImages(stepTwoImages);
+
+	// 	$("#f-step2 input[name=zip_from]").val(cache.fromZip);
+	// 	validationSuccess(submitBtn);
+	// }
 	
 	//Step 2: Validation
 	$("#f-step2").validate({
@@ -984,7 +1023,7 @@ $(document).ready(function(){
 
 						var directionsOptions = {
 							markerOptions: {clickable: false},
-							preserveViewport:true
+							preserveViewport:false
 						};
 
 						
@@ -1041,7 +1080,7 @@ $(document).ready(function(){
 			                var leg = response.routes[0].legs[0];
 							 makeMarker(leg.start_location, icons.start, "title", map);
 			                 makeMarker(leg.end_location, icons.end, 'title', map);
-			    			map.panBy(-300, 0)
+				    		map.panBy(150, 0) 
 						  }
 						});
 

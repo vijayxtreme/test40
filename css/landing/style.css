@@ -137,7 +137,7 @@ header .container {
   header .container .phone {
     float: right;
     position: relative;
-    right: 107px; }
+    right: 121px; }
     header .container .phone .any-questions {
       padding-top: 28px; }
       header .container .phone .any-questions p {
@@ -1356,18 +1356,6 @@ aside#sidebar {
   height: 462px;
   width: 100%;
   z-index: 20; }
-
-#step1 .price-text.state1 {
-  opacity: 0;
-  transition: opacity .5s ease-out;
-  -moz-transition: opacity .5s ease--out;
-  -webkit-transition: opacity .5s ease-out; }
-
-#step1 .price-text.state2 {
-  opacity: 1;
-  transition: opacity 1.5s ease-in;
-  -moz-transition: opacity 1.5s ease-in;
-  -webkit-transition: opacity 1.5s ease-in; }
 
 #step2 .bvl-logos {
   clear: both;
