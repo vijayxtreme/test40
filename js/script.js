@@ -5,6 +5,43 @@
 $(document).ready(function(){
 	$("button").removeAttr('disabled');
 	
+	var mapLoaded, session;
+
+	var s1cache = {
+		zipf:null
+	};
+	var s2cache = {
+		zipf:null,
+		zipt:null
+	};
+
+
+	//if zip is cached
+	// if($("#f-step1 input").val().length == 5 && $("#f-step1 input").val() !="")	{
+	// 	session = true;
+				
+	// 	zipToCity("#step1 .zipc");
+		
+	// 	var q = $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&callback=initialize&v=3');
+		
+	// 	q.done(function(){
+	// 		setTimeout(function(){
+	// 			changeGoogleMap($("#f-step1 input").val(), "google-map1")
+	// 		}, 500);
+	// 	});
+	// 	mapLoaded = true;
+	// }else {
+	// 	$("#cover_people").hide();
+	// }
+
+	$("#f-step1 input").on('focus', function(){
+		if(!mapLoaded){
+		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&callback=initialize&v=3');
+		mapLoaded = true;
+		}
+	});
+
+
 	//Global: Cache 
 	var cache = {
 		distance:0,
@@ -115,16 +152,20 @@ $(document).ready(function(){
 		//Hide whatever absolute divs are on screen
 		if($("aside#sidebar").is(':visible')){
 			$("aside#sidebar").hide();
+			$(".zipcode-helper").hide();
 		}
-		if(stepB == "step2"){
-			var q = new Promise(function(resolve, reject){
-				resolve(animateLeft(stepA, stepB));
-			});
+		// if(stepB == "step2"){
+		// 	var q = new Promise(function(resolve, reject){
+		// 		resolve((function(){
+		// 			$('#step1').hide().css('margin-left', '-1500px');
+		// 			$('#step2').css('margin-left', '0px').show();
+		// 		}()));
+		// 	});
 
-			q.then(function(){
-				changeGoogleMap(s1cache.zipf, "google-map2", 600)
-			});
-		}
+		// 	q.then(function(){
+		// 		changeGoogleMap(s1cache.zipf, "google-map2", 600)
+		// 	});
+		// }
 
 		
 	
@@ -159,8 +200,15 @@ $(document).ready(function(){
 				$(".loader-text .calc").hide();
 				$(".loader-text .search").show();
 				calculateDistance(start, end, function(result){
+					result = result.slice(0,result.indexOf('m')) + "miles";
 					cache.distance = result;
-					$("#field-trip-length").text("Trip length " + result);
+					
+					var re = new RegExp(/Out of Bounds/i);
+						if(re.test(result)){
+							$("#field-trip-length").text(result);				
+						}else{
+							$("#field-trip-length").text("Move dist: " + result);
+						}
 				});
 			}
 					
@@ -298,14 +346,6 @@ $(document).ready(function(){
 		zipf, 
 		form;
 		var i=0;
-
-	var isKeyPress = false;
-	
-	document.onkeydown = function(event) {
-	   if (event.keyCode == 13) {
-	      isKeyPress = true;
-	   }
-	}
 
 	$(".ziphelp").on('click', function(e){
 		//stops body from also registering click
@@ -471,7 +511,7 @@ $(document).ready(function(){
 		var lat, lng;
 		var speed = arguments[2] || 100;
 
-		var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+zip);
+		var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyD-8Xx0A4yRvS6UsQ7YzY75KxgufqUJ_d4&address='+zip);
 		var div = document.getElementById(id);
 		//$(div).html('');
 		//var movers = $(div).parentsUntil('.movers');
@@ -489,17 +529,16 @@ $(document).ready(function(){
 
 				var latlng = new google.maps.LatLng(lat, lng);
 				console.log(latlng)
-
 				var myOptions = {
-				    zoom: 12,
-			        scrollwheel: false,
-				    zoomControl:false,
+				    zoom: 8,
+			        scrollwheel: true,
+				    zoomControl:true,
 				    center: latlng,
 				    mapTypeId: google.maps.MapTypeId.ROADMAP,
 				    navigationControl: false,
 			        mapTypeControl: false,
 			        scaleControl: false,
-			        draggable: false,
+			        draggable: true,
 			        streetViewControl:false,
 			        disableDoubleClickZoom: true,
 			         styles: [{
@@ -522,14 +561,47 @@ $(document).ready(function(){
 					var marker = new google.maps.Marker({
 					    position: latlng,
 					    map: map,
-					    icon: '../bvl40/img/test40/marker_icon.png'
+					     icon: '../bvl40/img/test40/marker_icon.png'
 					  });
 				}, speed);
 
-				// map.panTo(latlng);
+				// $("#step2 #zip_to").val('');
+				$(".moving-to").show();
+				$(".moving-to.edit").hide();
+
+				if($("#step1 .price-text").is(':visible')){
+					$("#moving-price-calculator").css('color', 'transparent')
+					$("#step1 .price-text").fadeOut();
+					cache.fromZip = $("#f-step1 input[name=zip_from]").val();
+					$("#f-step2 input[name=zip_from]").val(cache.fromZip);
+					setTimeout(function(){
+						// $("#step1 .price-text").fadeIn();
+						var op = 0;
+
+						
+						$('#step1').hide().css('margin-left', '-1500px');
+						$('#step2').show().css({
+							'margin-left': '0px',
+						});
+						$('#step2 .steps-completed, #step2 .form-area').css('opacity', 0)
+						var intv = setInterval(function(){
+							if(op < 1){
+								op += 0.1;
+								$('#step2 .steps-completed, #step2 .form-area').css('opacity',op)
+							}else if(op >= 1.0){
+								clearInterval(intv);
+							}
+						}, 70);
+
+						
+					},1000)
+				}
+					
+
 			 }catch (e){
 				console.log(e);
 			}
+			
 		});
 	}
 	
@@ -604,10 +676,21 @@ $(document).ready(function(){
 	$("#move-date").on('change', cacheMoveDate());
 	$("#move_size").on('change', cacheMoveSize());
 	
-	//Step 2: Show City via ZipCode (Google Maps Ajax)
-	$(".zipc").on('change', function(e){
-		var zip = $(this).val();
-		var dataZip = $(this).attr('data-zip');
+	function zipToCity(){
+		//takes an input 
+		var zip, dataZip, input;
+		
+		if(typeof arguments[0] === "string"){ 
+			input = $(arguments[0]);
+			//jquery input string
+			zip = $(arguments[0]).val();
+			
+			dataZip = $(arguments[0]).attr('data-zip');
+		}else {
+			zip = $(this).val();
+			dataZip = $(this).attr('data-zip');
+			
+		}
 		
 		$('.edit span[data-zip='+dataZip+']').text('');
 		$.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+zip)
@@ -615,36 +698,24 @@ $(document).ready(function(){
 				try {
 					var address = data.results[0].formatted_address;
 					
-					var delimeter = ",";
-					address = address.split(delimeter);
-					address = address[0] + ", " + address[1]; 
+				var delimeter = ",";
+				address = address.split(delimeter);
+				address = address[0] + ", " + address[1]; 
 					
+				//some other placeholder
+				if(dataZip == "from_zip"){
+					$("#move_from_pl").text(address);
+				}
 				
-					//some other placeholder
-					if(dataZip == "from_zip"){
-						$("#move_from_pl").text(address);
-					}
-					if("#step2:visible"){
-						$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(function(){
-								if(dataZip == "from_zip"){
-									address = "A: " + address;
-									return address;
-								}else {
-									address = "B: " + address;
-									return address;
-								}
-							});
-					}else{
-						var m = address.match(/[A-C]/);
-						address = address.substr(0, address.indexOf(m));
-						console.log(address);
-						$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
-					}
+				$('.edit span[data-zip='+dataZip+'], .field-trip2 span[data-zip='+dataZip+']').text(address);
 				}catch(e){
 					//
 				}
 			});
-		});
+		}
+
+
+	$("#step2 .zipc").on('blur', zipToCity);
 
 	
 	//Step 3: Calculate Distance between two zips (Google Maps)
@@ -681,7 +752,18 @@ $(document).ready(function(){
 			draggable:true,
 			disableDoubleClickZoom:true,
 			disableDefaultUI:true,
-			mapTypeId: google.maps.MapTypeId.DEFAULT
+			mapTypeId: google.maps.MapTypeId.DEFAULT,
+			styles: [{
+		        stylers: [{
+		                hue: "#00c3ff"
+		            }, {
+		                gamma: .84
+		            }, {
+		                saturation: 53
+		            }, {
+		                lightness: -16
+		            }]
+		      }]
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
@@ -717,17 +799,16 @@ $(document).ready(function(){
 	$("#phone_number").mask('(999) 999-9999', {
 		placeholder: ""
 	});
+
+	//On string greater than 4, run validation
+	$("input.zipc").on('keyup', function(){
+		if($(this).val().length == 5){
+			$(this).valid();
+		}
+	});
 	
 	//Global: Validations
 	//Step 1: Validation
-
-	var s1cache = {
-		zipf:null,
-	}
-
-	$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAFjKE8xQUWxlVds1COiroKVmYjH8SoM&sensor=true&callback=initialize&v=3.20');
-	
-		
 
 	$("#f-step1").validate({
 		rules: {
@@ -750,9 +831,15 @@ $(document).ready(function(){
 		success:function(label, element){
 
 			//prevents extra bubbling
+			if($(element).val() != "" && $(element).val().length == 5){
+				s1cache.zipf = $(element).val();
+				zipToCity("#zip_from");
+				
+				changeGoogleMap(s1cache.zipf, 'google-map1')
+			}
+			//prevents extra bubbling
 			if(s1cache.zipf != $(element).val()){
 				s1cache.zipf = $(element).val();
-
 				changeGoogleMap(s1cache.zipf, 'google-map1')
 			}
 
@@ -788,12 +875,7 @@ $(document).ready(function(){
 			validationSuccess(submitBtn);
 		}
 	});
-	
-	var s2cache = {
-		zipf:s1cache.zipf,
-		zipt:null
-	};
-	
+
 	
 	//Step 2: Validation
 	$("#f-step2").validate({
@@ -842,7 +924,7 @@ $(document).ready(function(){
 			if(element.dataset.zip == "from_zip" && $(element).val().length === 5){
 				if(s2cache.zipf != $(element).val()){
 					s2cache.zipf = $(element).val();
-					changeGoogleMap(s2cache.zipf, "google-map2");
+					changeGoogleMap(s2cache.zipf, "google-map1");
 				}
 			}
 
@@ -854,15 +936,14 @@ $(document).ready(function(){
 					var start = s2cache.zipf;
 					var end = s2cache.zipt;
 					console.log(element.id)
-					var div = document.getElementById("google-map2");
+					var div = document.getElementById("google-map1");
 					
-					$(div).html('');
-					var movers = $(div).parentsUntil('.movers');
-					movers.remove();
+					//$(div).html('');
+					//var movers = $(div).parentsUntil('.movers');
+					//movers.remove();
 					//$(".movers:eq(0)").css('transform', 'skew(157.45deg)');
-					$(div).show();
-					$(".overlay-gm1").show();
-				var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&address='+end);
+					
+				var q = $.get('https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyD-8Xx0A4yRvS6UsQ7YzY75KxgufqUJ_d4&address='+end);
 
 				q.done(function(data){	
 				 try {
@@ -875,7 +956,7 @@ $(document).ready(function(){
 
 
 						var myOptions = {
-						    zoom: 14,
+						    zoom: 8,
 						    zoomControl:false,
 						    center: latlng,
 						    mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -916,50 +997,50 @@ $(document).ready(function(){
 							optimizeWaypoints:true,
 							travelMode: google.maps.DirectionsTravelMode.DRIVING
 						};
- 						// var icons = {
-					  //       start: new google.maps.MarkerImage(
-					  //       // URL
-					  //       '',
-					  //       // (width,height)
-					  //       new google.maps.Size(53, 64),
-					  //       // The origin point (x,y)
-					  //       new google.maps.Point(0, 0),
-					  //       // The anchor point (x,y)
-					  //       new google.maps.Point(22, 32)),
-					  //       end: new google.maps.MarkerImage(
-					  //       // URL
-					  //       '',
-					  //       // (width,height)
-					  //       new google.maps.Size(53, 64),
-					  //       // The origin point (x,y)
-					  //       new google.maps.Point(0, 0),
-					  //       // The anchor point (x,y)
-					  //       new google.maps.Point(22, 32))
-					  //   };
+ 						var icons = {
+					        start: new google.maps.MarkerImage(
+					        // URL
+					        '../bvl40/img/test40/marker_iconA_50.png',
+					        // (width,height)
+					        new google.maps.Size(53, 64),
+					        // The origin point (x,y)
+					        new google.maps.Point(0, 0),
+					        // The anchor point (x,y)
+					        new google.maps.Point(22, 32)),
+					        end: new google.maps.MarkerImage(
+					        // URL
+					        '../bvl40/img/test40/marker_iconB_50.png',
+					        // (width,height)
+					        new google.maps.Size(53, 64),
+					        // The origin point (x,y)
+					        new google.maps.Point(0, 0),
+					        // The anchor point (x,y)
+					        new google.maps.Point(22, 32))
+					    };
 
-					    // function makeMarker(position, icon, title, map) {
-					    //     new google.maps.Marker({
-					    //         position: position,
-					    //         map: map,
-					    //         icon: icon,
-					    //         title: title
-					    //     });
-					    // }
+					    function makeMarker(position, icon, title, map) {
+					        new google.maps.Marker({
+					            position: position,
+					            map: map,
+					            icon: icon,
+					            title: title
+					        });
+					    }
 
 						directionsService.route(request, function(response, status) {
 						  if (status == google.maps.DirectionsStatus.OK) {
 								directionsDisplay = new google.maps.DirectionsRenderer({
 		                    	map: map,
 		                    	directions: response,
-		                    	suppressMarkers: false,
+		                    	suppressMarkers: true,
 		                	});
 							directionsDisplay.setMap(map);
 							directionsDisplay.setOptions(directionsOptions);
 							var route = response.routes[0];
 
 			                var leg = response.routes[0].legs[0];
-							// makeMarker(leg.start_location, icons.start, "title", map);
-			    //             makeMarker(leg.end_location, icons.end, 'title', map);
+							 makeMarker(leg.start_location, icons.start, "title", map);
+			                 makeMarker(leg.end_location, icons.end, 'title', map);
 			    			map.panBy(-300, 0)
 						  }
 						});
@@ -981,10 +1062,13 @@ $(document).ready(function(){
 			}catch(e){
 				
 			}
+			zipToCity("#f-step2 input[name=zip_from]");
+			zipToCity("#f-step2 input[name=zip_to]");
+
 			cache.toZip = $("#f-step2 input[name=to_zip]").val();
 			cacheMoveDate();
 			cacheMoveSize();
-			
+			$("#google-map1").hide()
 
 
 			//Lazy load step3 images
@@ -1102,6 +1186,9 @@ $(document).ready(function(){
 				$("#update-my-info").hide();
 				$("#show-my-info").show();
 			}else {
+
+				zipToCity("#f-step3-u input[name=zip_from]");
+				zipToCity("#f-step3-u input[name=zip_to]");
 				//Redraw map
 				(cache.fromZip == zipFrom) ? '': cache.fromZip = zipFrom;
 				(cache.toZip == zipTo) ? '' : cache.toZip = zipTo;
@@ -1149,6 +1236,12 @@ $(document).ready(function(){
 					//After we update the zip, we need to get and cache the new distance.  Distance + moveSize are the arguments we need for our equate validate/calc controller
 					calculateDistance(start,end,function(result){
 						cache.distance = result;
+						var re = new RegExp(/Out of Bounds/i);
+						if(re.test(result)){
+							$("#field-trip-length").text(result);				
+						}else{
+							$("#field-trip-length").text("Trip length " + result);
+						}
 						$("#field-trip-length").text("Trip length " + result);
 						$(".loader-area").hide();
 						$(".movers-found").show();	
@@ -1254,22 +1347,44 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('#f-step2').on('keypress', function(e){
+		e.preventDefault();
+	});	
+	
+
 	//Step 2: Blur Edit Inputs
-	$(".moving-from input").on('change', function(){
-		var valid = $(this).valid();
-		
-		if(valid){
-			$("#f-step2 .moving-from").hide();
-			$(".moving-from.edit").show();
-		}
+	$(".moving-from input").on('blur', function(){
+	
+		var input = $(this);
+		var valid = input.valid();
+
+		setTimeout(function(){
+			var error = input.hasClass('validation-error');	
+				
+			if(error){
+				
+			}else {
+				$("#f-step2 .moving-from").hide();
+				$(".moving-from.edit").show();
+				$('#f-step2').off('keypress');
+			}
+		}, 350);
 	});
-	$(".moving-to input").on('change', function(){
-		var valid = $(this).valid();
-		
-		if(valid){
-			$("#f-step2 .moving-to").hide();
-			$(".moving-to.edit").show();
-		}
+	$(".moving-to input").on('blur', function(){
+
+		var input = $(this);
+		var valid = input.valid();
+
+		setTimeout(function(){
+			var error = input.hasClass('validation-error');			
+			if(error){
+
+			}else {
+				$("#f-step2 .moving-to").hide();
+				$(".moving-to.edit").show();
+				$('#f-step2').off('keypress');
+			}
+		},350);
 	});
 	
 	//Step 2: Edit Link for Zips

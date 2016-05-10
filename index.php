@@ -21,13 +21,15 @@
 			</div>
 		</div>
 	</header>
-	<div id="fakebg"></div>
+<!-- 	<div class="fakebg"></div> -->
 	<div class='background'>
 		<section id="step1" class="step">
 			<div class="container">
 				<div class="price-text">
-					<h1>MOVING PRICE CALCULATOR</h1>
-					<h4>Rates as low as $999</h4>
+					<div id="moving-price-calculator">
+						<h1>MOVING PRICE CALCULATOR</h1>
+						<h4>Rates as low as $999</h4>
+					</div>
 					<div class="price-calculator">
 						<form id="f-step1">
 							<div class="price-title">
@@ -40,7 +42,7 @@
 									<input name="zip_from" class="zip zipc" id="zip_from" type="tel" placeholder="Enter From Zip" data-zip="from_zip" autofocus>
 								</div>
 								<div class="price-col">
-									<button id="go" class="submit-form" type="submit" disabled>GO</button>
+									<button id="go" class="submit-form" type="submit" disabled>▶</button>
 								</div>
 							</div>
 							<div class="zipfinder">

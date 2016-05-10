@@ -378,7 +378,7 @@ input:-ms-input-placeholder {
   .price-text .price-calculator {
     position: absolute;
     margin-top: 44px;
-    width: 628px;
+    width: 573px;
     z-index: 1000;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -408,7 +408,8 @@ input:-ms-input-placeholder {
       width: 151px; }
     .price-text .price-calculator #go {
       height: 53px;
-      width: 211px; }
+      width: 61px;
+      font-size: 19px; }
 
 #move_from_pl {
   position: absolute;
@@ -453,7 +454,8 @@ input:-ms-input-placeholder {
   padding-left: 32px;
   padding-right: 30px;
   padding-top: 14px;
-  top: 90px; }
+  top: 90px;
+  opacity: 0.9; }
   #step2 .form-area input {
     font-size: 14px;
     padding-top: 7px;
@@ -571,7 +573,8 @@ input:-ms-input-placeholder {
         font-size: 14px;
         line-height: 17.2px;
         font-weight: 400;
-        opacity: 1; }
+        opacity: 1;
+        color: transparent; }
     #step3 .form-area #f-step3 div:last-child .col-n {
       padding-top: 0px; }
     #step3 .form-area input {
@@ -1347,12 +1350,24 @@ aside#sidebar {
   left: -120px;
   display: block; }
 
-#fakebg {
-  background: -webkit-linear-gradient(-45deg, #a9d1ff 0%, rgba(0, 137, 249, 0.86) 0%, rgba(32, 124, 202, 0) 100%, rgba(125, 185, 232, 0) 100%);
+.fakebg {
+  background: -webkit-linear-gradient(-45deg, #a9d1ff 0%, rgba(0, 137, 249, 0.86) 0%, rgba(32, 124, 202, 0) 50%, rgba(125, 185, 232, 0) 100%);
   position: absolute;
   height: 462px;
   width: 100%;
   z-index: 20; }
+
+#step1 .price-text.state1 {
+  opacity: 0;
+  transition: opacity .5s ease-out;
+  -moz-transition: opacity .5s ease--out;
+  -webkit-transition: opacity .5s ease-out; }
+
+#step1 .price-text.state2 {
+  opacity: 1;
+  transition: opacity 1.5s ease-in;
+  -moz-transition: opacity 1.5s ease-in;
+  -webkit-transition: opacity 1.5s ease-in; }
 
 #step2 .bvl-logos {
   clear: both;
