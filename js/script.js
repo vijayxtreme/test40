@@ -534,7 +534,7 @@ $(document).ready(function(){
 				var myOptions = {
 				    zoom: 8,
 			        scrollwheel: true,
-				    zoomControl:true,
+				    zoomControl:false,
 				    center: latlng,
 				    mapTypeId: google.maps.MapTypeId.ROADMAP,
 				    navigationControl: false,

@@ -317,7 +317,7 @@ input:-ms-input-placeholder {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px; }
   .steps-completed .light-col {
-    background-color: #cfebfa;
+    background-color: #fff;
     width: 33%;
     display: inline-block;
     text-align: center;
@@ -455,7 +455,8 @@ input:-ms-input-placeholder {
   padding-right: 30px;
   padding-top: 14px;
   top: 90px;
-  opacity: 0.9; }
+  opacity: 0.9;
+  padding-bottom: 4px; }
   #step2 .form-area input {
     font-size: 14px;
     padding-top: 7px;
@@ -495,12 +496,14 @@ input:-ms-input-placeholder {
     #step2 .form-area .moving-size #select-arrow.ie {
       display: none; }
   #step2 .form-area button.submit-form {
-    font-size: 24.16px; }
+    font-size: 19.16px;
+    letter-spacing: 2.5px; }
   #step2 .form-area #calculate {
     width: 210px;
-    height: 55px;
+    height: 40px;
     margin-bottom: 23px;
-    font-weight: 700; }
+    font-weight: 700;
+    margin-top: 10px; }
   #step2 .form-area .moving-from {
     display: none; }
   #step2 .form-area .moving-from.edit, #step2 .form-area .moving-to.edit {

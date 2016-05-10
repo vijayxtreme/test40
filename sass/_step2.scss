@@ -27,7 +27,8 @@ $inactive:darkgrey;
 		padding-top:14px;
 		top:90px;
 		opacity:0.9;
-		
+		padding-bottom:4px;
+
 		input {
 			font-size:14px;
 			padding-top:7px;
@@ -77,13 +78,15 @@ $inactive:darkgrey;
 		}
 
 		button.submit-form {
-			font-size:24.16px;
+			font-size:19.16px;
+			letter-spacing: 2.5px;
 		}
 		#calculate {
-			width:210px;
-			height:55px;
-			margin-bottom: 23px;
-			font-weight: 700;
+		    width: 210px;
+		    height: 40px;
+		    margin-bottom: 23px;
+		    font-weight: 700;
+		    margin-top: 10px;
 		}
 		.moving-from {
 			display:none;
